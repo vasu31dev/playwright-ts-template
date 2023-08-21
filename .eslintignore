@@ -1,0 +1,7 @@
+node_modules/
+test-results/
+playwright-report/
+.husky/
+**/*.js
+package-lock.json
+dist/**/*

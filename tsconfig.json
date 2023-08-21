@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "dist",
+    "baseUrl": "src/vasu-playwright",
+    "sourceMap": true,
+    "declarationMap": false, // Generates a sourcemap for each corresponding '.d.ts' file
+    "declaration": false, // No need to generate declaration files (.d.ts) for a test project
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitReturns": true, // Ensures that all code paths in a function explicitly return a value
+    "noImplicitOverride": true, // Ensures that overriding methods in a subclass are marked with the 'override' keyword
+    "paths": {
+      "@pages": ["./tests/pages"],
+      "@testdata": ["./tests/testdata"]
+    }
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
+  "exclude": ["node_modules"]
+}

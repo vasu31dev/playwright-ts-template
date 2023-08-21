@@ -1,0 +1,12 @@
+node_modules/
+test-results/
+playwright-report/
+.husky/
+package-lock.json
+dist/**/*
+**/*.js
+
+.prettierignore
+*.env
+**/*.sh
+**/*.png
