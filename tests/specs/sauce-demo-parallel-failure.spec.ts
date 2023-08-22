@@ -1,6 +1,6 @@
-import { test } from 'setup/page-setup';
-import * as LoginPage from '../pages/preferred-pom/sauce-demo-login-page';
-import * as ProductsPage from '../pages/preferred-pom/sauce-demo-products-page';
+import { test } from '@pagesetup';
+import * as LoginPage from '../pages/sauce-demo-login-page';
+import * as ProductsPage from '../pages/sauce-demo-products-page';
 
 //If you want to run the tests in parallel, you can use the test.describe.configure() method to set the mode to parallel. By default, tests are run sequentially.
 test.describe.configure({ mode: 'parallel' });

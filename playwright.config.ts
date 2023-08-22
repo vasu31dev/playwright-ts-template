@@ -11,6 +11,7 @@ dotenv.config({ path: '.env' });
 
 const BASE_URL = process.env.URL || 'https://www.saucedemo.com/';
 const startLocalHost = process.env.URL && process.env.URL.includes('localhost');
+const customLoggerPath = require.resolve('vasu-playwright-utils/custom-logger');
 
 export default defineConfig({
   /**
@@ -43,7 +44,7 @@ export default defineConfig({
    * The reporter to use. This can be set to use a different value on CI.
    * See https://playwright.dev/docs/test-reporters
    */
-  reporter: [['./src/vasu-playwright/setup/custom-logger.ts'], ['html', { open: 'never' }], ['dot']],
+  reporter: [[customLoggerPath], ['html', { open: 'never' }], ['dot']],
   /**
    * Shared settings for all the projects below.
    * See https://playwright.dev/docs/api/class-testoptions

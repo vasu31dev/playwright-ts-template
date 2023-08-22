@@ -1,5 +1,5 @@
 import { click } from 'vasu-playwright-utils';
-import { expectElementToBeHidden, expectElementToBeVisible } from 'utils/assert-utils';
+import { expectElementToBeHidden, expectElementToBeVisible } from 'vasu-playwright-utils';
 import { getLocator } from 'vasu-playwright-utils';
 
 const productsContainer = () => getLocator(`#inventory_container`).nth(0);

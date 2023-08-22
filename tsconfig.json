@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es6",
     "outDir": "dist",
-    "baseUrl": "src/vasu-playwright",
+    "baseUrl": ".",
     "sourceMap": true,
     "declarationMap": false, // Generates a sourcemap for each corresponding '.d.ts' file
     "declaration": false, // No need to generate declaration files (.d.ts) for a test project
@@ -23,8 +23,9 @@
     "noImplicitReturns": true, // Ensures that all code paths in a function explicitly return a value
     "noImplicitOverride": true, // Ensures that overriding methods in a subclass are marked with the 'override' keyword
     "paths": {
-      "@pages": ["./tests/pages"],
-      "@testdata": ["./tests/testdata"]
+      "@pages/*": ["./tests/pages/*"],
+      "@testdata/*": ["./tests/testdata/*"],
+      "@pagesetup": ["./src/vasu-playwright/setup/page-setup"]
     }
   },
   "include": ["src/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
