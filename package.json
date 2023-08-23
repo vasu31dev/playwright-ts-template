@@ -1,7 +1,7 @@
 {
   "name": "playwright-ts-template",
   "version": "1.0.0",
-  "description": "Playwright TS framework Template is designed for Web (Desktop & Mobile), API, and Electron apps. Stable and Robust layer on top of Playwright with inbuilt Utilities, Linting, Logger, Web hooks, Github actions, Reports and much more",
+  "description": "Playwright Type script framework is designed for Web (Desktop & Mobile), API, and Electron apps. Stable and Robust layer on top of Playwright with inbuilt Utilities, Linting, Logging, Web hooks, Github actions, Reports and much more",
   "keywords": [
     "playwright",
     "typescript",
