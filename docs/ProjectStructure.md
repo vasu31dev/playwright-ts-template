@@ -8,7 +8,7 @@ This project is meticulously organized into distinct packages and files, each ta
 
 - **docs**: This directory hosts the images and document files referenced in README.md.
 
-- **src/vasu-playwright**: This directory houses the framework setup and associated utilities. The farmework structure is organized as:
+- **test-setup**: This directory houses the framework setup and associated utilities. The framework structure is organized as:
 
   - **setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](FrameworkSetup.md) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
 

@@ -43,10 +43,10 @@
     "ui": "playwright test --ui-port 0",
     "trace": "playwright show-trace --port 0",
     "allure": "allure generate ./allure-results --clean && allure open ./allure-report",
-    "lint": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'playwright.config.ts'",
-    "lint:fix": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'playwright.config.ts' --fix",
+    "lint": "eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts'",
+    "lint:fix": "eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' --fix",
     "prepare": "husky install",
-    "format": "prettier --write 'tests/**/*.ts' 'src/**/*.ts' 'playwright.config.ts' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
+    "format": "prettier --write 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
     "postinstall": "playwright install && npm run build"
   },
   "husky": {

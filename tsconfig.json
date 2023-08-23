@@ -25,9 +25,9 @@
     "paths": {
       "@pages/*": ["./tests/pages/*"],
       "@testdata/*": ["./tests/testdata/*"],
-      "@pagesetup": ["./src/vasu-playwright/setup/page-setup"]
+      "@pagesetup": ["test-setup/page-setup"]
     }
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
+  "include": ["test-setup/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,4 +1,4 @@
-import { test } from '@pagesetup';
+import { test } from '../../test-setup/page-setup';
 import * as LoginPage from '../pages/sauce-demo-login-page';
 import * as ProductsPage from '../pages/sauce-demo-products-page';
 
