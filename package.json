@@ -26,14 +26,15 @@
     "node": ">=16.0.0"
   },
   "devDependencies": {
-    "vasu-playwright-utils": "^0.4.4",
     "allure-commandline": "^2.23.1",
-    "allure-playwright": "^2.5.0"
+    "allure-playwright": "^2.5.0",
+    "vasu-playwright-utils": "^0.4.6"
   },
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "tsc",
+    "ready": "rimraf dist node_modules package-lock.json && npm i",
     "test": "playwright test",
     "test:chromium": "playwright test --retries 0 --project=chromium",
     "test:chromium-headed": "playwright test -j 1 --retries 0 --headed --project=chromium",
