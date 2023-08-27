@@ -1,5 +1,5 @@
 [![GitHub stars](https://img.shields.io/github/stars/vasu31dev/playwright-ts-cli)](https://github.com/vasu31dev/playwright-ts-cli/stargazers)
-![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts-template) 
+![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts-template)
 ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts-template)
 
 ---

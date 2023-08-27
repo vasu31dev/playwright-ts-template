@@ -27,8 +27,8 @@
   },
   "devDependencies": {
     "allure-commandline": "^2.23.1",
-    "allure-playwright": "^2.5.0",
-    "vasu-playwright-utils": "^0.4.6"
+    "allure-playwright": "^2.6.0",
+    "vasu-playwright-utils": "^0.5.0"
   },
   "scripts": {
     "clean": "rimraf dist",
