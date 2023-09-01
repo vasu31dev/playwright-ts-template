@@ -8,10 +8,15 @@ import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
+import os from 'os';
+// import path from 'path';
 
 const BASE_URL = process.env.URL || 'https://www.saucedemo.com/';
 const startLocalHost = process.env.URL && process.env.URL.includes('localhost');
 const customLoggerPath = require.resolve('vasu-playwright-utils/custom-logger');
+export const LOCAL_HOST_URL = 'https://localhost:9002'; // Update the URL to match your local dev server URL
+// export const STORAGE_STATE_LOGIN = path.join(__dirname, 'playwright/.auth/user-login.json');
+// export const EMPTY_STORAGE_STATE = path.join(__dirname, './tests/testdata/empty-storage-state.json');
 
 export default defineConfig({
   /**
@@ -85,11 +90,17 @@ export default defineConfig({
    * See https://playwright.dev/docs/test-configuration#projects
    */
   projects: [
+    // {
+    //   name: 'setup',
+    //   testMatch: '**/*.setup.ts',
+    // },
     {
       name: 'chromium',
+      // dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1600, height: 1000 },
+        // storageState: STORAGE_STATE_LOGIN,
         launchOptions: {
           args: ['--disable-web-security'],
           /* --auto-open-devtools-for-tabs option is used to open a test with Network tab for debugging. It can help in analyzing network requests and responses.*/
@@ -147,14 +158,16 @@ export default defineConfig({
 
   /**
    * If the tests are being run on localhost, this configuration starts a web server.
-   * See https://playwright.dev/docs/test-configuration#webserver
+   * See https://playwright.dev/docs/test-webserver#configuring-a-web-server
    */
   ...(startLocalHost && {
     webServer: {
-      command: 'cd ~/repos/ui && npm start ui-server',
-      port: 9002,
+      cwd: `${os.homedir()}/repos/ui`, // You can also use the realtive path to the UI repo
+      command: 'npm start ui-server', // Start the UI server
+      url: LOCAL_HOST_URL,
+      ignoreHTTPSErrors: true,
       timeout: 60 * 1000,
-      reuseExistingServer: !process.env.CI,
+      reuseExistingServer: true,
       stdout: 'pipe',
       stderr: 'pipe',
     },
