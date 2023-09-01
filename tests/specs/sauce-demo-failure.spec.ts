@@ -9,7 +9,8 @@ import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
  */
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Saucedemo tests success and failures cases', () => {
+test.describe('Saucedemo tests failure and skip cases', () => {
+  // This test is expected to fail due to incorrect login credentials. Review the report to analyze the failure details.
   test('Saucedemo tests - Failure test', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.failureLogin();
@@ -17,8 +18,8 @@ test.describe('Saucedemo tests success and failures cases', () => {
     await ProductsPage.verifyProductsPageDisplayed();
   });
 
-  //This test will be skippped as the above test will fail and the mode is set to serial
-  test('Saucedemo tests - Successful test', async () => {
+  // This test will be skipped because the mode is set to 'serial' and the preceding test is expected to fail.
+  test('Saucedemo tests - Successful test that will be skipped due to previous test failure', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();
     //verifying products page is displayed only on successful login
