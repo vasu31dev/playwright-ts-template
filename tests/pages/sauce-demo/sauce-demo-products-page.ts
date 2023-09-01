@@ -6,7 +6,7 @@ const productsContainer = () => getLocator(`#inventory_container`).nth(0);
 const addToCartButton = `(//*[@class='inventory_item'])[%s]//*[contains(@id,'add-to-cart')]`;
 
 export async function verifyProductsPageDisplayed() {
-  await expectElementToBeVisible(productsContainer());
+  await expectElementToBeVisible(productsContainer(), { timeout: 1000 });
 }
 
 export async function verifyProductsPageNotDisplayed() {

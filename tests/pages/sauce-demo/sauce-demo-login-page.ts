@@ -1,5 +1,5 @@
 import { click, clickAndNavigate, fill, gotoURL } from 'vasu-playwright-utils';
-import { failureLoginCredentials, successLoginCredentials } from '../testdata/sauce-demo-test-data';
+import { failureLoginCredentials, sauceDemoCredentials } from '../../testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from 'vasu-playwright-utils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from 'vasu-playwright-utils';
 
@@ -13,8 +13,8 @@ export async function navigateToSauceDemoLoginPage() {
 }
 
 export async function logInSuccessfully() {
-  await fill(userName, successLoginCredentials.username);
-  await fill(password(), successLoginCredentials.password);
+  await fill(userName, sauceDemoCredentials.username);
+  await fill(password(), sauceDemoCredentials.password);
   await clickAndNavigate(login());
 }
 

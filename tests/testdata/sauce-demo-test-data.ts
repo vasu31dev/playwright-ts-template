@@ -1,9 +1,9 @@
-export const successLoginCredentials = {
+export const sauceDemoCredentials = {
   username: 'standard_user',
   password: 'secret_sauce',
 };
 
 export const failureLoginCredentials = {
   username: 'standard_user',
-  password: '123',
+  password: 'invalid_password',
 };

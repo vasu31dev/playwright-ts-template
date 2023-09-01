@@ -1,7 +1,14 @@
 import { test } from '../../test-setup/page-setup';
-import * as LoginPage from '../pages/sauce-demo-login-page';
-import * as MiniCart from '../pages/sauce-demo-mini-cart';
-import * as ProductsPage from '../pages/sauce-demo-products-page';
+import * as LoginPage from '../pages/sauce-demo/sauce-demo-login-page';
+import * as MiniCart from '../pages/sauce-demo/sauce-demo-mini-cart';
+import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
+
+/*
+ To run the tests in parallel, you can utilize the test.describe.configure() method to set the mode to 'parallel'.
+ By default, the tests will run sequentially when fullyParallel: false is set in playwright.config.
+ The tests will not be skipped upon encountering a failure expect when the mode is set to 'serial'.
+*/
+test.describe.configure({ mode: 'parallel' });
 
 test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
@@ -30,5 +37,3 @@ test.describe('Saucedemo tests for successful, unsuccessful logins and add produ
     await ProductsPage.verifyProductsPageNotDisplayed();
   });
 });
-
-// This is the preferred way of writing a test. It is more readable and easier to maintain. It is also easier to write tests in this style.
