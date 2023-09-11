@@ -5,19 +5,23 @@
  * with a beforeEach hook already set up. This can be used to define tests with the page context set up.
  */
 
-import { Page, test as baseTest } from '@playwright/test';
+import { test as baseTest } from '@playwright/test';
 import { setPage } from 'vasu-playwright-utils';
 
 /**
  * A hook that runs before each test, setting the page context.
+ * The base test object with a beforeEach hook is already set up.
+ * This can be used to define tests with the page context set up.
  * @param {Page} page - The page context provided by Playwright.
  */
-baseTest.beforeEach(({ page }: { page: Page }) => {
-  setPage(page);
+export const test = baseTest.extend<{ testHook: void }>({
+  testHook: [
+    async ({ page }, use) => {
+      // console.log('BEFORE EACH HOOK FROM FIXTURE');
+      setPage(page);
+      await use();
+      // console.log('AFTER EACH HOOK FROM FIXTURE');
+    },
+    { auto: true },
+  ],
 });
-
-/**
- * The base test object with a beforeEach hook already set up.
- * This can be used to define tests with the page context set up.
- */
-export const test = baseTest;
