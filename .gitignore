@@ -1,8 +1,9 @@
 node_modules/
-/test-results/
-/playwright-report/
-/playwright/.cache/
-playwright/.auth
+test-results/
+playwright-report/
+playwright/.cache/
+playwright/.auth/
+.husky/
 .env
 .vscode
 .idea

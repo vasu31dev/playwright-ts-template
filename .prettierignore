@@ -1,13 +1,16 @@
 node_modules/
 test-results/
 playwright-report/
-playwright/.auth
+playwright/.cache/
+playwright/.auth/
 .husky/
-package-lock.json
-dist/**/*
-**/*.js
+.env
+.vscode
+.idea
+.DS_Store
+allure*
+dist
 
-.prettierignore
-*.env
+package-lock.json
 **/*.sh
 **/*.png
