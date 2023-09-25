@@ -26,7 +26,7 @@
     "node": ">=16.0.0"
   },
   "devDependencies": {
-    "vasu-playwright-utils": "latest"
+    "vasu-playwright-utils": "^0.6.3"
   },
   "scripts": {
     "clean": "rimraf dist",

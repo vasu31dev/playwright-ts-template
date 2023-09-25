@@ -55,8 +55,8 @@
     "complexity": ["warn", { "max": 11 }],
 
     // JSDoc Rules
-    // "jsdoc/check-alignment": "warn",
-    // "jsdoc/check-indentation": "warn",
+    "jsdoc/check-alignment": "warn",
+    "jsdoc/check-indentation": "warn",
 
     // Playwright Rules
     "playwright/missing-playwright-await": ["error"],
