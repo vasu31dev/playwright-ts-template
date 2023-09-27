@@ -176,11 +176,15 @@ In this example, we're using various functions from `action-utils`:
 
 2. `click(input: string | Locator, options?: ClickOptions)`: This function clicks an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
 
-3. `pressSequentially(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
+3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
 
-4. `pressSequentially(input: string | Locator, value: string, options?: TypeOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
+4. `pressSequentially(input: string | Locator, value: string, options?: PressSequentiallyOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
 
-Generally `fill` will work in most cases and has better performance. `pressSequentially` is used when we have to enter text in a search box that has autosuggestions. To find more info on `fill` vs `pressSequentially`, please refer to [Playwright type documentation](https://playwright.dev/docs/input#type-characters).
+Typically, `fill` is a more versatile and efficient choice that works effectively in most scenarios. It not only clears the input field but also simulates a single input event, similar to paste.
+
+Unlike `fill` action, `pressSequentially` does not clear the input field's content; instead, it appends the specified text to the existing content. This method simulates keyboard key presses like keydown, keypress/input, and keyup, for each character in the provided text.
+
+To find more info on `fill` vs `pressSequentially`, please refer to [Playwright type documentation](https://playwright.dev/docs/input#type-characters).
 
 5. `check(input: string | Locator, options?: CheckOptions)`: This function checks a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
 
