@@ -27,7 +27,7 @@ test.describe('Saucedemo tests for successful, unsuccessful logins and add produ
     await MiniCart.verifyMiniCartCount('1');
   });
 
-  test('Saucedemo test - When login is unsuccessful will not display Products Page', async () => {
+  test('Saucedemo test - Error message is displayed and Products page is not displayed on failed login', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.failureLogin();
     await LoginPage.verifyErrorMessageForFailureLogin();
