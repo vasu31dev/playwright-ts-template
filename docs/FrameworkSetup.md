@@ -9,5 +9,5 @@
    This import statement in every spec file is responsible for setting up the page before each test.
 
    ```typescript
-   import { test } from '../../test-setup/page-setup';
+   import { test } from '@pagesetup';
    ```
