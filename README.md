@@ -121,10 +121,10 @@ Here's an example of a page object under the `pages` package:
 
 ```typescript
 //importing utility functions
-import { click, clickAndNavigate, fill, gotoURL } from '@ActionUtils';
-import { failureLoginCredentials, successLoginCredentials } from '../../testdata/sauce-demo-test-data';
-import { expectElementToBeVisible } from '@AssertUtils';
-import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from '@LocatorUtils';
+import { click, clickAndNavigate, fill, gotoURL } from 'vasu-playwright-utils';
+import { failureLoginCredentials, sauceDemoCredentials } from '../../testdata/sauce-demo-test-data';
+import { expectElementToBeVisible } from 'vasu-playwright-utils';
+import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from 'vasu-playwright-utils';
 
 const userName = `#user-name`;
 const password = () => getLocator(`#password`).or(getLocatorByPlaceholder('Password', { exact: true }));
@@ -172,7 +172,7 @@ Here's an example of a test file under the `specs` directory:
 
 ```typescript
 //import test from PageSetup.ts which sets up the page before each test
-import { test } from '@PageSetup';
+import { test } from '@pagesetup';
 
 //importing page objects to use all functions within that page to construct the tests
 import * as LoginPage from 'tests/pages/preferredPOM/sauce-demo-login-page';
