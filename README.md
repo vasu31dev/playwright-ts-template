@@ -26,7 +26,7 @@ This framework is ideal for QA professionals, developers, and business analysts 
 
 - **User-Friendly for All Roles**: This framework is not just for QA Automation professionals. Developers, Manual QA, and Business Analysts can also contribute to end-to-end testing, promoting collaboration across different departments and roles.
 
-- **Utility Functions**: Simplifies the task of identifying elements and performing routine actions and verifications, such as clicking buttons, inputting data into forms, and verifying elements. Additionally, it provides pre-built functions for handling conditional statements and ensures a consistent default LoadState across the applications.
+- **Utility Functions**: Simplifies element identification, performing general actions like button clicks, data input and asserting results. Additionally, it includes built-in functions for managing conditions and ensures a consistent default LoadState across applications.
 
 - **Customizable**: Easily adaptable to meet individual project needs, fitting seamlessly into any project, regardless of its specific requirements or constraints.
 
