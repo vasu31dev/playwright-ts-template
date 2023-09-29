@@ -26,7 +26,7 @@ This framework is ideal for QA professionals, developers, and business analysts 
 
 - **User-Friendly for All Roles**: This framework is not just for QA Automation professionals. Developers, Manual QA, and Business Analysts can also contribute to end-to-end testing, promoting collaboration across different departments and roles.
 
-- **Utility Functions**: Simplifies common actions and assertions, such as clicking buttons, filling forms, and checking elements. It also includes inbuilt methods for conditional statements and maintains a default LoadState across applications.
+- **Utility Functions**: Simplifies element identification, performing general actions like button clicks, data input and asserting results. Additionally, it includes built-in functions for managing conditions and ensures a consistent default LoadState across applications.
 
 - **Customizable**: Easily adaptable to meet individual project needs, fitting seamlessly into any project, regardless of its specific requirements or constraints.
 
@@ -34,9 +34,9 @@ This framework is ideal for QA professionals, developers, and business analysts 
 
 - **Versatile Support**: It facilitates testing across Web (Desktop & Mobile),APIs and, Electron Desktop apps, allowing comprehensive testing across different platforms and applications.
 
-- **Detailed Reporting**: Provides screenshots, videos, and traces of test failures, making it easier to understand and fix issues.
+- **Detailed Reporting**: Provides screenshots, videos, and traces of test failures, making it easier to debug and resolve the issues.
 
-- **Local Web Server**: Allows you to test UI code changes directly on your local machine or on a VM by effortlessly initializing a local web server, eliminating the need for a separate testing environment.
+- **Local Web Server**: Allows you to test UI code changes directly on your local machine or on a VM, by effortlessly initializing a local web server, eliminating the need for a separate testing environment.
 
 In summary, the Playwright TypeScript Framework is a powerful, flexible, and user-friendly tool that leverages the power of Playwright and TypeScript. It's an excellent choice for teams looking to improve their testing practices and efficiency.
 
@@ -196,7 +196,7 @@ test.describe('Saucedemo tests for successful, unsuccessful logins and add produ
     await MiniCart.verifyMiniCartCount('1');
   });
 
-  test('Saucedemo test - When login is unsuccessful will not display Products Page', async () => {
+  test('Saucedemo test - Error message is displayed and Products page is not displayed on failed login', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.failureLogin();
     await LoginPage.verifyErrorMessageForFailureLogin();
@@ -216,7 +216,7 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
-In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and check if the login was successful. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
+In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successfull and failed logins. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
 
 ## Utilities
 
@@ -224,7 +224,7 @@ Explore various utility functions and helpers that can make your testing more ef
 
 1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting the page object.
 2. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
-3. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate common actions like clicking, typing, or dragging, providing a more concise way to express these operations in your tests.
+3. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate standard actions such as clicking, form filling, keyboard events, and dragging; providing a more concise way to execute these operations within your tests.
 4. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
 5. [Assertion Utilities](docs/Utilities.md#assert-utilities): Helpers that simplify the process of making assertions about the state of the application, enhancing the readability and maintainability of your tests.
 6. [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects): Provides a set of options for utility modules.
@@ -233,7 +233,7 @@ Please refer to the [Utilities section](docs/Utilities.md) for a comprehensive g
 
 ## Executing Tests
 
-We have the flexibility to execute a single test, a specific set of tests, or the entire test suite. Testing can be carried out on a single browser or across multiple browsers simultaneously. By default, tests run in a headless mode, and the test outcomes are displayed in the terminal.
+We have the flexibility from executing a single test to executing a specific set of tests, or the entire test suite. Testing can be carried out on a single browser or across multiple browsers simultaneously. By default, tests run in a headless mode, and the test outcome is displayed in the terminal.
 
 ### Run tests using plugin
 
@@ -243,7 +243,7 @@ For detailed guidance on plugin installation, configuring test settings in the p
 
 ### Parallel Execution
 
-Playwright allows you to execute tests in parallel across multiple workers. This can significantly speed up your test suite.
+Playwright allows you to execute tests in parallel across multiple workers. This can significantly speed up the execution of your test suite.
 
 To enable parallel execution, add the following line at the top of your spec file, above the `test` block:
 
@@ -305,7 +305,7 @@ npm run test
 
 #### npx playwright test commands
 
-You can use the following playwright commands as well to run your tests:
+You can also use the playwright command to run your tests as illustrated in the below example:
 
 ```bash
 npx playwright test -c playwright.config.ts -g "logo is present @reg" --headed -j 1 --retries 0
@@ -330,7 +330,7 @@ For more information, please refer to the [Playwright CLI documentation](https:/
 
 ## Report Generation and Viewing
 
-Playwright Test offers several built-in reporters tailored for various requirements, along with the flexibility to integrate custom reporters. You can configure these reporters either through the command line or within the `playwright.config.ts` file. For a comprehensive guide on Playwright's in-built reporters, refer to the official [documentation](https://playwright.dev/docs/test-reporters).
+Playwright Test offers several built-in reporters tailored for various requirements, while also offering the flexibility to seamlessly integrate custom reporters. You can configure these reporters either through the command line or within the `playwright.config.ts` file. For a comprehensive guide on Playwright's in-built reporters, refer to the official [documentation](https://playwright.dev/docs/test-reporters).
 
 ### Accessing Reports via Command-Line Interface (CLI)
 
@@ -356,7 +356,7 @@ npm run report
 
 - **UI Mode**: Playwright's UI mode allows you to explore, run, and debug tests in a watch mode. Dive deeper into this feature [here](https://playwright.dev/docs/test-ui-mode).
 
-- **Test Generator**: With Playwright, you can automatically generate tests. It inspects the page to determine the optimal locator, prioritizing by role, text, and test ID locators. Learn more about test generation using Codegen [here](https://playwright.dev/docs/codegen).
+- **Test Generator**: With Playwright, you can automatically generate tests. It inspects the page to determine the optimal locator, prioritizing by role, text, and test ID locators. Learn more about test generation using `Codegen` [here](https://playwright.dev/docs/codegen).
 
 - **Trace Viewer**: The Playwright Trace Viewer offers a graphical interface to review recorded traces post-execution. Get more details [here](https://playwright.dev/docs/trace-viewer).
 
@@ -364,9 +364,9 @@ npm run report
 
 Here are some recommended best practices when using this framework:
 
-- **Use Utility Functions**: Whenever possible, use the [Utilities](docs/Utilities.md) functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable.
+- **Use Utility Functions**: Whenever possible, use the [Utilities](docs/Utilities.md) functions provided in the framework, instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable.
 
-- **Feedback on Utility Functions**: If you find that a utility function for a specific action or assertion is missing, please provide feedback so we can continue to improve and expand our utility Functions. Meanwhile, temporarily use the corresponding Playwright method combined with `getPage` from `@PageSetup` for a specific task, the utility function is not available. Replace these with newly added utility functions once they are available.
+- **Feedback on Utility Functions**: If you encounter a missing utility function for a specific action or assertion, please provide feedback for future improvements. In the meantime, use the corresponding Playwright method with `getPage` from `@PageSetup` for the task at hand, and once we introduce new utility functions, you can easily switch to them. Your feedback is crucial to enhancing our utilities.
 
 - **Conditional Statements**: Instead of manually implementing waits, use functions like `isElementVisible`, `isElementChecked` from [elementutils](docs/Utilities.md#elementutils). These functions automatically wait for the element to become visible, with customizable timeout options. It's advisable to avoid using these for assertions; instead, utilize [AssertUtils](docs/Utilities.md#assertutils) wherever possible.
 
@@ -374,7 +374,7 @@ Here are some recommended best practices when using this framework:
 
 - **clickandNavigate vs click**: If a click action triggers page navigation, use the `clickandNavigate` utility function instead of the `click` function. `clickandNavigate` function includes built-in checks for frame navigation and waits for a new page to load. Use the `click` function if it is an Ajax call when you don't navigate to a different page.
 
-- **Fill vs Type**: Use the fill utility function as default to fill form fields. Use type when you want to simulate typing character by character, such as when testing auto-search suggestions or autofill features. [Playwright type documentation](https://playwright.dev/docs/input#type-characters)
+- **Fill vs pressSequentially**: Use the fill utility function as default to fill the form fields. Use presssequentially utility function when you want to simulate entering character by character likely to be the keyboard press events, such as when testing auto-search suggestions or autofill features. [Playwright type documentation](https://playwright.dev/docs/input#type-characters)
 
 - **Web-First Assertions**: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions)
 
