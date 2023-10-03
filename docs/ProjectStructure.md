@@ -34,11 +34,11 @@ This project is meticulously organized into distinct packages and files, each ta
 
   - **specs**: Here, you'll find all the [spec files](../README.md#writing-tests-in-a-spec-file). These are the actual test scripts, written to test specific functionalities or features of the application. Each spec file usually corresponds to a feature or functionality, containing one or multiple test scenarios related to it.
 
-- **.eslintignore**: This file sustains repository tidiness by identifying files and directories to be bypassed by the ESLint configuration. Generally, it omits all files with the exception of those featuring a ".ts" extension. All extensions meant to be ignored have been pre-added.
+- **.eslintignore**: This file keeps the code repository neat by specifying which files and directories should be ignored by the ESLint configuration. We've pre-added the kinds of files that ESLint should ignore and also more files can be added here as per your project needs. Normally, we check all ".ts" files to make sure the linting configuration is followed.
 
 - **.eslintrc**: This file is the heart of the ESLint configuration. ESLint is a static code analysis tool that identifies problematic patterns found in Typescript code. The configurations in `.eslintrc` dictate the rules and standards the code should adhere to, ensuring consistency and best practices across the codebase.
 
-- **.prettierignore**: This file ensures the neatness of the repository by delineating files and directories to be omitted by the Prettier formatter. Typically, it exclusively includes files with a ".ts" extension and documents with a ".md" extension, while excluding all others. All extensions meant to be ignored have been pre-added.
+- **.prettierignore**: This file helps keep the repository tidy by specifying which files and directories should be skipped by the Prettier formatter. We've pre-added the kinds of files that Prettier formatter should ignore and also more files can be added here as per your project needs. Normally, We check all ".ts" and ".md" files to ensure they follow the configured formatting rules.
 
 - **.prettierrc**: Prettier is an opinionated code formatter, ensuring that the code adheres to a consistent style. The `.prettierrc` file contains specific formatting rules, like line length, indentation, and more, ensuring that every developer working on the project produces code with a consistent style.
 
