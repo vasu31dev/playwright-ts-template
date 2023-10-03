@@ -8,11 +8,23 @@ This project is meticulously organized into distinct packages and files, each ta
 
 - **docs**: This directory hosts the images and document files referenced in README.md.
 
-- **test-setup**: This directory houses the framework setup and associated utilities. The framework structure is organized as:
+- **dist**: This directory contains the compiled version of TypeScript code files into plain JavaScript.
+
+- **node_modules**: This directory houses our project's external dependencies and libraries, ensuring precise version control as defined in the "package.json" file.
+
+  - **vasu-playwright-utils/src/vasu-playwright-lib**: This library contains multiple directories, each serving specific purposes, which are summarized below.
+
+    - **constants**: This directory holds constants for defined timeouts and also for load state that maintains consistent default LoadState across applications.
+
+    - **setup**: This directory holds the code for custom logger `Winston`.
+
+    - **types**: This directory contains type definitions that are used across the framework as optional parameters for the utility methods.
+
+    - **utils**: A crucial directory that encompasses all test-related [utility functions](Utilities.md). These are reusable functions or methods written to perform common tasks, be it related to data manipulation, element interaction, or any other recurrent actions or assertions in the test scripts.
+
+- **test-setup**: This directory houses the framework setup. The framework structure is organized as:
 
   - **setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](FrameworkSetup.md) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
-
-  - **utils**: A crucial directory that encompasses all test-related [utility functions](Utilities.md). These are reusable functions or methods written to perform common tasks, be it related to data manipulation, element interaction, or any other recurrent actions or assertions in the test scripts.
 
 - **tests**: This directory houses the framework setup, end-to-end test files, API tests, and associated utilities. The tests are organized as:
 
@@ -22,7 +34,11 @@ This project is meticulously organized into distinct packages and files, each ta
 
   - **specs**: Here, you'll find all the [spec files](../README.md#writing-tests-in-a-spec-file). These are the actual test scripts, written to test specific functionalities or features of the application. Each spec file usually corresponds to a feature or functionality, containing one or multiple test scenarios related to it.
 
+- **.eslintignore**: This file keeps the code repository neat by specifying which files and directories should be ignored by the ESLint configuration. We've pre-added the kinds of files that ESLint should ignore and also more files can be added here as per your project needs. Normally, we check all ".ts" files to make sure the linting configuration is followed.
+
 - **.eslintrc**: This file is the heart of the ESLint configuration. ESLint is a static code analysis tool that identifies problematic patterns found in Typescript code. The configurations in `.eslintrc` dictate the rules and standards the code should adhere to, ensuring consistency and best practices across the codebase.
+
+- **.prettierignore**: This file helps keep the repository tidy by specifying which files and directories should be skipped by the Prettier formatter. We've pre-added the kinds of files that Prettier formatter should ignore and also more files can be added here as per your project needs. Normally, We check all ".ts" and ".md" files to ensure they follow the configured formatting rules.
 
 - **.prettierrc**: Prettier is an opinionated code formatter, ensuring that the code adheres to a consistent style. The `.prettierrc` file contains specific formatting rules, like line length, indentation, and more, ensuring that every developer working on the project produces code with a consistent style.
 

@@ -28,9 +28,9 @@ Playwright offers various configuration options for customizing test execution. 
 
 7. **`baseURL`**: Defines a base URL used in actions like `await page.goto('/')` for navigation.
 
-8. **`trace: 'retain-on-failure'`**: Provides a trace when a test fails.
+8. **`trace: 'retain-on-failure'`**: Provides a trace when test fails.
 
-9. **`screenshot: 'only-on-failure'`**: Captures a screenshot only when a test fails.
+9. **`screenshot: 'only-on-failure'`**: Captures a screenshot only when test fails.
 
 10. **`projects`**: Configures projects for different browsers (Chromium, Firefox, WebKit) and viewport settings for web and mobile.
 

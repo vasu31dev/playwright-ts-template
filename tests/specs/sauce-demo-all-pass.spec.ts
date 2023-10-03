@@ -1,4 +1,4 @@
-import { test } from '../../test-setup/page-setup';
+import { test } from '@pagesetup';
 import * as LoginPage from '../pages/sauce-demo/sauce-demo-login-page';
 import * as MiniCart from '../pages/sauce-demo/sauce-demo-mini-cart';
 import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
