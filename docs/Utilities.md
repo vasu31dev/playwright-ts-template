@@ -1,18 +1,16 @@
 ## Utilities
 
-The framework provides a set of utility functions that simplify common actions and assertions in Playwright. These functions are located in the `tests/utils` directory and include:
+The framework offers a collection of utility functions that streamline the identification of elements, common actions, and assertions in Playwright. These functions are located in the `node_modules/vasu-playwright-utils/src/vasu-playwright-lib/utils` directory and include:
 
-- [page-utils.ts](#page-utilities): This file contains functions for setting and getting pages, switching between the pages and closing a page.
+- [page-utils.ts](#page-utilities): This file encompasses functions for retrieving pages, switching between the pages, and closing a page.
 
-- [locator-utils.ts](#locator-utilities): This file contains functions for locating web elements in different ways, such as by test ID, label, text, CSS, or XPath.
+- [locator-utils.ts](#locator-utilities): This file has functions that help find web elements on pages and frames in different ways, such as by test ID, label, text, CSS, or XPath.
 
-- [action-utils.ts](#action-utilities): This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
+- [action-utils.ts](#action-utilities): This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, drag and drop, handling alerts, scroll, uploading and downloading files, navigating and reloading pages.
 
 - [element-utils.ts](#element-utilities): This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
 
 - [assert-utils.ts](#assert-utilities): This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
-
-- `timeout-constants.ts`: This file contains static timeout values that can be used along with different functions.
 
 These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
@@ -20,10 +18,10 @@ Here are a few examples of how to use the utility functions:
 
 ### Page Utilities
 
-The `page-utils.ts`: module contains the functions of the Page. These functions are used for managing Page objects, including getting and setting Page objects, switching between pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
+The `page-utils` module contains the functions of the Page. These functions are used for managing Page objects, including getting Page objects, switching between the pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
 
 ```typescript
-import { switchPage, switchToDefaultPage, closePage } from '@PageUtils';
+import { switchPage, switchToDefaultPage, closePage } from 'vasu-playwright-utils';
 
 // Switch to the second tab/window. Useful when a test involves interacting with multiple pages.
 await switchPage(2);
@@ -37,7 +35,7 @@ await closePage();
 
 ### Locator Utilities
 
-The `locator-utils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators are used to identify elements on a web page. They are essential for interacting with web elements and performing actions on them, such as clicking a button or entering text into a form field.
+The `locator-utils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators serve to identify elements on a webpage and are crucial for interacting with web elements, enabling actions such as clicking a button or inputting text into a form field.
 
 ```typescript
 import {
@@ -46,7 +44,7 @@ import {
   getLocatorByText,
   getLocatorByRole,
   getLocatorByLabel,
-} from '@LocatorUtils';
+} from 'vasu-playwright-utils';
 
 //Locator with CSS
 const locator = () => getLocator(`button#submit`);
@@ -112,7 +110,7 @@ The `locator-utils` module provides utility functions to handle frames in Playwr
 Here's how you can use the `locator-utils` functions to handle frames easily:
 
 ```typescript
-import { getFrameLocator, getLocatorInFrame } from '@LocatorUtils';
+import { getFrameLocator, getLocatorInFrame } from 'vasu-playwright-utils';
 
 // Get a Frame
 const frame = `[name='test-frame']`;
@@ -130,7 +128,7 @@ const locatorInFrame = () => await getLocatorInFrame(frameLocator(), locator());
 
 In this example, we're using various functions from `locator-utils` to handle frames:
 
-1. `getFrameLocator(frameInput: string | FrameLocator):`: This function returns a FrameLocator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate
+1. `getFrameLocator(frameInput: string | FrameLocator):`: This function returns a FrameLocator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate.
 
 2. `getLocatorInFrame(frameInput: string | FrameLocator, input: string | Locator):`: This function returns a Locator object inside the frame. The frameInput parameter is a string or Locator representing the frame that you want to locate the element with and the input parameter is a string or Locator of the element you want to locate inside the frame.
 
@@ -145,8 +143,8 @@ The `action-utils` module provides a set of utility functions that simplify comm
 Here's an example of how to use the `action-utils` functions:
 
 ```typescript
-import { gotoURL, click, fill, type, check, uploadFiles, selectByValue } from '@ActionUtils';
-import { MAX_TIMEOUT } from '@Timeouts';
+import { gotoURL, click, fill, type, check, uploadFiles, selectByValue } from 'vasu-playwright-utils';
+import { MAX_TIMEOUT } from 'vasu-playwright-utils';
 
 // Navigate to a URL
 await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
@@ -200,12 +198,12 @@ For more information on the optional parameters refer to the [Optional Parameter
 
 ### Managing Alerts
 
-The `action-utils` module provides utility functions to handle alerts in Playwright. These functions are designed to make your tests more readable, maintainable and to reduce the amount of boilerplate code you need to write.
+The `action-utils` module provides utility functions to handle alerts in Playwright.
 
 Here's an example of how to use the `action-utils` functions to handle alerts:
 
 ```typescript
-import { acceptAlert, dismissAlert, getAlertText } from '@ActionUtils';
+import { acceptAlert, dismissAlert, getAlertText } from 'vasu-playwright-utils';
 
 // Click on an element that opens an alert and then accept the alert
 await acceptAlert(outOfStockButton());
@@ -233,7 +231,7 @@ For more information, please refer to [Playwright Alerts documentation](https://
 The `element-utils` module provides utility functions for extracting values from web elements and performing condition checks. These functions are designed to handle common tasks related to web elements, such as retrieving text or attribute values, checking visibility, and more.
 
 ```typescript
-import { getText, getAllTexts, getInputValue, getAttribute, attribute } from '@ElementUtils';
+import { getText, getAllTexts, getInputValue, getAttribute, attribute } from 'vasu-playwright-utils';
 // getting inner text
 const text = await getText(textLocator());
 
@@ -277,10 +275,10 @@ import {
   expectElementToHaveText,
   expectElementNotToBeChecked,
   expectElementNotToContainText,
-} from '@AssertUtils';
-import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from '@Timeouts';
+} from 'vasu-playwright-utils';
+import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from 'vasu-playwright-utils';
 
-//asserting elemnt to be visible
+//asserting element to be visible
 await expectElementToBeVisible(logoutButton(), 'Login should be successful', {
   timeout: STANDARD_TIMEOUT,
 });
@@ -326,13 +324,13 @@ Refer to the [Optional Parameter Objects](#optional-parameter-objects) section f
 
 ### Optional Parameter Type Objects
 
-The `optional-parameter-types` module provides a set of options for utility modules.
+The `types/optional-parameter-types` module provides a set of options for utility modules.
 
 ```typescript
-import { getLocator, getLocatorByTestId } from '@LocatorUtils';
-import { clickAndNavigate, type } from '@ActionUtils';
-import { expectElementToHaveText } from '@AssertUtils';
-import { STANDARD_TIMEOUT } from '@TimeoutConstants';
+import { getLocator, getLocatorByTestId } from 'vasu-playwright-utils';
+import { clickAndNavigate, type } from 'vasu-playwright-utils';
+import { expectElementToHaveText } from 'vasu-playwright-utils';
+import { STANDARD_TIMEOUT } from 'vasu-playwright-utils';
 
 const loginpage = () => getLocator(`#loginpage`, { hasText: 'login' });
 const successfulMessage = () => getLocatorByTestId(`sucess-message`);
@@ -341,8 +339,8 @@ export async function verifyLoginPageisDisplayed() {
   //ClickOptions
   await clickAndNavigate(loginpage(), { button: 'right', force: true, clickCount: 1 });
 
-  //TypeOptions
-  await type(`#username`, 'testuser', { delay: 2, noWaitAfter: false });
+  //PressSequentially
+  await PressSequentially(`#username`, 'testuser', { delay: 2, noWaitAfter: false });
 
   //ExpectTextOptions
   await expectElementToHaveText(successfulMessage(), 'Login is Successful', {
@@ -359,7 +357,7 @@ In this example, we're using some optional parameters with utility functions:
 
 2. `Action Options(ClickOptions)`: `button` is used for right-click, `force` is used to bypass the actionability checks and force the click, and `clickCount` is used to click the element for the given number of times.
 
-3. `Action Options(TypeOptions)`: `delay` is used to simulate the delay between the key presses with the given time, `noWaitAfter` is used to specify not to wait after the action `type`.
+3. `Action Options(PressSequentiallyOptions)`: `delay` is used to simulate the delay between the key presses with the given time, `noWaitAfter` is used to specify not to wait after the action `PressSequentially`.
 
 4. `ExpectOptions(ExpectTextOptions)`: `useInnerText` is used to assert the inner text, `ignoreCase` is used to ignore the case while asserting, and `timeout` is used to wait until the specified time before failing the test.
 
@@ -370,7 +368,7 @@ Test annotations are a powerful feature of Playwright Test that allows you to mo
 Here are some examples of how to use test annotations:
 
 ```typescript
-import { test } from '@PageSetup';
+import { test } from '@pagesetup';
 
 test.fixme('This test will fail and needs to be fixed so it will be skipped', async () => {});
 
