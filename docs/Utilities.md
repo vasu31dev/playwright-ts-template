@@ -35,7 +35,7 @@ await closePage();
 
 ### Locator Utilities
 
-The `locator-utils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators serve to identify elements on a webpage and are crucial for interacting with web elements, enabling actions such as clicking a button or inputting text into a form field.
+The `locator-utils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators are used to identify elements on a webpage and are crucial for interacting with web elements, enabling actions such as clicking a button or inputting text into a form field.
 
 ```typescript
 import {
