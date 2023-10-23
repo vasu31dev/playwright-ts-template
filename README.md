@@ -95,7 +95,7 @@ Begin your project by following the steps to install it either with command-line
 
 #### CLI Installation
 
-This method makes setup easy by avoiding the long steps in the manual installation guide. It automatically installs all the dependencies, libraries and playwright browsers necessary to start with your frame work. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository. Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information on the instructions.
+This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, lint & prettier configurations, winston logger and husky pre-commit hook that are necessary to start with your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository. Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information on the instructions.
 
 #### Manual Installation
 
