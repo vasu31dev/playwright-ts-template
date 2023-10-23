@@ -111,9 +111,7 @@ The installation steps are below:
    ```bash
    npm i -D vasu-playwright-cli
    ```
-
-````
-This step installs all the dependencies, libraries and playwright browsers and other features automatically that are needed for the project.
+   This step installs all the dependencies, libraries and playwright browsers and other features automatically that are needed for the project.
 
 Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information and how to intialise the project.
 
@@ -164,29 +162,29 @@ const login = () => getLocatorByRole('button', { name: 'Login' });
 const errorMessage = `//*[contains(@class,'error-message')]`;
 
 export async function navigateToSauceDemoLoginPage() {
-await gotoURL('https://www.saucedemo.com/');
+  await gotoURL('https://www.saucedemo.com/');
 }
 
 export async function logInSuccessfully() {
-await fill(userName, successLoginCredentials.username);
-await fill(password(), successLoginCredentials.password);
-await clickAndNavigate(login());
+  await fill(userName, successLoginCredentials.username);
+  await fill(password(), successLoginCredentials.password);
+  await clickAndNavigate(login());
 }
 
 export async function failureLogin() {
-await fill(userName, failureLoginCredentials.username);
-await fill(password(), failureLoginCredentials.password);
-await click(login());
+  await fill(userName, failureLoginCredentials.username);
+  await fill(password(), failureLoginCredentials.password);
+  await click(login());
 }
 
 export async function verifyErrorMessageForFailureLogin() {
-await expectElementToBeVisible(errorMessage);
+  await expectElementToBeVisible(errorMessage);
 }
 
 export async function verifyLoginPageisDisplayed() {
-await expectElementToBeVisible(userName);
+  await expectElementToBeVisible(userName);
 }
-````
+```
 
 In this example, the `sauce-demo-login-page` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
 
