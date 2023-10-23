@@ -95,7 +95,27 @@ Begin your project by following the steps to install it either with command-line
 
 #### CLI Installation
 
-This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, lint & prettier configurations, winston logger and husky pre-commit hook that are necessary to start with your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository. Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information on the instructions.
+This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, lint & prettier configurations, winston logger and husky pre-commit hook that are necessary to start with your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository.
+
+The installation steps are below:
+
+1. Install Node.js
+   Node.js installation can be done via direct from the website or from CLI. Find the [Node.js installation steps](https://github.com/vasu31dev/playwright-ts-cli#1-install-nodejs) here.
+
+2. Create a Playwright Test Directory
+   ```bash
+    mkdir playwright-e2e-tests
+    cd playwright-e2e-tests
+   ```
+3. Install vasu-playwright-cli
+   ```bash
+   npm i -D vasu-playwright-cli
+   ```
+
+````
+This step installs all the dependencies, libraries and playwright browsers and other features automatically that are needed for the project.
+
+Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information and how to intialise the project.
 
 #### Manual Installation
 
@@ -144,29 +164,29 @@ const login = () => getLocatorByRole('button', { name: 'Login' });
 const errorMessage = `//*[contains(@class,'error-message')]`;
 
 export async function navigateToSauceDemoLoginPage() {
-  await gotoURL('https://www.saucedemo.com/');
+await gotoURL('https://www.saucedemo.com/');
 }
 
 export async function logInSuccessfully() {
-  await fill(userName, successLoginCredentials.username);
-  await fill(password(), successLoginCredentials.password);
-  await clickAndNavigate(login());
+await fill(userName, successLoginCredentials.username);
+await fill(password(), successLoginCredentials.password);
+await clickAndNavigate(login());
 }
 
 export async function failureLogin() {
-  await fill(userName, failureLoginCredentials.username);
-  await fill(password(), failureLoginCredentials.password);
-  await click(login());
+await fill(userName, failureLoginCredentials.username);
+await fill(password(), failureLoginCredentials.password);
+await click(login());
 }
 
 export async function verifyErrorMessageForFailureLogin() {
-  await expectElementToBeVisible(errorMessage);
+await expectElementToBeVisible(errorMessage);
 }
 
 export async function verifyLoginPageisDisplayed() {
-  await expectElementToBeVisible(userName);
+await expectElementToBeVisible(userName);
 }
-```
+````
 
 In this example, the `sauce-demo-login-page` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
 
