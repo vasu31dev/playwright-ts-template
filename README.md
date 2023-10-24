@@ -95,7 +95,7 @@ Begin your project by following the steps to install it either with command-line
 
 #### CLI Installation
 
-This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, lint & prettier configurations, winston logger and husky pre-commit hook that are necessary to start with your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository.
+This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, Winston logger and Husky pre-commit hook that are necessary to start with your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository.
 
 The installation steps are below:
 
@@ -108,16 +108,19 @@ The installation steps are below:
     cd playwright-e2e-tests
    ```
 3. Install vasu-playwright-cli
+
    ```bash
    npm i -D vasu-playwright-cli
    ```
-   This step installs all the dependencies, libraries and playwright browsers and other features automatically that are needed for the project.
 
-Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information and how to intialise the project.
+   This step installs all the above mentioned dependencies, libraries, playwright browsers, logger and pre-commit hook.
+
+   Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information and how to intialise the project.
 
 #### Manual Installation
 
-This is a step by step prcess and please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
+This is a step by step process to install all the dependencies, libraries and playwright browsers manually.
+Please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
 
 ### Project Update Guide
 

@@ -7,12 +7,13 @@ Ensure you have the following software installed on your machine:
   - If npm isn't installed, follow the [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 - **[Node.js (v16.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
   - To verify your current version, use the command `node -v`.
+  - if Node.js isn't installed, download and install it from the title link provided.
 - **[Git](https://git-scm.com/downloads)**: Distributed version control system used to track changes in source code during software development.
   - To check if Git is installed, run the command `git --version`.
   - If Git isn't installed, download and install it from the [official Git website](https://git-scm.com/downloads).
 - **VSCode Plugins**:
-  - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting.
-  - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues.
+  - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting. Install it directly from the title link provided.
+  - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues. Install it directly from the title link provided.
 - **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use Cmd + , to access settings):
   - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
   - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
