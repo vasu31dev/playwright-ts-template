@@ -91,11 +91,44 @@ Before you begin, there are some essential requirements you must meet. Please re
 
 ### Installation
 
-Get started with the project by following the step-by-step installation guide. Please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
+Begin your project by following the steps to install it either with command-line instructions or by doing it step-by-step manually.
+
+#### CLI Installation
+
+This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, Winston logger and Husky pre-commit hook that are necessary to start with your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository.
+
+The installation steps are below:
+
+1. Install Node.js
+   Node.js installation can be done via direct from the website or from CLI. Find the [Node.js installation steps](https://github.com/vasu31dev/playwright-ts-cli#1-install-nodejs) here.
+
+2. Create a Playwright Test Directory
+   ```bash
+    mkdir playwright-e2e-tests
+    cd playwright-e2e-tests
+   ```
+3. Install vasu-playwright-cli
+
+   ```bash
+   npm i -D vasu-playwright-cli
+   ```
+
+   This step installs all the above mentioned dependencies, libraries, playwright browsers, logger and pre-commit hook.
+
+   Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information and how to intialise the project.
+
+#### Manual Installation
+
+This is a step by step process to install all the dependencies, libraries and playwright browsers manually.
+Please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
 
 ### Project Update Guide
 
-Keeping your project up to date is crucial. Please refer to the [Project Update Guide section](docs/Installation.md#project-update-guide) for guidelines on how to update your project to the latest version.
+Keeping your project up to date is crucial.
+
+For CLI installation, please refer to [Project Update Guide section - CLI](https://github.com/vasu31dev/playwright-ts-cli#update-an-existing-project-with-future-updates), for guidelines on how to update your project to the latest version.
+
+For Manual installation, please refer to the [Project Update Guide section - Manual](docs/Installation.md#project-update-guide), for guidelines on how to update your project to the latest version.
 
 ## Project Structure
 
