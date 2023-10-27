@@ -101,7 +101,7 @@ Before you begin, there are some essential requirements you must meet. Ensure yo
 - **VSCode Plugins**:
   - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting. Install it directly from the title link provided.
   - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues. Install it directly from the title link provided.
-- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use Cmd + , to access settings):
+- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use `Cmd+` for Mac and `Ctrl+` for Windows , to access the settings window):
   - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
   - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
 
@@ -150,7 +150,9 @@ Please refer to the [Installation section](docs/Installation.md#installation) fo
 
 Keeping your project up to date is crucial.
 
-- For CLI installed project, run the below command to update the Playwright library with the latest version of utility functions.
+#### Update Playwright library
+
+- Run the below command to update the Playwright library with the latest version of utility functions.
 
   ```bash
   npm i -D vasu-playwright-utils@latest
@@ -158,7 +160,7 @@ Keeping your project up to date is crucial.
 
   This command keeps your Playwright library up to date with the latest playwright utilities which contain the helper methods that are updated regularly.
 
-- For Manual installed project, please refer to the [Project Update Guide section - Manual](docs/Installation.md#project-update-guide), for guidelines on how to update your project to the latest version.
+- For further more steps and how to fix dependency errors while installing packages, please visit [Project Update Guide section](docs/Installation.md#project-update-guide), to update your project to the latest version.
 
 ## Project Structure
 
