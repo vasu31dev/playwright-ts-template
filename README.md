@@ -87,7 +87,23 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 ### Prerequisites
 
-Before you begin, there are some essential requirements you must meet. Please refer to the [Prerequisites section](docs/Installation.md) for detailed information on the necessary software and tools needed to run this project.
+Before you begin, there are some essential requirements you must meet. Ensure you have the following software installed on your machine:
+
+- **[npm (v8.0.0 or later)](https://docs.npmjs.com/cli/v9/configuring-npm)**: Package manager for JavaScript, used to install and manage software packages.
+  - To verify your current version, use the command `npm -v`.
+  - If npm isn't installed, follow the [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- **[Node.js (v16.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
+  - To verify your current version, use the command `node -v`.
+  - if Node.js isn't installed, download and install it from the title link provided.
+- **[Git](https://git-scm.com/downloads)**: Distributed version control system used to track changes in source code during software development.
+  - To check if Git is installed, run the command `git --version`.
+  - If Git isn't installed, download and install it from the [official Git website](https://git-scm.com/downloads).
+- **VSCode Plugins**:
+  - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting. Install it directly from the title link provided.
+  - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues. Install it directly from the title link provided.
+- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use Cmd + , to access settings):
+  - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
+  - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
 
 ### Installation
 
@@ -115,7 +131,15 @@ The installation steps are below:
 
    This step installs all the above mentioned dependencies, libraries, playwright browsers, logger and pre-commit hook.
 
-   Please refer to the installation guide [here](https://github.com/vasu31dev/playwright-ts-cli#installation) for more information and how to intialise the project.
+4. Run the below command to initialise a project
+   ```bash
+   npx vasu-playwright-cli init
+   ```
+   This command will set up a new project with ready to use Playwright TypeScript framework including:
+   - Setup the Playwright TypeScript framework template with sample tests.
+   - Create a new `package.json` file with all the necessary dependencies.
+   - Initializing a new Git repository if neither the current nor parent directory is a Git repository.
+   - Installing all the npm packages including the playwright utils library which contains playwright helper methods.
 
 #### Manual Installation
 
@@ -126,9 +150,15 @@ Please refer to the [Installation section](docs/Installation.md#installation) fo
 
 Keeping your project up to date is crucial.
 
-For CLI installation, please refer to [Project Update Guide section - CLI](https://github.com/vasu31dev/playwright-ts-cli#update-an-existing-project-with-future-updates), for guidelines on how to update your project to the latest version.
+- For CLI installed project, run the below command to update the Playwright library with the latest version of utility functions.
 
-For Manual installation, please refer to the [Project Update Guide section - Manual](docs/Installation.md#project-update-guide), for guidelines on how to update your project to the latest version.
+  ```bash
+  npm i -D vasu-playwright-utils@latest
+  ```
+
+  This command keeps your Playwright library up to date with the latest playwright utilities which contain the helper methods that are updated regularly.
+
+- For Manual installed project, please refer to the [Project Update Guide section - Manual](docs/Installation.md#project-update-guide), for guidelines on how to update your project to the latest version.
 
 ## Project Structure
 
