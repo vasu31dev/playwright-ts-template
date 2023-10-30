@@ -44,16 +44,16 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 - [**Getting Started**](#getting-started)
   - [Tools & Frameworks](#tools--frameworks)
-  - [Prerequisites](docs/Installation.md)
-  - [Installation](docs/Installation.md#installation)
-  - [Project Update Guide](docs/Installation.md#project-update-guide)
-- [**Project Structure**](docs/ProjectStructure.md)
-- [**Framework Setup**](docs/FrameworkSetup.md)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Project Update Guide](#project-update-guide)
+- [**Project Structure**](#project-structure)
+- [**Framework Setup**](#framework-setup)
   - [Page set up](docs/FrameworkSetup.md#page-set-up)
 - [**Usage**](#usage)
   - [Working with Page Objects](#page-objects)
   - [Creating a Spec File](#writing-tests-in-a-spec-file)
-- [**Utilities**](docs/Utilities.md)
+- [**Utilities**](#utilities)
   - [Page Utilities](docs/Utilities.md#page-utilities)
   - [Locator Utilities](docs/Utilities.md#locator-utilities)
   - [Handling Frames](docs/Utilities.md#handling-frames)
@@ -64,7 +64,7 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects)
   - [Test annotations](docs/Utilities.md#test-annotations)
 - [**Executing Tests**](#executing-tests)
-  - [Using the Playwright Plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin)
+  - [Using the Playwright Plugin](#run-tests-using-plugin)
   - [Command-Line Execution](#running-tests-via-the-command-line-interface)
   - [Report Generation and Viewing](#report-generation-and-viewing)
 - [**Additional Playwright Features**](#additional-playwright-features)
@@ -160,7 +160,7 @@ Keeping your project up to date is crucial.
 
   This command keeps your Playwright library up to date with the latest playwright utilities which contain the helper methods that are updated regularly.
 
-- For further more steps and how to fix dependency errors while installing packages, please visit [Project Update Guide section](docs/Installation.md#project-update-guide), to update your project to the latest version.
+- For further more steps and how to fix dependency errors while installing packages after the project update, please visit [Project Update Guide section](docs/Installation.md#project-update-guide).
 
 ## Project Structure
 
@@ -170,9 +170,9 @@ Understanding the project's architecture is key to working with the code. Please
 
 Learn how to configure and customize the framework to suit your needs. Please refer to the [Framework Setup section](docs/FrameworkSetup.md) for detailed instructions.
 
-### Page set up and Switching Pages
+### Page set up
 
-Managing page navigation is a common task in web testing. Please refer to the [Pages section](docs/FrameworkSetup.md#switching-pages) for techniques and examples on how to set up a page and switch between different pages within your tests.
+Managing page navigation is a common task in web testing. Please refer to the [Pages section](docs/FrameworkSetup.md) on how to set up a page.
 
 ## Usage
 
@@ -287,7 +287,7 @@ In this example, the `LoginPage` represents a login page within the application.
 
 Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
 
-1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting the page object.
+1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in switching between the pages in between the tests and close a page.
 2. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
 3. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate standard actions such as clicking, form filling, keyboard events, and dragging; providing a more concise way to execute these operations within your tests.
 4. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
