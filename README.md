@@ -170,9 +170,9 @@ Understanding the project's architecture is key to working with the code. Please
 
 Learn how to configure and customize the framework to suit your needs. Please refer to the [Framework Setup section](docs/FrameworkSetup.md) for detailed instructions.
 
-### Page set up
+### Page Context set up
 
-Managing page navigation is a common task in web testing. Please refer to the [Pages section](docs/FrameworkSetup.md) on how to set up a page.
+Setting up a page context is a common task in web testing. Please refer to the [Pages section](docs/FrameworkSetup.md) on how to set up a page context before each test.
 
 ## Usage
 
@@ -287,7 +287,7 @@ In this example, the `LoginPage` represents a login page within the application.
 
 Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
 
-1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in switching between the pages in between the tests and close a page.
+1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting page objects, switching between the pages in between the tests and close a page.
 2. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
 3. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate standard actions such as clicking, form filling, keyboard events, and dragging; providing a more concise way to execute these operations within your tests.
 4. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.

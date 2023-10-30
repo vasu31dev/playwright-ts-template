@@ -2,7 +2,7 @@
 
 The framework offers a collection of utility functions that streamline the identification of elements, common actions, and assertions in Playwright. These functions are located in the `node_modules/vasu-playwright-utils/src/vasu-playwright-lib/utils` directory and include:
 
-- [page-utils.ts](#page-utilities): This file contains functions for getting pages, switching between the pages, and closing a page.
+- [page-utils.ts](#page-utilities): This file contains functions for setting a page, getting a page, switching between the pages, and closing a page.
 
 - [locator-utils.ts](#locator-utilities): This file has functions that help find web elements on pages and frames in different ways, such as by test ID, label, text, CSS, or XPath.
 
