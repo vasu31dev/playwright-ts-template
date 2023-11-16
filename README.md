@@ -283,6 +283,20 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successfull and failed logins. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
 
+#### Parameterising Tests
+
+#### Test and Project parameterisation
+
+Playwright supports parameterisation both at test level and project level. Sample parameterised test spec file was added as `sauce-demo-parameterised.spec.ts` under `specs` folder for easy reference. For project level parameterisation, please refer the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
+
+#### Passing environment variables
+
+You can pass environment variables to Playwright test scripts to configure and customize their behavior. These variables are useful for storing sensitive information like API keys and configuring test parameters based on the environment. You can set and use these variables in various ways, from the command line to test configurations. For more information on how to set and use these variables, please refer the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
+
+#### Test data from CSV file
+
+For data driven approach, Playwright supports creating tests from csv file. For more information, please refer the Playwright documentation[here](https://playwright.dev/docs/test-parameterize#create-tests-via-a-csv-file).
+
 ## Utilities
 
 Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
