@@ -12,16 +12,28 @@ export async function navigateToSauceDemoLoginPage() {
   await gotoURL('https://www.saucedemo.com/');
 }
 
+export async function fillUserName(username: string) {
+  await fill(userName, username);
+}
+
+export async function fillPassword(pword: string) {
+  await fill(password(), pword);
+}
+
+export async function clickLogin() {
+  await click(login());
+}
+
 export async function logInSuccessfully() {
-  await fill(userName, sauceDemoCredentials.username);
-  await fill(password(), sauceDemoCredentials.password);
+  await fillUserName(sauceDemoCredentials.username);
+  await fillPassword(sauceDemoCredentials.password);
   await clickAndNavigate(login());
 }
 
 export async function failureLogin() {
-  await fill(userName, failureLoginCredentials.username);
-  await fill(password(), failureLoginCredentials.password);
-  await click(login());
+  await fillUserName(failureLoginCredentials.username);
+  await fillPassword(failureLoginCredentials.password);
+  await clickLogin();
 }
 
 export async function verifyErrorMessageForFailureLogin() {
