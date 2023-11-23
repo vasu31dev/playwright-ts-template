@@ -143,11 +143,14 @@ The `action-utils` module provides a set of utility functions that simplify comm
 Here's an example of how to use the `action-utils` functions:
 
 ```typescript
-import { gotoURL, click, fill, type, check, uploadFiles, selectByValue } from 'vasu-playwright-utils';
-import { MAX_TIMEOUT } from 'vasu-playwright-utils';
+import { gotoURL, wait, click, fill, type, check, uploadFiles, selectByValue } from 'vasu-playwright-utils';
+import { SMALL_TIMEOUT, MAX_TIMEOUT } from 'vasu-playwright-utils';
 
 // Navigate to a URL
 await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
+
+//Static wait, to use as a temporary workaround for intermittent issues related to elements loading or transitioning states in test automation
+await wait(SMALL_TIMEOUT);
 
 // Click an element
 await click(`text='Log in'`);
@@ -172,11 +175,13 @@ In this example, we're using various functions from `action-utils`:
 
 1. `gotoURL(path: string, options: GotoOptions)`: This function navigates to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
 
-2. `click(input: string | Locator, options?: ClickOptions)`: This function clicks an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
+2. `wait(ms: number)`: This function defines the period of time in milliseconds during which a script pauses or sleeps before proceeding to the next step or action. `SMALL_TIMEOUT` is a constant defined for 5000 milliseconds, under `constants` directory in `vasu-playwright-utils` package.
 
-3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
+3. `click(input: string | Locator, options?: ClickOptions)`: This function clicks an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
 
-4. `pressSequentially(input: string | Locator, value: string, options?: PressSequentiallyOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
+4. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
+
+5. `pressSequentially(input: string | Locator, value: string, options?: PressSequentiallyOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
 
 Typically, `fill` is a more versatile and efficient choice that works effectively in most scenarios. It not only clears the input field but also simulates a single input event, similar to paste.
 
