@@ -149,7 +149,7 @@ import { SMALL_TIMEOUT, MAX_TIMEOUT } from 'vasu-playwright-utils';
 // Navigate to a URL
 await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
 
-//Static wait
+//Static wait, to use as a temporary workaround for intermittent issues related to elements loading or transitioning states in test automation
 await wait(SMALL_TIMEOUT);
 
 // Click an element
