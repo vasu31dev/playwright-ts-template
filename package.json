@@ -34,19 +34,19 @@
     "build": "tsc",
     "ready": "rimraf dist node_modules package-lock.json && npm i",
     "test": "playwright test",
-    "test:chromium": "playwright test --retries 0 --project=chromium",
+    "test:chromium": "playwright test --retries 0 --project=chromiumheadless",
     "test:chromium-headed": "playwright test -j 1 --retries 0 --headed --project=chromium",
-    "test:reg": "playwright test --project=chromium -g '@reg'",
-    "test:smoke": "playwright test --project=chromium -g '@smoke'",
+    "test:reg": "playwright test --project=chromiumheadless -g '@reg'",
+    "test:smoke": "playwright test --project=chromiumheadless -g '@smoke'",
     "report": "playwright show-report playwright-report",
-    "ui": "playwright test --ui-port 0",
+    "ui": "playwright test --project=chromiumheadless --ui-port 0",
     "trace": "playwright show-trace --port 0",
     "allure": "allure generate ./allure-results --clean && allure open ./allure-report",
-    "lint": "eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts'",
-    "lint:fix": "eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' --fix",
+    "lint": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts'",
+    "lint:fix": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' --fix",
     "prepare": "husky install",
     "format": "cross-env prettier --write 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
-    "postinstall": "playwright install && npm run build"
+    "postinstall": "playwright install && npm run build && npm run format"
   },
   "husky": {
     "hooks": {

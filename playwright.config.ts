@@ -93,19 +93,46 @@ export default defineConfig({
     // {
     //   name: 'setup',
     //   testMatch: '**/*.setup.ts',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     viewport: { width: 1600, height: 1000 },
+    //     launchOptions: {
+    //       args: ['--disable-web-security'],
+    //       slowMo: 0,
+    //     },
+    //   },
     // },
+
+    /** Due to different view ports in Head and Headless, created 2 projects one for head mode and the same browser for headless. */
     {
       name: 'chromium',
       // dependencies: ['setup'],
       use: {
+        viewport: null,
+        // storageState: STORAGE_STATE_LOGIN,
+        launchOptions: {
+          args: ['--disable-web-security', '--start-maximized'],
+          /* --auto-open-devtools-for-tabs option is used to open a test with Network tab for debugging. It can help in analyzing network requests and responses.*/
+          // args: ["--disable-web-security","--auto-open-devtools-for-tabs"],
+          // channel: 'chrome',
+          slowMo: 0,
+          headless: false,
+        },
+      },
+    },
+
+    {
+      name: 'chromiumheadless',
+      // dependencies: ['setup'],
+      use: {
         ...devices['Desktop Chrome'],
-        viewport: { width: 1600, height: 1000 },
+        viewport: { width: 1920, height: 1080 },
         // storageState: STORAGE_STATE_LOGIN,
         launchOptions: {
           args: ['--disable-web-security'],
-          /* --auto-open-devtools-for-tabs option is used to open a test with Network tab for debugging. It can help in analyzing network requests and responses.*/
-          // args: ["--disable-web-security","--auto-open-devtools-for-tabs"],
+          // channel: 'chrome',
           slowMo: 0,
+          headless: true,
         },
       },
     },
