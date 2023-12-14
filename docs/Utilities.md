@@ -47,7 +47,10 @@ import {
 } from 'vasu-playwright-utils';
 
 //Locator with CSS
-const locator = () => getLocator(`button#submit`);
+const cssLocator = `button#submit`;
+
+//Locator with Xpath
+const xpathLocator = `button[@id='submit']`;
 
 //Locator with testIdAttribute
 const testIdLocator = () => getLocatorByTestId('submit-button');
@@ -56,7 +59,8 @@ const testIdLocator = () => getLocatorByTestId('submit-button');
 const textLocator = () => getLocatorByText('Submit');
 
 //Locator by role
-const roleLocator = () => getLocatorByRole('button');
+const roleLocator = () => getLocatorByRole('button', { name: 'Login' });
+const chainingRoleLocator = () => getLocator(`//form[@name='create-account']`).getByRole('button', { name: 'Sign Up' });
 
 //Locator by label
 const labelLocator = () => getLocatorByLabel('Submit Button');
@@ -65,10 +69,11 @@ const labelLocator = () => getLocatorByLabel('Submit Button');
 const locatorWithAnd = () => getLocator(`button#submit`).and.(getLocator(`button#Enabled`));
 
 //Locator with 'or' operator
-const locatorWithOr = () => getLocator(`button#gridview`).or.(getLocator(`button#listview`));
+const locatorWithOr = () => getLocator(`//button[@id='gridview']`).or.(getLocator(`button[@id='listview']`);
 
 //Locator with filter
 const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'submit'});
+const rememberMeCheckbox = () => getLocator(`label`).filter({ has: getLocator(`//input[@type='checkbox']`), hasText: 'Remember me' }).locator(`span`).first();
 ```
 
 In this example, we're using various functions from `locator-utils`:
