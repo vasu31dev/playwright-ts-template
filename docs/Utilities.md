@@ -115,31 +115,55 @@ The `locator-utils` module provides utility functions to handle frames in Playwr
 Here's how you can use the `locator-utils` functions to handle frames easily:
 
 ```typescript
-import { getFrameLocator, getLocatorInFrame } from 'vasu-playwright-utils';
+import { getFrameLocator, getLocatorInFrame, getFrame } from 'vasu-playwright-utils';
 
-// Get a Frame
-const frame = `[name='test-frame']`;
+// CSS/Xpath Selector for the iframe
+const frameSelector = `iframe[name='test-frame']`;
 
-// Get a FrameLocator
-const frameLocator = () => await getFrameLocator(frame);
+// Get a FrameLocator using CSS/Xpath and use it to identify multiple locators inside this frame
+export const webFrameLocator = () => getFrameLocator(frameSelector);
 
-// Get a Locator on Page
-const locator = () => getLocatorByTestId('continue-button');
+// Theses locators are inside above frame. We are just identifying the locators in the page but not inside the above frame yet
+const signupLocator = () => getLocatorByTestId('sign-up');
+const cancelLocator = () => getLocator(`button[name='cancel']`);
 
-// Get a locator inside a frame
-const locatorInFrame = () => await getLocatorInFrame(frame, locator());
-const locatorInFrame = () => await getLocatorInFrame(frameLocator(), locator());
+// Different ways to identify a locator inside above frame
+// Method 1: Identify a locator within a frame by using locator methods with frameLocator.
+// This is the preferred method for better readability.
+const locatorInFrame = () => webFrameLocator().getByTestId('continue-button');
+const cancelButton = () => webFrameLocator().locator(`button[name='cancel']`);
+// Method 2: Identify a locator within a frame using a CSS/XPath frameSelector and an element locator.
+const locatorInFrame = () => getLocatorInFrame(frameSelector, signupLocator());
+const cancelButton = () => getLocatorInFrame(frameSelector, cancelLocator());
+// Method 3: Identify a locator within a frame using frameLocator and an element locator.
+const locatorInFrame = () => getLocatorInFrame(webFrameLocator(), signupLocator());
+const cancelButton = () => getLocatorInFrame(webFrameLocator(), cancelLocator());
+
+// Identify the frame using frame name to interact with elements within it or to evaluate JavaScript inside the frame
+const webFrame = () =>  getFrame('WebApplicationFrame');
+//Assertion to check if frame is present
+expect(webFrame(), 'Frame webFrame should exist').not.toBeNull();
+
+// Identify a Nested frame, i.e frame inside webFrame
+  const nestedFrame = webFrame()
+    .childFrames()
+    .find(frame => frame.url().startsWith(<HOST_URL>));
+//Assertion to check if nestedFrame is defined
+  expect(nestedFrame, 'Frame nestedFrame should exist').toBeDefined();
+  await nestedFrame?.evaluate(<syncFunc>, <data>);
 ```
 
 In this example, we're using various functions from `locator-utils` to handle frames:
 
-1. `getFrameLocator(frameInput: string | FrameLocator):`: This function returns a FrameLocator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate.
+1. `getFrameLocator(frameInput: string | FrameLocator)`: This function returns a FrameLocator object that we can use to enter the iframe and select locators in that iframe. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate.
 
-2. `getLocatorInFrame(frameInput: string | FrameLocator, input: string | Locator):`: This function returns a Locator object inside the frame. The frameInput parameter is a string or Locator representing the frame that you want to locate the element with and the input parameter is a string or Locator of the element you want to locate inside the frame.
+2. `getLocatorInFrame(frameInput: string | FrameLocator, input: string | Locator)`: This function returns a Locator object inside the frame. The frameInput parameter is a string representing the frame Xpath or CSS selector that you want to locate and the input parameter is a string or Locator of the element you want to locate inside the frame.
+
+3. `getFrame(frameSelector: FrameOptions)`: This function returns a Frame/null object. The frameSelector parameter is a string representing the name or id attribute of the frame or url attribute of frame as an object.
 
 These Locator functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
 
-For more information, please refer to [Playwright FrameLocator documentation](https://playwright.dev/docs/api/class-framelocator)
+For more information, please refer to [Playwright FrameLocator documentation](https://playwright.dev/docs/api/class-framelocator), and [Playwright Frame documentation](https://playwright.dev/docs/api/class-frame)
 
 ### Action Utilities
 
@@ -297,9 +321,9 @@ await expectElementToBeVisible(logoutButton(), 'Login should be successful', {
 await expectElementToBeHidden(signInButton(), 'signInButton should not be displayed');
 
 //asserting element to have the text
-await expectElementToHaveText(successfulMessage(), 'Login is successful', {
-  ignoreCase: false,
-  message: 'Login should be Successful',
+await expectElementToHaveText(successfulMessage(), 'You have logged in successfully', {
+  ignoreCase: true,
+  message: 'Verify Login should be Successful',
 });
 
 //asserting check box is not checked
@@ -350,12 +374,11 @@ export async function verifyLoginPageisDisplayed() {
   await clickAndNavigate(loginpage(), { button: 'right', force: true, clickCount: 1 });
 
   //PressSequentially
-  await PressSequentially(`#username`, 'testuser', { delay: 2, noWaitAfter: false });
+  await PressSequentially(`#username`, 'testuser', { delay: 100, noWaitAfter: false });
 
   //ExpectTextOptions
   await expectElementToHaveText(successfulMessage(), 'Login is Successful', {
-    useInnerText: true,
-    ignoreCase: false,
+    ignoreCase: true,
     timeout: STANDARD_TIMEOUT,
   });
 }
@@ -365,15 +388,15 @@ In this example, we're using some optional parameters with utility functions:
 
 1. `Locator options`: `hasText` is used as an optional parameter to locate the element that has the given text.
 
-2. `Action Options(ClickOptions)`: `button` is used for right-click, `force` is used to bypass the actionability checks and force the click, and `clickCount` is used to click the element for the given number of times.
+2. `Action Options(ClickOptions)`: `button` option is used to specify the mouse button for clicking (default is left-click, but can be set to right-click). `force` option allows bypassing actionability checks to force a click (by default, this is false, meaning actionability checks are enforced), and `clickCount` option specifies the number of times an element should be clicked (with a default of `1`).
 
-3. `Action Options(PressSequentiallyOptions)`: `delay` is used to simulate the delay between the key presses with the given time, `noWaitAfter` is used to specify not to wait after the action `PressSequentially`.
+3. `Action Options(PressSequentiallyOptions)`: `delay` is used to simulate the delay between the key presses with the given time in ms, `noWaitAfter` is used to specify not to wait after the action `PressSequentially`.
 
-4. `ExpectOptions(ExpectTextOptions)`: `useInnerText` is used to assert the inner text, `ignoreCase` is used to ignore the case while asserting, and `timeout` is used to wait until the specified time before failing the test.
+4. `ExpectOptions(ExpectTextOptions)`: `ignoreCase` option is utilized to perform case-insensitive assertions (by default, it is set to `false`, which implies case-sensitive assertions). The `timeout` option specifies the duration to wait before failing the test, thereby overriding the default `expect` timeout defined in the `playwright.config.ts` file. This allows for either a longer or shorter timeout period as required.
 
 ### Test annotations
 
-Test annotations are a powerful feature of Playwright Test that allows you to modify the behavior of individual tests. You can use them to mark a test as slow, skip it, indicate that it needs to be fixed, group tests, and much more. They provide a flexible way to manage your tests and handle different scenarios.
+Test annotations are a powerful feature of the Playwright Test that allows you to modify the behavior of individual tests. You can use them to mark a test as slow, skip it, indicate that it needs to be fixed, group tests, and much more. They provide a flexible way to manage your tests and handle different scenarios.
 
 Here are some examples of how to use test annotations:
 
