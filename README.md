@@ -453,7 +453,19 @@ Here are some recommended best practices when using this framework:
 
 - **clickandNavigate vs click**: If a click action triggers page navigation, use the `clickandNavigate` utility function instead of the `click` function. `clickandNavigate` function includes built-in checks for frame navigation and waits for a new page to load. Use the `click` function if it is an Ajax call when you don't navigate to a different page.
 
+- **check vs click**: Use the `check` or `uncheck` utility functions for checkboxes or radio inputs to toggle the state of a checkbox or to choose/deselect a radio option. If you find these functions unreliable or inconsistent during tests, we highly encourage you to provide us with detailed feedback so we can enhance the functionality of these utilities. Meanwhile, please opt for the `click` function as a substitute for `check`/`uncheck`.
+
 - **Fill vs pressSequentially**: Use the fill utility function as default to fill the form fields. Use presssequentially utility function when you want to simulate entering character by character likely to be the keyboard press events, such as when testing auto-search suggestions or autofill features. [Playwright type documentation](https://playwright.dev/docs/input#type-characters)
+
+  - **_Optional Parameters - Force & noWaitAfter_**:
+
+    - **force**: In Playwright, the force boolean option in action methods like `click`, `check`, `uncheck`, `dragAndDrop`, `dblclick` etc, allows bypassing the [actionability](https://playwright.dev/docs/actionability]) checks on elements by setting it to `true`. It's useful for simulating actions that require overriding these default checks.
+
+      `await page.click('#element-id', { force: true })`
+
+    - **noWaitAfter**: Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting via setting this flag to `true`. You would only need this option in the exceptional cases such as navigating to inaccessible pages.
+
+      `await page.click('#submit-button', { noWaitAfter: true })`
 
 - **Web-First Assertions**: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions)
 
