@@ -101,7 +101,7 @@ Before you begin, there are some essential requirements you must meet. Ensure yo
 - **VSCode Plugins**:
   - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting. Install it directly from the title link provided.
   - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues. Install it directly from the title link provided.
-- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use `Cmd+` for Mac and `Ctrl+` for Windows , to access the settings window):
+- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use `Cmd+,` for Mac and `Ctrl+,` for Windows , to access the settings window):
   - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
   - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
 
