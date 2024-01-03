@@ -123,15 +123,8 @@ The installation steps are below:
     mkdir playwright-e2e-tests
     cd playwright-e2e-tests
    ```
-3. Install vasu-playwright-cli
-
-   ```bash
-   npm i -D vasu-playwright-cli
-   ```
-
-   This step installs all the above mentioned dependencies, libraries, playwright browsers, logger and pre-commit hook.
-
-4. Run the below command to initialise a project
+   
+3. Run the below command to initialise a project
    ```bash
    npx vasu-playwright-cli init
    ```
