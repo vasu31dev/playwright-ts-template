@@ -90,14 +90,16 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 Before you begin, there are some essential requirements you must meet. Ensure you have the following software installed on your machine:
 
 - **[npm (v8.0.0 or later)](https://docs.npmjs.com/cli/v9/configuring-npm)**: Package manager for JavaScript, used to install and manage software packages.
-  - To verify your current version, use the command `npm -v`.
+  - To verify your current version, use the command `npm -v`. To upgrade to the latest version, please follow the update document [here](docs/UpgradingNodeAndNPM.md).
   - If npm isn't installed, follow the [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 - **[Node.js (v16.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
-  - To verify your current version, use the command `node -v`.
+  - To verify your current version, use the command `node -v`. To upgrade to the latest version, please follow the update document [here](docs/UpgradingNodeAndNPM.md).
   - if Node.js isn't installed, download and install it from the title link provided.
 - **[Git](https://git-scm.com/downloads)**: Distributed version control system used to track changes in source code during software development.
   - To check if Git is installed, run the command `git --version`.
   - If Git isn't installed, download and install it from the [official Git website](https://git-scm.com/downloads).
+- **[Visual Studio Code](https://visualstudio.microsoft.com/free-developer-offers/)**: A standalone source code editor that runs on Windows, macOS, and Linux.
+  - Download Visual Studio Code suitable for your operating system from the title link provided.
 - **VSCode Plugins**:
   - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting. Install it directly from the title link provided.
   - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues. Install it directly from the title link provided.
@@ -123,7 +125,6 @@ The installation steps are below:
     mkdir playwright-e2e-tests
     cd playwright-e2e-tests
    ```
-   
 3. Run the below command to initialise a project
    ```bash
    npx vasu-playwright-cli init
