@@ -23,7 +23,7 @@
     "url": "https://github.com/vasu31dev/playwright-ts-template/issues"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "vasu-playwright-utils": "^0.8.0"

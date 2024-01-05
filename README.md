@@ -92,7 +92,7 @@ Before you begin, there are some essential requirements you must meet. Ensure yo
 - **[npm (v8.0.0 or later)](https://docs.npmjs.com/cli/v9/configuring-npm)**: Package manager for JavaScript, used to install and manage software packages.
   - To verify your current version, use the command `npm -v`. To upgrade to the latest version, please follow the document [here](docs/UpgradingNodeAndNPM.md).
   - If npm isn't installed, follow the [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-- **[Node.js (v16.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
+- **[Node.js (v18.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
   - To verify your current version, use the command `node -v`. To upgrade to the latest version, please follow the document [here](docs/UpgradingNodeAndNPM.md).
   - if Node.js isn't installed, download and install it from the title link provided.
 - **[Git](https://git-scm.com/downloads)**: Distributed version control system used to track changes in source code during software development.
