@@ -15,7 +15,7 @@ To upgrade Node.js and npm to their most recent versions, here are some methods 
 2. **Using nvm (Node Version Manager) for Linux and macOS**:  
    NVM is a tool that allows you to manage multiple versions of Node on your system. You can use nvm to install, update, and switch between different versions of Node.
 
-   To update your version of Node using nvm, follow the below steps:
+   To update your version of Node using nvm, follow the below commands:
 
 - Check if you already have nvm installed on your system
 
