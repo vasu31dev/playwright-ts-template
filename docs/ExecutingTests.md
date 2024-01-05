@@ -1,14 +1,8 @@
 ## Executing Tests
 
-### Run tests using the Playwright plugin
+### Run tests using the Playwright Test for VSCode extension
 
-To run the tests using the Playwright plugin in Visual Studio Code, please follow the instructions below:
-
-#### Playwright Plugin Installation:
-
-1. Click on the `Extensions` icon in Visual Studio Code and search for `Playwright`.
-
-2. Select and install the `Playwright Test for VSCode` plugin.
+To run tests using the Playwright extension in Visual Studio Code, please read through the test configuration and execution details as below:
 
 #### Test Configuration
 
@@ -20,7 +14,7 @@ Playwright offers various configuration options for customizing test execution. 
 
 3. **`workers: process.env.CI ? 3 : 1`**: Sets the number of worker threads for running tests. In this example, the workers value is set to 3 in a CI environment and 1 during local test execution.
 
-4. **`reporter: [['./tests/setup/custom-logger.ts'], ['html', { open: 'never' }], ['dot']]`**: Configures a custom HTML reporter with a logger. Multiple reporters can be defined.
+4. **`reporter: [['./tests/setup/custom-logger.ts'], ['html', { open: 'never' }], ['dot']]`**: Configures a custom HTML reporter with a logger. We can define multiple reporters.
 
 5. **`headless`**: Determines whether tests should run in headless or headed browsers. The default value is headless.
 
@@ -36,9 +30,9 @@ Playwright offers various configuration options for customizing test execution. 
 
 For more in-depth configuration details, consult the official [Playwright Test Configuration Documentation](https://playwright.dev/docs/test-configuration).
 
-#### Running Tests with the Plugin:
+#### Running Tests with the extension:
 
-1. Once the plugin is installed, you will see a small green `Play` button next to each test in your spec files.
+1. Once the extension is installed, you will see a small green `Play` button next to each test in your spec files.
 
 2. Clicking on the `Play` button will execute the test as per the configurations set in playwright.config file. You can either execute individual tests or all tests together within the spec file.
 

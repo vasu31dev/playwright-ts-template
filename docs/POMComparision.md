@@ -20,4 +20,4 @@ The performance comparison between Traditional POM and Customized Framework is d
 
 ![Traditional vs. Customized Framework Performance Comparison](https://github.com/vasu31dev/playwright-ts-template/blob/main/docs/images/Performance-TraditionalPOMVsCustomised%20POM.png?raw=true)
 
-For more details on Traditional POM, please refer [here](https://playwright.dev/docs/pom).
+For more details on Traditional POM, please refer the documentation [here](https://playwright.dev/docs/pom).
