@@ -4,7 +4,7 @@ The framework offers a collection of utility functions that streamline the ident
 
 - [page-utils.ts](#page-utilities): This file contains functions for setting a page, getting a page, switching between the pages, and closing a page.
 
-- [locator-utils.ts](#locator-utilities): This file has functions that help finding web elements on pages and frames in different ways, such as by test ID, label, text, CSS, or XPath.
+- [locator-utils.ts](#locator-utilities): This file has functions that helps in finding web elements on pages and frames in various ways, such as by test ID, label, text, CSS, or XPath.
 
 - [action-utils.ts](#action-utilities): This file contains functions to perform several common actions like clicking, filling input fields, selecting options from dropdowns, drag and drop, handling alerts, scroll, uploading and downloading files, navigating and reloading pages.
 
