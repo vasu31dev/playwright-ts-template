@@ -4,21 +4,21 @@ The framework offers a collection of utility functions that streamline the ident
 
 - [page-utils.ts](#page-utilities): This file contains functions for setting a page, getting a page, switching between the pages, and closing a page.
 
-- [locator-utils.ts](#locator-utilities): This file has functions that help find web elements on pages and frames in different ways, such as by test ID, label, text, CSS, or XPath.
+- [locator-utils.ts](#locator-utilities): This file has functions that helps in finding web elements on pages and frames in various ways, such as by test ID, label, text, CSS, or XPath.
 
-- [action-utils.ts](#action-utilities): This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, drag and drop, handling alerts, scroll, uploading and downloading files, navigating and reloading pages.
+- [action-utils.ts](#action-utilities): This file contains functions to perform several common actions like clicking, filling input fields, selecting options from dropdowns, drag and drop, handling alerts, scroll, uploading and downloading files, navigating and reloading pages.
 
 - [element-utils.ts](#element-utilities): This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
 
 - [assert-utils.ts](#assert-utilities): This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
 
-These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
+These utilities are designed to make your tests more readable and maintainable while minimizing the need for repetitive boilerplate code.
 
 Here are a few examples of how to use the utility functions:
 
 ### Page Utilities
 
-The `page-utils` module contains the functions of the Page. These functions are used for managing Page objects, including getting Page objects, switching between the pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
+The `page-utils` module contains the functions of the Page. These functions are used for managing Page objects, getting Page objects, switching between the pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
 
 ```typescript
 import { switchPage, switchToDefaultPage, closePage } from 'vasu-playwright-utils';
@@ -35,7 +35,7 @@ await closePage();
 
 ### Locator Utilities
 
-The `locator-utils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators are used to identify elements on a webpage and are crucial for interacting with web elements, enabling actions such as clicking a button or inputting text into a form field.
+The `locator-utils` module provides a set of utility functions that identify locators in various ways in Playwright. Locators are used to identify elements on a webpage and are crucial for interacting with web elements in order to perform actions such as clicking a button or inputting text into a form field.
 
 ```typescript
 import {
@@ -69,7 +69,7 @@ const labelLocator = () => getLocatorByLabel('Submit Button');
 const locatorWithAnd = () => getLocator(`button#submit`).and.(getLocator(`button#Enabled`));
 
 //Locator with 'or' operator
-const locatorWithOr = () => getLocator(`//button[@id='gridview']`).or.(getLocator(`button[@id='listview']`);
+const locatorWithOr = () => getLocator(`button[@id='gridview']`).or.(getLocator(`button[@id='listview']`);
 
 //Locator with filter
 const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'submit'});
@@ -98,7 +98,7 @@ In this example, we're using various functions from `locator-utils`:
 
 6.  These locator functions can also be easily used with Locator operators( `and`, `or`) and filters(`filter`). For more information on Locator operators and filters, please refer to [Playwright Locator documentation](https://playwright.dev/docs/locators#filtering-locators)
 
-Here is some more information about `locator-utils` usage as this is a unique POM design pattern
+Here is some more information about `locator-utils` usage as this is a unique POM design pattern:
 
 - We use a closure to declare the Locator because the page object is initialized during runtime. If we call the function directly, it may return null due to the page object not being initialized yet. By using a closure, we ensure that we're accessing the page object only after it has been properly initialized.
 

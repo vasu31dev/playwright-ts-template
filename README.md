@@ -100,10 +100,11 @@ Before you begin, there are some essential requirements you must meet. Ensure yo
   - If Git isn't installed, download and install it from the [official Git website](https://git-scm.com/downloads).
 - **[Visual Studio Code](https://visualstudio.microsoft.com/free-developer-offers/)**: A standalone source code editor that runs on Windows, macOS, and Linux.
   - Download Visual Studio Code suitable for your operating system from the title link provided.
+  - For Visual Studio Code shortcuts, please visit [Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) and [macOS](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf) documents.
 - **Visual Studio Code Extensions**:
   - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A VSCode extension for consistent code formatting. Install it directly from the title link provided.
   - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A VSCode extension for identifying and fixing linting issues. Install it directly from the title link provided.
-  - **[Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)**: A VSCode extension that integrates Playwright testing framework, enabling writing, running, and debugging end-to-end tests directly within VSCode. Install it directly from the title link provided.
+  - **[Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)**: A VSCode extension that integrates Playwright testing framework, enabling writing, running, and debugging end-to-end tests directly within VSCode. Install it directly from the title link provided. For detailed information on executing tests with this extension, please visit [executing tests with Playwright Test for VSCode](#run-tests-using-playwright-test-for-vscode-extension) documentation.
 - **Visual Studio Code Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use `Cmd+,` for Mac and `Ctrl+,` for Windows, to access the settings window):
   - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
   - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
@@ -313,7 +314,7 @@ We have the flexibility from executing a single test to executing a specific set
 
 **`Playwright Test for VSCode`** extension empowers you to run specific tests or entire test suites directly from the editor. You can conveniently trigger tests with a click, making it efficient to validate changes.
 
-For detailed guidance on plugin installation, and configuring test settings in the playwright.config file, and executing tests, please visit [Executing tests using a Playwright plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin).
+For detailed guidance on configuring test settings in the playwright.config file, and executing tests, please visit [Executing tests using a Playwright Test for VSCode extension](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin).
 
 ### Parallel Execution
 

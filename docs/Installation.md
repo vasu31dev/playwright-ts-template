@@ -1,4 +1,4 @@
-### Installation
+### Project Installation
 
 1. Clone the repository:
 
@@ -24,7 +24,7 @@ npm install
 npx playwright install
 ```
 
-5. (Optional) Git User setup for the first time. If you are a code/test contributor, set up your user in GIT using the commands:
+5. (Optional) Git User setup for the first time. If you are a code/test contributor, set up your user in GIT using the below commands:
 
    ```bash
    git config user.email "<your-email>"
