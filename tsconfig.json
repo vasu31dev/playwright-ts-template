@@ -20,6 +20,7 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
+    "resolveJsonModule": true, // Allows importing JSON files and accessing the data through 'import'
     "noImplicitReturns": true, // Ensures that all code paths in a function explicitly return a value
     "noImplicitOverride": true, // Ensures that overriding methods in a subclass are marked with the 'override' keyword
     "paths": {
