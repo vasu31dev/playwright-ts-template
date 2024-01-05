@@ -10,7 +10,7 @@ import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
 */
 test.describe.configure({ mode: 'parallel' });
 
-test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
+test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart @smoke', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();

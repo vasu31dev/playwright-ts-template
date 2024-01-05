@@ -64,7 +64,7 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects)
   - [Test annotations](docs/Utilities.md#test-annotations)
 - [**Executing Tests**](#executing-tests)
-  - [Using the Playwright Plugin](#run-tests-using-plugin)
+  - [Run tests using Playwright Test for VSCode Extension](#run-tests-using-playwright-test-for-vscode-extension)
   - [Command-Line Execution](#running-tests-via-the-command-line-interface)
   - [Report Generation and Viewing](#report-generation-and-viewing)
 - [**Additional Playwright Features**](#additional-playwright-features)
@@ -78,10 +78,10 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 - **[TypeScript](https://www.typescriptlang.org/)**: A statically typed superset of JavaScript programming language, enhancing code quality and understandability.
 - **[Playwright Test](https://playwright.dev/docs/test-configuration)**: A modern end-to-end testing framework, facilitating [test creation](https://playwright.dev/docs/api/class-test), [execution](https://playwright.dev/docs/running-tests), [fixture management](https://playwright.dev/docs/test-fixtures), and [report generation](https://playwright.dev/docs/test-reporters).
 - **[Playwright Assertions](https://playwright.dev/docs/assertions)**: Provides robust assertion capabilities for validating test outcomes.
-- **[Allure Report](https://docs.qameta.io/allure/)**: A flexible and visually appealing reporting tool, offering clarity on test results.
+- **[Allure Report](https://docs.qameta.io/allure/)**: A flexible and visually appealing reporting tool, that offers clarity on test results.
 - **[ESLint](https://eslint.org/)**: A pluggable linting utility for JavaScript and TypeScript, ensuring code consistency and detecting potential errors.
 - **[Prettier](https://prettier.io/)**: An opinionated code formatter, ensuring consistent code style across the project.
-- **[Logger (Winston)](https://www.npmjs.com/package/winston)**: A versatile logging library, producing both file-based logs and color-coded console outputs.
+- **[Logger (Winston)](https://www.npmjs.com/package/winston)**: A versatile logging library, that produces both file-based logs and color-coded console outputs.
 - **[Husky](https://www.npmjs.com/package/husky)**: Manages Git hooks to enforce quality checks, such as linting, before commits.
 - **[Github Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)**: A CI/CD platform integrated with GitHub, automating workflows like test execution on pull requests. Enhanced with [Playwright's CI guide](https://playwright.dev/docs/ci-intro).
 
@@ -90,20 +90,21 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 Before you begin, there are some essential requirements you must meet. Ensure you have the following software installed on your machine:
 
 - **[npm (v8.0.0 or later)](https://docs.npmjs.com/cli/v9/configuring-npm)**: Package manager for JavaScript, used to install and manage software packages.
-  - To verify your current version, use the command `npm -v`. To upgrade to the latest version, please follow the update document [here](docs/UpgradingNodeAndNPM.md).
+  - To verify your current version, use the command `npm -v`. To upgrade to the latest version, please follow the document [here](docs/UpgradingNodeAndNPM.md).
   - If npm isn't installed, follow the [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 - **[Node.js (v16.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
-  - To verify your current version, use the command `node -v`. To upgrade to the latest version, please follow the update document [here](docs/UpgradingNodeAndNPM.md).
+  - To verify your current version, use the command `node -v`. To upgrade to the latest version, please follow the document [here](docs/UpgradingNodeAndNPM.md).
   - if Node.js isn't installed, download and install it from the title link provided.
 - **[Git](https://git-scm.com/downloads)**: Distributed version control system used to track changes in source code during software development.
   - To check if Git is installed, run the command `git --version`.
   - If Git isn't installed, download and install it from the [official Git website](https://git-scm.com/downloads).
 - **[Visual Studio Code](https://visualstudio.microsoft.com/free-developer-offers/)**: A standalone source code editor that runs on Windows, macOS, and Linux.
   - Download Visual Studio Code suitable for your operating system from the title link provided.
-- **VSCode Plugins**:
-  - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting. Install it directly from the title link provided.
-  - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues. Install it directly from the title link provided.
-- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use `Cmd+,` for Mac and `Ctrl+,` for Windows , to access the settings window):
+- **Visual Studio Code Extensions**:
+  - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A VSCode extension for consistent code formatting. Install it directly from the title link provided.
+  - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A VSCode extension for identifying and fixing linting issues. Install it directly from the title link provided.
+  - **[Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)**: A VSCode extension that integrates Playwright testing framework, enabling writing, running, and debugging end-to-end tests directly within VSCode. Install it directly from the title link provided.
+- **Visual Studio Code Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use `Cmd+,` for Mac and `Ctrl+,` for Windows, to access the settings window):
   - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
   - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
 
@@ -113,31 +114,31 @@ Begin your project by following the steps to install it either with command-line
 
 #### CLI Installation
 
-This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, Winston logger and Husky pre-commit hook that are necessary to start with your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository.
+This method makes setup easy by avoiding the long steps in the manual installation process. It automatically installs all the dependencies, libraries, playwright browsers, Winston logger, and Husky pre-commit hook that are necessary to start your project. Initializing the project, also intitialises a new Git repository if neither the current nor the parent directory is a Git repository.
 
 The installation steps are below:
 
 1. Install Node.js
-   Node.js installation can be done via direct from the website or from CLI. Find the [Node.js installation steps](https://github.com/vasu31dev/playwright-ts-cli#1-install-nodejs) here.
+   Node.js installation can be done directly from the website or through CLI. Find the [Node.js installation steps](https://github.com/vasu31dev/playwright-ts-cli#1-install-nodejs) here.
 
 2. Create a Playwright Test Directory
    ```bash
     mkdir playwright-e2e-tests
     cd playwright-e2e-tests
    ```
-3. Run the below command to initialise a project
+3. Run the below command to initialize a project
    ```bash
    npx vasu-playwright-cli init
    ```
-   This command will set up a new project with ready to use Playwright TypeScript framework including:
-   - Setup the Playwright TypeScript framework template with sample tests.
+   This command will set up a new project with a ready-to-use Playwright TypeScript framework including:
+   - Set up the Playwright TypeScript framework template with sample tests.
    - Create a new `package.json` file with all the necessary dependencies.
    - Initializing a new Git repository if neither the current nor parent directory is a Git repository.
    - Installing all the npm packages including the playwright utils library which contains playwright helper methods.
 
 #### Manual Installation
 
-This is a step by step process to install all the dependencies, libraries and playwright browsers manually.
+This is a step-by-step process to install all the dependencies, libraries, and playwright browsers manually.
 Please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
 
 ### Project Update Guide
@@ -275,27 +276,27 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
-In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successfull and failed logins. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
+In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
 
 #### Parameterising Tests
 
-#### Test and Project parameterisation
+#### Test and Project parameterization
 
-Playwright supports parameterisation both at test level and project level. Sample parameterised test spec file was added as `sauce-demo-parameterised.spec.ts` under `specs` folder for easy reference. For project level parameterisation, please refer the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
+Playwright supports parameterization both at the test level and project level. Sample parameterized test spec file was added as `sauce-demo-parameterised.spec.ts` under `specs` folder for easy reference. For project-level parameterisation, please refer to the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
 
 #### Passing environment variables
 
-You can pass environment variables to Playwright test scripts to configure and customize their behavior. These variables are useful for storing sensitive information like API keys and configuring test parameters based on the environment. You can set and use these variables in various ways, from the command line to test configurations. For more information on how to set and use these variables, please refer the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
+You can pass environment variables to Playwright test scripts to configure and customize their behavior. These variables are useful for storing sensitive information like API keys and configuring test parameters based on the environment. You can set and use these variables in various ways, from the command line to test configurations. For more information on how to set and use these variables, please refer to the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
 
 #### Test data from CSV file
 
-For data driven approach, Playwright supports creating tests from csv file. For more information, please refer the Playwright documentation[here](https://playwright.dev/docs/test-parameterize#create-tests-via-a-csv-file).
+For a data-driven approach, Playwright supports creating tests from CSV files. For more information, please refer to the Playwright documentation[here](https://playwright.dev/docs/test-parameterize#create-tests-via-a-csv-file).
 
 ## Utilities
 
 Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
 
-1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting page objects, switching between the pages in between the tests and close a page.
+1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting page objects, switching between the pages in between the tests, and close a page.
 2. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
 3. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate standard actions such as clicking, form filling, keyboard events, and dragging; providing a more concise way to execute these operations within your tests.
 4. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
@@ -308,11 +309,11 @@ Please refer to the [Utilities section](docs/Utilities.md) for a comprehensive g
 
 We have the flexibility from executing a single test to executing a specific set of tests, or the entire test suite. Testing can be carried out on a single browser or across multiple browsers simultaneously. By default, tests run in a headless mode, and the test outcome is displayed in the terminal.
 
-### Run tests using plugin
+### Run tests using Playwright Test for VSCode Extension
 
-**`Playwright Test for VSCode`** plugin empowers you to run specific tests or entire test suites directly from the editor. You can conveniently trigger tests with a click, making it efficient to validate changes.
+**`Playwright Test for VSCode`** extension empowers you to run specific tests or entire test suites directly from the editor. You can conveniently trigger tests with a click, making it efficient to validate changes.
 
-For detailed guidance on plugin installation, configuring test settings in the playwright.config file, and executing tests, please visit [Executing tests using a Playwright plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin).
+For detailed guidance on plugin installation, and configuring test settings in the playwright.config file, and executing tests, please visit [Executing tests using a Playwright plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin).
 
 ### Parallel Execution
 
@@ -337,31 +338,31 @@ The `package.json` file contains several scripts designed to streamline test exe
 - To run a single test in chromium headed mode (i.e., with the browser UI visible), use the `grep` command to specify the test:
 
 ```bash
-npm run test:chromium-headed -- -g 'login test'
+npm run test:chromium-headed -- -g 'Successful login will display Products Page'
 ```
 
 - To run all the tests in a spec file in chromium headless mode:
 
 ```bash
-npm run test:chromium -- nucleus.spec.ts
+npm run test:chromium -- sauce-demo-all-pass.spec.ts
 ```
 
 - To run all the tests in multiple spec files in headed mode:
 
 ```bash
-npm run test:chromium-headed -- checkout.spec.ts nucleus.spec.ts
+npm run test:chromium-headed -- sauce-demo-parameterised.spec.ts sauce-demo-all-pass.spec.ts
 ```
 
 - To run all the tests in a spec file with 3 threads, and 2 retries in chromium headless mode:
 
 ```bash
-npm run test:chromium -- nucleus.spec.ts -j 3 --retries 2
+npm run test:chromium -- sauce-demo-all-pass.spec.ts -j 3 --retries 2
 ```
 
 - To run in debug mode:
 
 ```bash
-npm run test:chromium-headed -- nucleus.spec.ts --debug
+npm run test:chromium-headed -- -g 'Saucedemo test - Add product to cart' --debug
 ```
 
 - To run all the smoke tests using the tag in headless mode for all the projects:
@@ -457,7 +458,7 @@ Here are some recommended best practices when using this framework:
 
       `await click('#element-id', { force: true })`
 
-    - **noWaitAfter**: Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting via setting this flag to `true`. You would only need this option in the exceptional cases such as navigating to inaccessible pages.
+    - **noWaitAfter**: Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting by setting this flag to `true`. You would only need this option in exceptional cases such as navigating to inaccessible pages.
 
       `await click('#submit-button', { noWaitAfter: true })`
 
