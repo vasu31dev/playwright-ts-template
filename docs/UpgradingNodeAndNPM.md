@@ -23,7 +23,13 @@ To upgrade Node.js and npm to their most recent versions, here are some methods 
   nvm --version
   ```
 
-- If it's not installed, install nvm using the below command
+- If nvm is not installed, install the latest version of nvm using the below command
+
+  ```bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | grep 'tag_name' | cut -d\" -f4)/install.sh | bash
+  ```
+
+  If you need to install a specific version of nvm like 0.35.3, use the below command
 
   ```bash
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
@@ -35,7 +41,7 @@ To upgrade Node.js and npm to their most recent versions, here are some methods 
   node -v
   ```
 
-- update the version of Node using the following command(this will also install the latest npm)
+- Update the version of Node using the following command(this will also install the latest npm version)
 
   ```bash
   nvm install node --reinstall-packages-from=node
