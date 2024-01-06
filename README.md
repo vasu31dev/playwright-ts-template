@@ -128,14 +128,36 @@ The installation steps are below:
     cd playwright-e2e-tests
    ```
 3. Run the below command to initialize a project
+
    ```bash
    npx vasu-playwright-cli init
    ```
+
    This command will set up a new project with a ready-to-use Playwright TypeScript framework including:
+
    - Set up the Playwright TypeScript framework template with sample tests.
    - Create a new `package.json` file with all the necessary dependencies.
    - Initializing a new Git repository if neither the current nor parent directory is a Git repository.
    - Installing all the npm packages including the playwright utils library which contains playwright helper methods.
+
+4. If you encounter errors during the installation process, follow these steps to resolve them:
+
+   - Change ownership of the npm directories to the current user:
+     ```bash
+     sudo chown -R $(whoami) ~/.npm
+     ```
+   - Clear the npm cache forcefully:
+
+     ```bash
+     npm cache clean --force
+     ```
+
+   - Retry initializing the Playwright TypeScript project:
+     ```bash
+     npx vasu-playwright-cli init
+     ```
+
+   These steps will help fix permission issues and cache-related problems that might occur during the setup.
 
 #### Manual Installation
 
