@@ -44,7 +44,7 @@ To upgrade Node.js and npm to their most recent versions, here are some methods 
 - Update the version of Node using the following command(this will also install the latest npm version)
 
   ```bash
-  nvm install node --reinstall-packages-from=node
+  nvm install node --reinstall-packages-from=$(nvm current)
   ```
 
 - And finally, verify the update is complete by rechecking your Node version
