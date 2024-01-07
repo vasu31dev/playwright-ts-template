@@ -477,7 +477,7 @@ Here are some recommended best practices when using this framework:
 
   - **_Optional Parameters - Force & noWaitAfter_**:
 
-    - **force**: In Playwright, the force boolean option in action methods like `click`, `check`, `uncheck`, `dragAndDrop`, `dblclick` etc, allows bypassing the [actionability](https://playwright.dev/docs/actionability]) checks on elements by setting it to `true`. It's useful for simulating actions that require overriding these default checks.
+    - **force**: In Playwright, the force boolean option in action methods like `click`, `check`, `uncheck`, `dragAndDrop`, `dblclick` etc, allows bypassing the [actionability](https://playwright.dev/docs/actionability) checks on elements by setting it to `true`. It's useful for simulating actions that require overriding these default checks.
 
       `await click('#element-id', { force: true })`
 
