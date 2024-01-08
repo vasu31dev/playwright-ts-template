@@ -16,10 +16,7 @@ test.describe('Parameterising tests', () => {
   InvalidCredentialsData.forEach(data => {
     test(`Invalid Login - Running same test with different invalid data ${data.username}`, async () => {
       await LoginPage.navigateToSauceDemoLoginPage();
-      await LoginPage.fillUserName(data.username);
-      await LoginPage.fillPassword(data.password);
-      await LoginPage.clickLogin();
-      await LoginPage.verifyErrorMessageForFailureLogin();
+      await LoginPage.loginWithInvalidCredentials(data);
     });
   });
 });

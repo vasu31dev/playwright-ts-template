@@ -1,42 +1,29 @@
-import { click, clickAndNavigate, fill, gotoURL } from 'vasu-playwright-utils';
+import { click, clickAndNavigate, expectElementToBeAttached, fill, gotoURL } from 'vasu-playwright-utils';
 import { failureLoginCredentials, sauceDemoCredentials } from '../../testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from 'vasu-playwright-utils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from 'vasu-playwright-utils';
 
 const userName = `#user-name`;
 const password = () => getLocator(`#password`).or(getLocatorByPlaceholder('Password', { exact: true }));
-const login = () => getLocatorByRole('button', { name: 'Login' });
+const loginButton = () => getLocatorByRole('button', { name: 'Login' });
+const logoutLink = `#logout_sidebar_link`;
 const errorMessage = `//*[contains(@class,'error-message')]`;
 
 export async function navigateToSauceDemoLoginPage() {
   await gotoURL('https://www.saucedemo.com/');
 }
 
-export async function fillUserName(username: string) {
-  await fill(userName, username);
+export async function loginWithValidCredentials(validCredentials = sauceDemoCredentials) {
+  await fill(userName, validCredentials.username);
+  await fill(password(), validCredentials.password);
+  await clickAndNavigate(loginButton());
+  await expectElementToBeAttached(logoutLink);
 }
 
-export async function fillPassword(pword: string) {
-  await fill(password(), pword);
-}
-
-export async function clickLogin() {
-  await click(login());
-}
-
-export async function logInSuccessfully() {
-  await fillUserName(sauceDemoCredentials.username);
-  await fillPassword(sauceDemoCredentials.password);
-  await clickAndNavigate(login());
-}
-
-export async function failureLogin() {
-  await fillUserName(failureLoginCredentials.username);
-  await fillPassword(failureLoginCredentials.password);
-  await clickLogin();
-}
-
-export async function verifyErrorMessageForFailureLogin() {
+export async function loginWithInvalidCredentials(invalidCredentials = failureLoginCredentials) {
+  await fill(userName, invalidCredentials.username);
+  await fill(password(), invalidCredentials.password);
+  await click(loginButton());
   await expectElementToBeVisible(errorMessage);
 }
 

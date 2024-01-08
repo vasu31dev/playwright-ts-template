@@ -13,15 +13,15 @@ test.describe.configure({ mode: 'parallel' });
 test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart @smoke', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
-    await LoginPage.logInSuccessfully();
+    await LoginPage.loginWithValidCredentials();
     //verifying products page is displayed on successful login
-    await ProductsPage.verifyProductsPageDisplayed();
+    await ProductsPage.verifyProductsPageIsDisplayed();
   });
 
   test('Saucedemo test - Add product to cart', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
-    await LoginPage.logInSuccessfully();
-    await ProductsPage.verifyProductsPageDisplayed();
+    await LoginPage.loginWithValidCredentials();
+    await ProductsPage.verifyProductsPageIsDisplayed();
     await ProductsPage.addToCartByProductNumber(1);
     //verifying mini cart count is updated to 1
     await MiniCart.verifyMiniCartCount('1');
@@ -29,11 +29,10 @@ test.describe('Saucedemo tests for successful, unsuccessful logins and add produ
 
   test('Saucedemo test - Error message is displayed and Products page is not displayed on failed login', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
-    await LoginPage.failureLogin();
-    await LoginPage.verifyErrorMessageForFailureLogin();
+    await LoginPage.loginWithInvalidCredentials();
     //verifying Login is still displayed
     await LoginPage.verifyLoginPageisDisplayed();
     //verifying Products Page is not displayed
-    await ProductsPage.verifyProductsPageNotDisplayed();
+    await ProductsPage.verifyProductsPageIsNotDisplayed();
   });
 });
