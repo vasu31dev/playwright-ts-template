@@ -22,7 +22,7 @@ This project is meticulously organized into distinct packages and files, each ta
 
     - **utils**: A crucial directory that encompasses all test-related [utility functions](Utilities.md). These are reusable functions or methods written to perform common tasks, be it related to data manipulation, element interaction, or any other recurrent actions or assertions in the test scripts.
 
-- **test-setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](FrameworkSetup.md) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
+- **test-setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](CustomizeFrameworkSetup.md) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
 
 - **tests**: This directory houses the framework setup, end-to-end test files, API tests, and associated utilities. The tests are organized as:
 
@@ -38,7 +38,7 @@ This project is meticulously organized into distinct packages and files, each ta
 
 - **.gitignore**: This file ensures the repository's cleanliness by listing files and directories that Git should not track. It typically excludes node modules, build folders, and temporary files, ensuring only essential code and files are versioned.
 
-- **.prettierignore**: This file helps keep the repository tidy by specifying which files and directories should be skipped by the Prettier formatter. We've pre-added the kinds of files that Prettier formatter should ignore and also more files can be added here as per your project needs. Normally, We check all ".ts" and ".md" files to ensure they follow the configured formatting rules.
+- **.prettierignore**: This file helps keep the repository tidy by specifying which files and directories should be ignored by the Prettier formatter. We've pre-added the kinds of files that Prettier formatter should ignore and also more files can be added here as per your project needs. Normally, We check all ".ts" and ".md" files to ensure they follow the configured formatting rules.
 
 - **.prettierrc**: Prettier is an opinionated code formatter, ensuring that the code adheres to a consistent style. The `.prettierrc` file contains specific formatting rules, like line length, indentation, and more, ensuring that every developer working on the project produces code with a consistent style.
 
@@ -47,8 +47,8 @@ This project is meticulously organized into distinct packages and files, each ta
 
 - **playwright.config.ts**: This configuration file is pivotal for the Playwright testing framework. It centralizes settings specific to Playwright, detailing configurations for various browsers (like Chrome, Firefox, Safari) and devices. Within this file, you can specify configurations such as viewport sizes, user agent strings, launch options, and more. These settings ensure that tests run consistently across different environments and scenarios, replicating real-world conditions.
 
-- **README.md**: The initial file seen in a repository, the [README.md](../README.md) offers a snapshot of the project. It details the project's purpose, setup instructions, and usage. A well-structured README aids in onboarding new developers and offers clarity to stakeholders.
+- **README.md**: The initial file seen in a repository, the [README.md](../README.md) offers a snapshot of the project. It details the project's purpose, setup instructions, and usage. A well-structured README aids in onboarding new team members and offers clarity to stakeholders.
 
 - **tsconfig.json**: This configuration file is essential for TypeScript projects. It specifies the root files and the compiler options required to compile the TypeScript project. It can dictate various settings, from the target JavaScript version, module system, and source map options, to including or excluding specific files or directories.
 
-- **playwright-report**: This directory is auto-generated during the initial test run, based on the [Playwright reporters](https://playwright.dev/docs/test-reporters) configuration. The report file is updated after each test run. For more on viewing the reports, see [here](../README.md#report-generation-and-viewing).
+- **playwright-report**: This directory is auto-generated during the initial test run, based on the [Playwright reporters](https://playwright.dev/docs/test-reporters) configuration. The report file is updated after each test run. For more information on viewing the reports, please visit [Report Generation and Viewing documentation](../README.md#report-generation-and-viewing).
