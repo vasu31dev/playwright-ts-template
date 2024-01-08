@@ -56,8 +56,8 @@
   },
   "lint-staged": {
     "*.{json,md,ts}": [
-      "prettier --write"
+      "cross-env prettier --write"
     ],
-    "*.{ts}": "eslint --fix"
+    "*.{ts}": "cross-env eslint --fix"
   }
 }
