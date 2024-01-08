@@ -1,4 +1,4 @@
-## Framework Setup
+## Customize Framework Setup
 
 1. `global-setup.ts`: This file contains the global setup function that is executed once before all test files. It is typically used for setting up global states such as database connections or configuring the test environment like setting environment variables.
 

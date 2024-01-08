@@ -48,7 +48,7 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Installation](#installation)
   - [Project Update Guide](#project-update-guide)
 - [**Project Structure**](#project-structure)
-- [**Framework Setup**](#framework-setup)
+- [**Customize Framework Setup**](#customize-framework-setup)
   - [Page set up](docs/FrameworkSetup.md#page-set-up)
 - [**Usage**](#usage)
   - [Working with Page Objects](#page-objects)
@@ -120,6 +120,7 @@ This method makes setup easy by avoiding the long steps in the manual installati
 The installation steps are below:
 
 1. Install Node.js
+
    Node.js installation can be done directly from the website or through CLI. Find the [Node.js installation steps](https://github.com/vasu31dev/playwright-ts-cli#1-install-nodejs) here.
 
 2. Create a Playwright Test Directory
@@ -133,12 +134,12 @@ The installation steps are below:
    npx vasu-playwright-cli init
    ```
 
-   This command will set up a new project with a ready-to-use Playwright TypeScript framework including:
+   This command will set up a new project with a ready-to-use Playwright TypeScript framework, which includes:
 
-   - Set up the Playwright TypeScript framework template with sample tests.
-   - Create a new `package.json` file with all the necessary dependencies.
+   - Setting up the Playwright TypeScript framework template with sample tests.
+   - Creating a new `package.json` file with all the necessary dependencies.
    - Initializing a new Git repository if neither the current nor parent directory is a Git repository.
-   - Installing all the npm packages including the playwright utils library which contains playwright helper methods.
+   - Installing all the npm packages, including the playwright utils library, which contains playwright helper methods.
 
 4. If you encounter errors during the installation process, follow these steps to resolve them:
 
@@ -184,9 +185,9 @@ Keeping your project up to date is crucial.
 
 Understanding the project's architecture is key to working with the code. Please refer to the [Project Structure section](docs/ProjectStructure.md) for an overview of the directory layout and file organization.
 
-## Framework Setup
+## Customize Framework Setup
 
-Learn how to configure and customize the framework to suit your needs. Please refer to the [Framework Setup section](docs/FrameworkSetup.md) for detailed instructions.
+Learn how to configure and customize the framework to suit your needs. Please refer to the [Customize Framework Setup section](docs/CustomizeFrameworkSetup.md) for detailed instructions.
 
 ### Page Context set up
 
@@ -465,7 +466,7 @@ Here are some recommended best practices when using this framework:
 
 - **Feedback on Utility Functions**: If you encounter a missing utility function for a specific action or assertion, please provide feedback for future improvements. In the meantime, use the corresponding Playwright method with `getPage` from `@PageSetup` for the task at hand, and once we introduce new utility functions, you can easily switch to them. Your feedback is crucial to enhancing our utilities.
 
-- **Conditional Statements**: Instead of manually implementing waits, use functions like `isElementVisible`, `isElementChecked` from [elementutils](docs/Utilities.md#elementutils). These functions automatically wait for the element to become visible, with customizable timeout options. It's advisable to avoid using these for assertions; instead, utilize [AssertUtils](docs/Utilities.md#assertutils) wherever possible.
+- **Conditional Statements**: Use functions like `isElementVisible`, `isElementChecked` from [elementutils](docs/Utilities.md#elementutils). These functions automatically wait for the element to become visible, with customizable timeout options. If you want to use assertions like expectElementToBeVisible then use functions from [AssertUtils](docs/Utilities.md#assertutils).
 
 - **Retrieving Text and Input Values**: To fetch texts or input values, consider functions like `getAllTexts` and `getAllInputValues` from [elementutils](docs/Utilities.md#elementutils). These methods come with built-in waits, ensuring they only proceed once an element is available, preventing premature returns of an empty Array<string>.
 
