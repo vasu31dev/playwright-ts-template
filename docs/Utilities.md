@@ -37,6 +37,8 @@ await closePage();
 
 The `locator-utils` module provides a set of utility functions that identify locators in various ways in Playwright. Locators are used to identify elements on a webpage and are crucial for interacting with web elements in order to perform actions such as clicking a button or inputting text into a form field.
 
+Here's an example on how to use various locator functions from `locator-utils`:
+
 ```typescript
 import {
   getLocator,
@@ -46,32 +48,32 @@ import {
   getLocatorByLabel,
 } from 'vasu-playwright-utils';
 
-//Locator with CSS
+// Locator with CSS
 const cssLocator = `button#submit`;
 
-//Locator with Xpath
+// Locator with Xpath
 const xpathLocator = `button[@id='submit']`;
 
-//Locator with testIdAttribute
+// Locator with testIdAttribute
 const testIdLocator = () => getLocatorByTestId('submit-button');
 
-//Locator by text
+// Locator by text
 const textLocator = () => getLocatorByText('Submit');
 
-//Locator by role
+// Locator by role
 const roleLocator = () => getLocatorByRole('button', { name: 'Login' });
 const chainingRoleLocator = () => getLocator(`//form[@name='create-account']`).getByRole('button', { name: 'Sign Up' });
 
-//Locator by label
+// Locator by label
 const labelLocator = () => getLocatorByLabel('Submit Button');
 
-//Locator with 'and' operator
+// Locator with 'and' operator
 const locatorWithAnd = () => getLocator(`button#submit`).and.(getLocator(`button#Enabled`));
 
-//Locator with 'or' operator
+// Locator with 'or' operator
 const locatorWithOr = () => getLocator(`button[@id='gridview']`).or.(getLocator(`button[@id='listview']`);
 
-//Locator with filter
+// Locator with filter
 const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'submit'});
 const rememberMeCheckbox = () => getLocator(`label`).filter({ has: getLocator(`//input[@type='checkbox']`), hasText: 'Remember me' }).locator(`span`).first();
 ```
@@ -106,11 +108,11 @@ Here is some more information about `locator-utils` usage as this is a unique PO
 
 - We are calling the locator function instead of using a constant locator as the page object is initialized during runtime only.
 
-Refer to the [Optional Parameter Objects](#optional-parameter-objects) section for more information.
+`locator-utils` functions can be used with various `Locator options`, optional parameter type objects. Please refer to the [Optional Parameter Type Objects](#optional-parameter-type-objects) section below for more information.
 
 #### Handling Frames
 
-The `locator-utils` module provides utility functions to handle frames in Playwright. Frames are used in web development to divide the content of a page into multiple, scrollable regions. With Playwright, you can interact with frames in a similar way as you do with separate pages.
+The `locator-utils` module also provides utility functions to handle frames in Playwright. Frames are used in web development to divide the content of a page into multiple, scrollable regions. With Playwright, you can interact with frames in a similar way as you do with separate pages.
 
 Here's how you can use the `locator-utils` functions to handle frames easily:
 
@@ -128,13 +130,16 @@ const signupLocator = () => getLocatorByTestId('sign-up');
 const cancelLocator = () => getLocator(`button[name='cancel']`);
 
 // Different ways to identify a locator inside above frame
+
 // Method 1: Identify a locator within a frame by using locator methods with frameLocator.
 // This is the preferred method for better readability.
 const locatorInFrame = () => webFrameLocator().getByTestId('continue-button');
 const cancelButton = () => webFrameLocator().locator(`button[name='cancel']`);
+
 // Method 2: Identify a locator within a frame using a CSS/XPath frameSelector and an element locator.
 const locatorInFrame = () => getLocatorInFrame(frameSelector, signupLocator());
 const cancelButton = () => getLocatorInFrame(frameSelector, cancelLocator());
+
 // Method 3: Identify a locator within a frame using frameLocator and an element locator.
 const locatorInFrame = () => getLocatorInFrame(webFrameLocator(), signupLocator());
 const cancelButton = () => getLocatorInFrame(webFrameLocator(), cancelLocator());
@@ -148,7 +153,7 @@ expect(webFrame(), 'Frame webFrame should exist').not.toBeNull();
   const nestedFrame = webFrame()
     .childFrames()
     .find(frame => frame.url().startsWith(<HOST_URL>));
-//Assertion to check if nestedFrame is defined
+// Assertion to check if nestedFrame is defined
   expect(nestedFrame, 'Frame nestedFrame should exist').toBeDefined();
   await nestedFrame?.evaluate(<syncFunc>, <data>);
 ```
@@ -163,11 +168,11 @@ In this example, we're using various functions from `locator-utils` to handle fr
 
 These Locator functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
 
-For more information, please refer to [Playwright FrameLocator documentation](https://playwright.dev/docs/api/class-framelocator), and [Playwright Frame documentation](https://playwright.dev/docs/api/class-frame)
+For more information, please refer to [Playwright FrameLocator documentation](https://playwright.dev/docs/api/class-framelocator) and [Playwright Frame documentation](https://playwright.dev/docs/api/class-frame).
 
 ### Action Utilities
 
-The `action-utils` module provides a set of utility functions that simplify common actions in Playwright. These functions are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
+The `action-utils` module provides a set of utility functions that simplify common actions in Playwright. These functions are designed to make your tests more readable, maintainable and reduce the amount of boilerplate code you need to write.
 
 Here's an example of how to use the `action-utils` functions:
 
@@ -177,9 +182,6 @@ import { SMALL_TIMEOUT, MAX_TIMEOUT } from 'vasu-playwright-utils';
 
 // Navigate to a URL
 await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
-
-//Static wait, to use as a temporary workaround for intermittent issues related to elements loading or transitioning states in test automation
-await wait(SMALL_TIMEOUT);
 
 // Click an element
 await click(`text='Log in'`);
@@ -198,25 +200,26 @@ await uploadFiles(`input#file`, '/path/to/myfile.jpg');
 
 // Select a value from a dropdown
 await selectByValue(`#dropdown`, 'selectValue');
+
+// Static wait, to use as a temporary workaround for intermittent issues related to elements loading or transitioning states in test automation
+await wait(SMALL_TIMEOUT);
 ```
 
 In this example, we're using various functions from `action-utils`:
 
 1. `gotoURL(path: string, options: GotoOptions)`: This function navigates to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
 
-2. `wait(ms: number)`: This function defines the period of time in milliseconds during which a script pauses or sleeps before proceeding to the next step or action. `SMALL_TIMEOUT` is a constant defined for 5000 milliseconds, under `constants` directory in `vasu-playwright-utils` package.
+2. `click(input: string | Locator, options?: ClickOptions)`: This function clicks an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
 
-3. `click(input: string | Locator, options?: ClickOptions)`: This function clicks an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
+3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
 
-4. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
+4. `pressSequentially(input: string | Locator, value: string, options?: PressSequentiallyOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
 
-5. `pressSequentially(input: string | Locator, value: string, options?: PressSequentiallyOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
+   Typically, `fill` is a more versatile and efficient choice that works effectively in most scenarios. It not only clears the input field but also simulates a single input event, similar to paste.
 
-Typically, `fill` is a more versatile and efficient choice that works effectively in most scenarios. It not only clears the input field but also simulates a single input event, similar to paste.
+   Unlike `fill` action, `pressSequentially` does not clear the input field's content; instead, it appends the specified text to the existing content. This method simulates keyboard key presses like keydown, keypress/input, and keyup, for each character in the provided text.
 
-Unlike `fill` action, `pressSequentially` does not clear the input field's content; instead, it appends the specified text to the existing content. This method simulates keyboard key presses like keydown, keypress/input, and keyup, for each character in the provided text.
-
-To find more info on `fill` vs `pressSequentially`, please refer to [Playwright type documentation](https://playwright.dev/docs/input#type-characters).
+   To find more information on `fill` vs `pressSequentially`, please refer to [Playwright Type characters documentation](https://playwright.dev/docs/input#type-characters).
 
 5. `check(input: string | Locator, options?: CheckOptions)`: This function checks a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
 
@@ -226,13 +229,15 @@ To find more info on `fill` vs `pressSequentially`, please refer to [Playwright 
 
 8. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
 
-For more information on actions refer to the [Playwright Actions documentation](https://playwright.dev/docs/input) and regarding auto waits refer to [Playwright Auto waiting documentation](https://playwright.dev/docs/actionability)
+9. `wait(ms: number)`: This function defines the period of time in milliseconds during which a script pauses or sleeps before proceeding to the next step or action. `SMALL_TIMEOUT` is a constant defined for 5000 milliseconds, under `constants` directory in `vasu-playwright-utils` package.
 
-For more information on the optional parameters refer to the [Optional Parameter Objects](#optional-parameter-objects) section below.
+For more information on actions, please refer to the [Playwright Actions documentation](https://playwright.dev/docs/input). For more information on auto-waits, refer to [Playwright Auto waiting documentation](https://playwright.dev/docs/actionability).
+
+`action-utils` functions can be used with various `Action options`, optional parameter type objects. Please refer to the [Optional Parameter Type Objects](#optional-parameter-type-objects) section below for more information.
 
 ### Managing Alerts
 
-The `action-utils` module provides utility functions to handle alerts in Playwright.
+The `action-utils` module also provides utility functions to handle alerts in Playwright.
 
 Here's an example of how to use the `action-utils` functions to handle alerts:
 
@@ -258,7 +263,7 @@ In this example, we're using various functions from `action-utils` to handle ale
 3. `getAlertText(input: string | Locator)`: This function is used to get the text from an alert dialog. The `input` parameter is a string or Locator representing the element that triggers the alert.
 
 These functions make it easier to handle alerts in your tests, and they provide a more readable and maintainable way to define alert handling in your tests.
-For more information, please refer to [Playwright Alerts documentation](https://playwright.dev/docs/dialogs#alert-confirm-prompt-dialogs)
+For more information, please refer to [Playwright Alerts documentation](https://playwright.dev/docs/dialogs#alert-confirm-prompt-dialogs).
 
 ### Element Utilities
 
@@ -269,16 +274,16 @@ import { getText, getAllTexts, getInputValue, getAttribute, attribute } from 'va
 // getting inner text
 const text = await getText(textLocator());
 
-//getting all inner texts
+// getting all inner texts
 const allTexts = await getAllTexts(textLocator());
 
-//getting input value
+// getting input value
 const inputValue = await getInputValue(userName());
 
-//getting 'class' attribute value
+// getting 'class' attribute value
 const attribute = await getAttribute(labelLocator(), 'class');
 
-//element visibility conditional check
+// element visibility conditional check
 if (isElementVisible(logoutButton())) {
   console.log('Login is successful');
 } else {
@@ -286,7 +291,7 @@ if (isElementVisible(logoutButton())) {
 }
 ```
 
-In this example, we're using various functions from `element-utils`:
+In this example, we're using various functions from `element-utils` to extract values and verify condition checks:
 
 1. `getText(input: string | Locator, options?: TimeoutOption)`: This function gets the inner text of an element. The input parameter is a string or Locator representing the element from which to get the text. TimeoutOption is an optional parameter for timeout.
 
@@ -312,29 +317,23 @@ import {
 } from 'vasu-playwright-utils';
 import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from 'vasu-playwright-utils';
 
-//asserting element to be visible
-await expectElementToBeVisible(logoutButton(), 'Login should be successful', {
-  timeout: STANDARD_TIMEOUT,
-});
+// asserting element to be visible
+await expectElementToBeVisible(logoutButton(), 'Login should be successful', { timeout: STANDARD_TIMEOUT });
 
-//asserting element to be invisible
+// asserting element to be invisible
 await expectElementToBeHidden(signInButton(), 'signInButton should not be displayed');
 
-//asserting element to have the text
+// asserting element to have the text
 await expectElementToHaveText(successfulMessage(), 'You have logged in successfully', {
   ignoreCase: true,
   message: 'Verify Login should be Successful',
 });
 
-//asserting check box is not checked
-await expectElementNotToBeChecked(agreeCheckbox(), {
-  timeout: INSTANT_TIMEOUT,
-});
+// asserting check box is not checked
+await expectElementNotToBeChecked(agreeCheckbox(), { timeout: INSTANT_TIMEOUT });
 
-//with 'soft' optional parameter 'true' we are making this assertion as soft assertion
-await expectElementNotToContainText(successfulMessage(), '404 error', {
-  soft: true,
-});
+// with 'soft' optional parameter 'true' we are making this assertion as soft assertion
+await expectElementNotToContainText(successfulMessage(), '404 error', { soft: true });
 
 // use this in the spec file to stop the test if there are failures for any soft assertions
 assertAllSoftAssertions(test.info());
@@ -354,7 +353,7 @@ In this example, we're using various functions from `assert-utils`:
 
 These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail. They also support both hard and soft assertions, allowing you to choose the appropriate level of strictness for your tests.
 
-Refer to the [Optional Parameter Objects](#optional-parameter-objects) section for more information.
+`assert-utils` functions can be used with various `Expect options` parameter type objects. Please refer to the [Optional Parameter Type Objects](#optional-parameter-type-objects) section below for more information.
 
 ### Optional Parameter Type Objects
 
@@ -366,17 +365,17 @@ import { clickAndNavigate, type } from 'vasu-playwright-utils';
 import { expectElementToHaveText } from 'vasu-playwright-utils';
 import { STANDARD_TIMEOUT } from 'vasu-playwright-utils';
 
-const loginpage = () => getLocator(`#loginpage`, { hasText: 'login' });
+const loginpage = () => getLocator(`#loginpage`, { hasText: 'login', exact: true });
 const successfulMessage = () => getLocatorByTestId(`sucess-message`);
 
 export async function verifyLoginPageisDisplayed() {
-  //ClickOptions
+  // ClickOptions
   await clickAndNavigate(loginpage(), { button: 'right', force: true, clickCount: 1 });
 
-  //PressSequentially
+  // PressSequentiallyOptions
   await PressSequentially(`#username`, 'testuser', { delay: 100, noWaitAfter: false });
 
-  //ExpectTextOptions
+  // ExpectTextOptions
   await expectElementToHaveText(successfulMessage(), 'Login is Successful', {
     ignoreCase: true,
     timeout: STANDARD_TIMEOUT,
@@ -384,9 +383,9 @@ export async function verifyLoginPageisDisplayed() {
 }
 ```
 
-In this example, we're using some optional parameters with utility functions:
+In this example, we're using some optional parameters with utility functions as described:
 
-1. `Locator options`: `hasText` is used as an optional parameter to locate the element that has the given text.
+1. `Locator options`: `hasText` and `exact` are used as an optional parameters to locate the element that has the exact given text.
 
 2. `Action Options(ClickOptions)`: `button` option is used to specify the mouse button for clicking (default is left-click, but can be set to right-click). `force` option allows bypassing actionability checks to force a click (by default, this is false, meaning actionability checks are enforced), and `clickCount` option specifies the number of times an element should be clicked (with a default of `1`).
 
