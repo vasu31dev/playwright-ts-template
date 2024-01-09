@@ -1,33 +1,46 @@
 {
   "compilerOptions": {
+    // Language and Environment
+    "target": "es6", // ECMAScript(Javascript) target version to which the TypeScript code is compiled
+
+    // Modules
     "module": "commonjs",
-    "target": "es6",
-    "outDir": "dist",
-    "baseUrl": ".",
-    "sourceMap": true,
-    "declarationMap": false, // Generates a sourcemap for each corresponding '.d.ts' file
-    "declaration": false, // No need to generate declaration files (.d.ts) for a test project
-    "esModuleInterop": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "strictBindCallApply": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
+    "baseUrl": ".", // Sets a base directory to resolve non-relative module names. Simplifying import paths in a project
+    "moduleResolution": "node", // Uses Node.js logic for traversing the directory tree to find the modules
     "resolveJsonModule": true, // Allows importing JSON files and accessing the data through 'import'
-    "noImplicitReturns": true, // Ensures that all code paths in a function explicitly return a value
-    "noImplicitOverride": true, // Ensures that overriding methods in a subclass are marked with the 'override' keyword
     "paths": {
       "@pages/*": ["./tests/pages/*"],
       "@testdata/*": ["./tests/testdata/*"],
       "@pagesetup": ["test-setup/page-setup"]
-    }
+    }, // Sets up custom path mappings, enabling to import modules with convenient shorter paths
+
+    // Emit
+    "outDir": "dist", // Directory where compiled JavaScript files are placed after TypeScript compilation
+    "sourceMap": true, // Generates a source map files along with the compiled JavaScript files
+    "declaration": false, // No need to generate declaration files (.d.ts) for a test project
+    "declarationMap": false, // No need to generate sourcemap for each corresponding '.d.ts' file
+    "importHelpers": true, // Allows the TypeScript compiler to import helper functions from the tslib module
+
+    // Interop Constraints
+    "esModuleInterop": true, // Enhances interoperability and consistency in handling module imports and exports
+    "forceConsistentCasingInFileNames": true, // Enforces that the casing of the file path used in import statements and references matches the actual casing of the file
+
+    // Type Checking
+    "noImplicitOverride": true, // Ensures that overriding methods in a subclass are marked with the 'override' keyword
+    "noImplicitReturns": true, // Ensures that all code paths in a function explicitly return a value
+    "noFallthroughCasesInSwitch": true, // Prevents code from 'falling through' from one case in a switch statement to another
+    "noUnusedLocals": true, // Compiler reports an error if a local variable is declared but not used in the function
+    "noUnusedParameters": true, // Compiler reports an error if a function contains parameters that are declared but not used
+    "strictPropertyInitialization": true, // Ensures that each property declared in a class gets initialized either in constructor or by a default value
+    "strict": true, // Enables a stricter type-checking mode and activates a range of type-checking complier options to catch potential issues early in the development process
+    // With above 'strict' option set to True, all the below strict options are activated to true by default
+    // Explicit mention here is to update these options as per your project needs
+    "strictNullChecks": true, // Enforces proper handling of null and undefined values to prevent common null-reference errors
+    "strictBindCallApply": true, // Provides checks on the use of functions like bind, call, and apply
+    "strictFunctionTypes": true, // Enforces checking of function types, particularly related to contravariant parameter types
+
+    // Completeness
+    "skipLibCheck": true // Skips the type checking of '.d.ts' files for faster compilation times
   },
   "include": ["test-setup/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
   "exclude": ["node_modules"]
