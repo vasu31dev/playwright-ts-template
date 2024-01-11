@@ -235,6 +235,41 @@ For more information on actions, please refer to the [Playwright Actions documen
 
 `action-utils` functions can be used with various `Action options`, optional parameter type objects. Please refer to the [Optional Parameter Type Objects](#optional-parameter-type-objects) section below for more information.
 
+#### Locator Visibility Setting
+
+#### Default setting
+
+The majority of `action-utils` functions are designed to act on visible locators by default. When multiple locators are detected using a provided identifier, the functions automatically filter out any that are hidden, focusing on the visible locator to execute the action. However, if there are multiple visible locators, we will get `strict mode violation` error.
+
+Functions designed to operate on visible locators include: `click`, `clickAndNavigate`, `fill`, `fillAndEnter`, `pressSequentially`, `pressKeyboard`, `clear`, `selectByValue`, `selectByValues`, `selectByText`, `selectByIndex`, `hover`, `focus`, `dragAndDrop`, `doubleClick`, `downloadFile`, `uploadFiles`
+
+Even though actions can be performed on visible locators filtered from all identified locators, assertions might still fail due to a `strict mode violation` error. This is because `assert-utils` functions do not include a visibility setting filter by default. To address this, we can specifically filter for visible locators by directly adding optional type parameter `onlyVisible: true` to the `locator-utils` functions.
+
+This approach ensures that the assertions apply only to visible elements, thereby avoiding the `strict mode violation` error.
+
+```typescript
+const textLocator = () => getLocatorByText('Submit', { onlyVisible: true });
+```
+
+#### Overriding Default Visibility Setting
+
+#### Global override
+
+We can globally change the default visibility setting for the provided `action-utils` functions by setting the visibility value to `false`. This can be achieved by adding the following function in `playwright.config.ts file`(just above the configuration settings).
+
+```typescript
+setDefaultLocatorFilterVisibility(false);
+```
+
+#### Local override
+
+If you prefer not to globally override the visibility setting but instead want to customize it for a specific action, you can achieve this by adding `onlyVisible: false` as an optional parameter to that individual action function.
+This approach allows for selective overriding of the visibility condition on a per-action basis.
+
+```typescript
+await click(`#button`, { onlyVisible: false });
+```
+
 ### Managing Alerts
 
 The `action-utils` module also provides utility functions to handle alerts in Playwright.

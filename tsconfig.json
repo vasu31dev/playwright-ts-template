@@ -43,5 +43,5 @@
     "skipLibCheck": true // Skips the type checking of '.d.ts' files for faster compilation times
   },
   "include": ["test-setup/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"] // Node_modules are excluded by default, but explicitly specified here for further exclusions as needed in your project
 }
