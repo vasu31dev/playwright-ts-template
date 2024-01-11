@@ -239,23 +239,24 @@ For more information on actions, please refer to the [Playwright Actions documen
 
 #### Default setting
 
-The majority of `action-utils` functions are designed to act on visible locators by default. When multiple locators are detected using a provided identifier, the functions automatically filter out any that are hidden, focusing on the visible locator to execute the action. However, if there are multiple visible locators, we will get `strict mode violation` error.
+The majority of `action-utils` functions are designed to act on visible locators by default. When multiple locators are identified using a selector, the functions automatically filter out any locators that are hidden, focusing on the visible locator to execute the action. However, if there are multiple visible locators, a `strict mode violation` error will occur unless the selection is narrowed down to a single locator that is needed for performing the action.
 
-Functions designed to operate on visible locators include: `click`, `clickAndNavigate`, `fill`, `fillAndEnter`, `pressSequentially`, `pressKeyboard`, `clear`, `selectByValue`, `selectByValues`, `selectByText`, `selectByIndex`, `hover`, `focus`, `dragAndDrop`, `doubleClick`, `downloadFile`, `uploadFiles`
+Functions designed to operate on visible locators by default that include the `onlyVisible: true` parameter : `click`, `clickAndNavigate`, `fill`, `fillAndEnter`, `pressSequentially`, `pressKeyboard`, `clear`, `selectByValue`, `selectByValues`, `selectByText`, `selectByIndex`, `hover`, `focus`, `dragAndDrop`, `doubleClick`, `downloadFile`, `uploadFiles`
 
-Even though actions can be performed on visible locators filtered from all identified locators, assertions might still fail due to a `strict mode violation` error. This is because `assert-utils` functions do not include a visibility setting filter by default. To address this, we can specifically filter for visible locators by directly adding optional type parameter `onlyVisible: true` to the `locator-utils` functions.
+Although actions are primarily performed on visible locators filtered from all identified locators, assertions are performed on both visible and invisible locators. By default, the `assert-utils` functions do not include a visibility setting filter set to `true`. To filter the locator passed to the `assert-utils` functions, add the optional type parameter `onlyVisible: true` to the `locator-utils` functions.
 
-This approach ensures that the assertions apply only to visible elements, thereby avoiding the `strict mode violation` error.
+This approach ensures that the assertions apply only to visible elements, thereby filtering the hidden locators as needed.
 
 ```typescript
-const textLocator = () => getLocatorByText('Submit', { onlyVisible: true });
+const continueButton = () => getLocatorByTestId('continue', { onlyVisible: true });
+await expectElementToBeVisible(continueButton());
 ```
 
 #### Overriding Default Visibility Setting
 
 #### Global override
 
-We can globally change the default visibility setting for the provided `action-utils` functions by setting the visibility value to `false`. This can be achieved by adding the following function in `playwright.config.ts file`(just above the configuration settings).
+We can globally change the default visibility setting for the provided `action-utils` functions by setting the visibility value to `false`. This can be achieved by adding the following function in the `playwright.config.ts` file (just above the configuration settings).
 
 ```typescript
 setDefaultLocatorFilterVisibility(false);
@@ -264,6 +265,7 @@ setDefaultLocatorFilterVisibility(false);
 #### Local override
 
 If you prefer not to globally override the visibility setting but instead want to customize it for a specific action, you can achieve this by adding `onlyVisible: false` as an optional parameter to that individual action function.
+
 This approach allows for selective overriding of the visibility condition on a per-action basis.
 
 ```typescript
