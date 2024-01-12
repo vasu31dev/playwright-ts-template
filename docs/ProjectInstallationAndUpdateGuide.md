@@ -52,7 +52,7 @@ Replace `<branchName>` with the name of the branch that you want to update.
 npm install
 ```
 
-3. If there are dependency errors while installing packages, you can remove the node_modules folder and install the packages again. This step can help resolve potential conflicts or issues with dependencies.
+3. If there are dependency errors while installing packages, you can remove the `node_modules` folder and install the packages again. This step can help resolve potential conflicts or issues with dependencies.
 
 ```bash
 rm -rf node_modules
