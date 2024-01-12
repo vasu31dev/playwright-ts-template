@@ -102,10 +102,14 @@ Before you begin, there are some essential requirements you must meet. Ensure yo
   - Download Visual Studio Code suitable for your operating system from the title link provided.
   - For Visual Studio Code shortcuts, please visit [Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) and [macOS](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf) documents.
 - **Visual Studio Code Extensions**:
+
   - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A VSCode extension for consistent code formatting. Install it directly from the title link provided.
   - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A VSCode extension for identifying and fixing linting issues. Install it directly from the title link provided.
-  - **[Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)**: A VSCode extension that integrates Playwright testing framework, enabling writing, running, and debugging end-to-end tests directly within VSCode. Install it directly from the title link provided. For detailed information on executing tests with this extension, please visit [executing tests with Playwright Test for VSCode](#run-tests-using-playwright-test-for-vscode-extension) documentation.
-- **Visual Studio Code Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use `Cmd+,` for Mac and `Ctrl+,` for Windows, to access the settings window):
+  - **[Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)**: A VSCode extension that integrates Playwright testing framework, enabling writing, running, and debugging end-to-end tests directly within VSCode. Install it directly from the title link provided.
+
+    For detailed information on executing tests with this extension, please visit [executing tests with Playwright Test for VSCode](#run-tests-using-playwright-test-for-vscode-extension) documentation.
+
+- **Visual Studio Code Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (to access the settings window, use `Cmd+,` for Mac and `Ctrl+,` for Windows):
   - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
   - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
 
@@ -163,7 +167,7 @@ The installation steps are below:
 #### Manual Installation
 
 This is a step-by-step process to install all the dependencies, libraries, and playwright browsers manually.
-Please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
+Please refer to the [Installation section](docs/ProjectInstallationAndUpdateGuide.md#projectinstallation) for complete instructions on setting up the project on your local machine.
 
 ### Project Update Guide
 
@@ -179,7 +183,7 @@ Keeping your project up to date is crucial.
 
   This command keeps your Playwright library up to date with the latest playwright utilities which contain the helper methods that are updated regularly.
 
-- For further more steps and how to fix dependency errors while installing packages after the project update, please visit [Project Update Guide section](docs/Installation.md#project-update-guide).
+- For further more steps and how to fix dependency errors while installing packages after the project update, please visit [Project Update Guide section](docs/ProjectInstallationAndUpdateGuide.md#project-update-guide).
 
 ## Project Structure
 
@@ -191,7 +195,7 @@ Learn how to configure and customize the framework to suit your needs. Please re
 
 ### Page Context set up
 
-Setting up a page context is a common task in web testing. Please refer to the [Pages section](docs/FrameworkSetup.md) on how to set up a page context before each test.
+Setting up a page context is a common task in web testing. Please refer to the [Pages section](docs/CustomizeFrameworkSetup.md) on how to set up a page context before each test.
 
 ## Usage
 
@@ -242,7 +246,7 @@ export async function verifyLoginPageisDisplayed() {
 
 In this example, the `sauce-demo-login-page` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
 
-Refer to the [Utilities](docs/Utilities.md) section on how to use the reusable methods.
+Refer to the [Utilities](docs/Utilities.md) section on how to use the utility functions.
 
 Refer to the [Running Tests](#executing-tests) section below on how to run tests.
 
@@ -298,15 +302,15 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 2. `setPage` function from `page-setup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from `page-utils` file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
-3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
+In the first test of this example, We first navigate to the home page, then perform the login action, and finally verify if the login was successful. Here `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins.
 
-In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
+Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
 
 #### Parameterising Tests
 
 #### Test and Project parameterization
 
-Playwright supports parameterization both at the test level and project level. Sample parameterized test spec file was added as `sauce-demo-parameterised.spec.ts` under `specs` folder for easy reference. For project-level parameterisation, please refer to the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
+Playwright supports parameterization both at test level and project level. Sample parameterized test spec file was added as `sauce-demo-parameterised.spec.ts` under `specs` folder for easy reference. For project-level parameterisation, please refer to the Playwright documentation [here](https://playwright.dev/docs/test-parameterize#parameterized-projects).
 
 #### Passing environment variables
 
