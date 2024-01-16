@@ -11,15 +11,18 @@ import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
 test.describe.configure({ mode: 'parallel' });
 
 test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart @smoke', () => {
-  test('Saucedemo tests - Successful login will display Products Page', async () => {
+  //navigating to sauce demo home page before each test
+  test.beforeEach('Navigating to sauce demo page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
+  });
+
+  test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.loginWithValidCredentials();
     //verifying products page is displayed on successful login
     await ProductsPage.verifyProductsPageIsDisplayed();
   });
 
   test('Saucedemo test - Add product to cart', async () => {
-    await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.loginWithValidCredentials();
     await ProductsPage.verifyProductsPageIsDisplayed();
     await ProductsPage.addToCartByProductNumber(1);
@@ -28,7 +31,6 @@ test.describe('Saucedemo tests for successful, unsuccessful logins and add produ
   });
 
   test('Saucedemo test - Error message is displayed and Products page is not displayed on failed login', async () => {
-    await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.loginWithInvalidCredentials();
     //verifying Login is still displayed
     await LoginPage.verifyLoginPageisDisplayed();
