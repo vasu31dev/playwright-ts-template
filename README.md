@@ -309,7 +309,7 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 In the first test.describe block of this example, We first navigate to the home page, then perform the login action, and finally verify if the login was successful. Here `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins.
 
-Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages. Here, `ProductsPage` page functions are used to verify products page is displayed on successful login and add products to cart. `MiniCart` page function is used to verify the cart count after adding products to cart.
+Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages. Here, `ProductsPage` page functions are used to assert whether products page is displayed on successful login and also adding products to cart. `MiniCart` page function is used to verify the cart count after adding products to cart.
 
 The `beforeEach` hook, placed at the spec file level, is utilized to navigate to the home page before the execution of each test within the test.describe blocks in this file.
 
