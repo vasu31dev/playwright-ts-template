@@ -267,31 +267,34 @@ import * as LoginPage from 'tests/pages/preferredPOM/sauce-demo-login-page';
 import * as MiniCart from 'tests/pages/preferredPOM/sauce-demo-mini-cart';
 import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page';
 
-test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
-  test('Saucedemo tests - Successful login will display Products Page', async () => {
+test.describe.configure({ mode: 'parallel' });
+
+test.describe('Saucedemo tests for successful, unsuccessful logins and add products to cart @smoke', () => {
+  // beforEach hook to navigate to home page in each test
+  test.beforeEach('Navigating to sauce demo page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
-    await LoginPage.logInSuccessfully();
-    //verifying products page is displayed on successful login
-    await ProductsPage.verifyProductsPageDisplayed();
   });
 
-  test('Saucedemo test - Add product to cart', async () => {
-    await LoginPage.navigateToSauceDemoLoginPage();
-    await LoginPage.logInSuccessfully();
-    await ProductsPage.verifyProductsPageDisplayed();
-    await ProductsPage.addToCartByProductNumber(1);
-    //verifying mini cart count is updated to 1
-    await MiniCart.verifyMiniCartCount('1');
+  test('Saucedemo tests - Successful login will display Products Page', async () => {
+    await LoginPage.loginWithValidCredentials();
+    // verifying products page is displayed on successful login
+    await ProductsPage.verifyProductsPageIsDisplayed();
   });
 
   test('Saucedemo test - Error message is displayed and Products page is not displayed on failed login', async () => {
-    await LoginPage.navigateToSauceDemoLoginPage();
-    await LoginPage.failureLogin();
-    await LoginPage.verifyErrorMessageForFailureLogin();
-    //verifying Login is still displayed
+    await LoginPage.loginWithInvalidCredentials();
+    // verifying Login is still displayed
     await LoginPage.verifyLoginPageisDisplayed();
-    //verifying Products Page is not displayed
-    await ProductsPage.verifyProductsPageNotDisplayed();
+    // verifying Products Page is not displayed
+    await ProductsPage.verifyProductsPageIsNotDisplayed();
+  });
+
+  test('Saucedemo test - Add product to cart', async () => {
+    await LoginPage.loginWithValidCredentials();
+    await ProductsPage.verifyProductsPageIsDisplayed();
+    await ProductsPage.addToCartByProductNumber(1);
+    // verifying mini cart count is updated to 1
+    await MiniCart.verifyMiniCartCount('1');
   });
 });
 ```
@@ -302,9 +305,11 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 2. `setPage` function from `page-setup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from `page-utils` file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
-In the first test of this example, We first navigate to the home page, then perform the login action, and finally verify if the login was successful. Here `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins.
+In the first test.describe block of this example, We first navigate to the home page, then perform the login action, and finally verify if the login was successful. Here `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins.
 
-Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
+Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages. Here,`ProductsPage` page functions are used to assert whether products page is displayed on successful login and also adding products to cart. `MiniCart` page function is used to verify the cart count after adding products to cart.
+
+The `beforeEach` hook, is utilized to navigate to the home page before the execution of each test within the test.describe block in this file.
 
 #### Parameterising Tests
 

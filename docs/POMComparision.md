@@ -6,7 +6,7 @@ This section provides a comparison between Traditional POM and Preferred POM in 
 
 The following image illustrates the differences between Traditional and Preferred POM in Spec files:
 
-![Traditional vs. Preferred POM Spec file](https://github.com/vasu31dev/playwright-ts-template/blob/main/docs/images/SpecFile-Comparision.png?raw=true)
+![Traditional vs. Preferred POM Spec file](https://raw.githubusercontent.com/vasu31dev/playwright-ts-template/main/docs/images/SpecFile-Comparision.png)
 
 ### Page Object Comparison (Traditional POM vs. Preferred POM)
 
