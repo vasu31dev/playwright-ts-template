@@ -6,11 +6,11 @@ const productsContainer = () => getLocator(`#inventory_container`).nth(0);
 const addToCartButton = `(//*[@class='inventory_item'])[%s]//*[contains(@id,'add-to-cart')]`;
 
 export async function verifyProductsPageIsDisplayed() {
-  await expectElementToBeVisible(productsContainer(), { timeout: 1000 });
+  await expectElementToBeVisible(productsContainer(), { timeout: 1000, message: 'Logged in user should see Products' });
 }
 
 export async function verifyProductsPageIsNotDisplayed() {
-  await expectElementToBeHidden(productsContainer());
+  await expectElementToBeHidden(productsContainer(), 'Products should not be displayed');
 }
 
 export async function addToCartByProductNumber(productNo: number) {

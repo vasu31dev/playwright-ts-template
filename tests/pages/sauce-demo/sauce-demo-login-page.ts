@@ -17,16 +17,16 @@ export async function loginWithValidCredentials(validCredentials = sauceDemoCred
   await fill(userName, validCredentials.username);
   await fill(password(), validCredentials.password);
   await clickAndNavigate(loginButton());
-  await expectElementToBeAttached(logoutLink);
+  await expectElementToBeAttached(logoutLink, 'User should be Logged in sucessfully');
 }
 
 export async function loginWithInvalidCredentials(invalidCredentials = failureLoginCredentials) {
   await fill(userName, invalidCredentials.username);
   await fill(password(), invalidCredentials.password);
   await click(loginButton());
-  await expectElementToBeVisible(errorMessage);
+  await expectElementToBeVisible(errorMessage, 'Error message should be displayed as credentials are invalid');
 }
 
 export async function verifyLoginPageisDisplayed() {
-  await expectElementToBeVisible(userName);
+  await expectElementToBeVisible(userName, 'Login page should be displayed');
 }
