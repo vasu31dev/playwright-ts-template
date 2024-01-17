@@ -11,7 +11,7 @@
     "paths": {
       "@pages/*": ["./tests/pages/*"],
       "@testdata/*": ["./tests/testdata/*"],
-      "@pagesetup": ["test-setup/page-setup"],
+      "@pagesetup": ["./test-setup/page-setup"],
     }, // Sets up custom path mappings, enabling to import modules with convenient shorter paths
 
     // Emit

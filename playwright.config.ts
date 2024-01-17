@@ -54,8 +54,8 @@ export default defineConfig({
    * Shared settings for all the projects below.
    * See https://playwright.dev/docs/api/class-testoptions
    */
-  globalSetup: require.resolve('./test-setup/global-setup.ts'),
-  globalTeardown: require.resolve('./test-setup/global-teardown.ts'),
+  globalSetup: require.resolve('./test-setup/global-setup'),
+  globalTeardown: require.resolve('./test-setup/global-teardown'),
   timeout: TEST_TIMEOUT,
   expect: {
     timeout: EXPECT_TIMEOUT,
