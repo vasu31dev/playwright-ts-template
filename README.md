@@ -270,7 +270,6 @@ import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page
 test.describe.configure({ mode: 'parallel' });
 
 // beforEach hook in scope with entire spec file
-// eslint-disable-next-line playwright/require-top-level-describe
 test.beforeEach('Navigating to sauce demo page', async () => {
   await LoginPage.navigateToSauceDemoLoginPage();
 });
@@ -308,11 +307,11 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 2. `setPage` function from `page-setup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from `page-utils` file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
-In the first test of this example, We first navigate to the home page, then perform the login action, and finally verify if the login was successful. Here `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins.
+In the first test.describe block of this example, We first navigate to the home page, then perform the login action, and finally verify if the login was successful. Here `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins.
+
+Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages. Here, `ProductsPage` page functions are used to verify products page is displayed on successful login and add products to cart. `MiniCart` page function is used to verify the cart count after adding products to cart.
 
 The `beforeEach` hook, placed at the spec file level, is utilized to navigate to the home page before the execution of each test within the test.describe blocks in this file.
-
-Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
 
 #### Parameterising Tests
 
