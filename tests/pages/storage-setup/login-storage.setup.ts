@@ -1,5 +1,5 @@
 // Add the tests to store the login storage states
-/* import { test as setup } from '../../../test-setup/page-setup';
+/* import { test as setup } from '@pagesetup';
 import { saveStorageState, waitForPageLoadState } from 'vasu-playwright-utils';
 import * as fs from 'fs';
 import { STORAGE_STATE_LOGIN } from '../../../playwright.config';

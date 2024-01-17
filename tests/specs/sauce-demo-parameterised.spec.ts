@@ -1,5 +1,5 @@
 import { test } from '@pagesetup';
-import * as LoginPage from '../pages/sauce-demo/sauce-demo-login-page';
+import * as LoginPage from '@pages/sauce-demo/sauce-demo-login-page';
 
 const InvalidCredentialsData: { username: string; password: string }[] = [
   {

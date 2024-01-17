@@ -1,7 +1,7 @@
 import { test } from '@pagesetup';
-import * as LoginPage from '../pages/sauce-demo/sauce-demo-login-page';
-import * as MiniCart from '../pages/sauce-demo/sauce-demo-mini-cart';
-import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
+import * as LoginPage from '@pages/sauce-demo/sauce-demo-login-page';
+import * as MiniCart from '@pages/sauce-demo/sauce-demo-mini-cart';
+import * as ProductsPage from '@pages/sauce-demo/sauce-demo-products-page';
 
 /*
  To run the tests in parallel, you can utilize the test.describe.configure() method to set the mode to 'parallel'.
