@@ -10,13 +10,12 @@ import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
 */
 test.describe.configure({ mode: 'parallel' });
 
-// beforEach hook in scope within entire spec file
-// eslint-disable-next-line playwright/require-top-level-describe
-test.beforeEach('Navigating to sauce demo page', async () => {
-  await LoginPage.navigateToSauceDemoLoginPage();
-});
+test.describe('Saucedemo tests for successful, unsuccessful logins and add products to cart @smoke', () => {
+  // beforEach hook to navigate to home page in each test
+  test.beforeEach('Navigating to sauce demo page', async () => {
+    await LoginPage.navigateToSauceDemoLoginPage();
+  });
 
-test.describe('Saucedemo tests for successful, unsuccessful logins @smoke', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.loginWithValidCredentials();
     // verifying products page is displayed on successful login
@@ -30,9 +29,7 @@ test.describe('Saucedemo tests for successful, unsuccessful logins @smoke', () =
     // verifying Products Page is not displayed
     await ProductsPage.verifyProductsPageIsNotDisplayed();
   });
-});
 
-test.describe('add products to cart', () => {
   test('Saucedemo test - Add product to cart', async () => {
     await LoginPage.loginWithValidCredentials();
     await ProductsPage.verifyProductsPageIsDisplayed();

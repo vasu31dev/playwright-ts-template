@@ -10,7 +10,7 @@ import * as ProductsPage from '../pages/sauce-demo/sauce-demo-products-page';
 test.describe.configure({ mode: 'serial' });
 
 test.describe('Saucedemo tests failure and skip cases', () => {
-  // beforeEach hook in scope within the test.describe group
+  // beforEach hook to navigate to home page in each test
   test.beforeEach('Navigating to sauce demo page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
   });

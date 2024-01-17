@@ -269,12 +269,12 @@ import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page
 
 test.describe.configure({ mode: 'parallel' });
 
-// beforEach hook in scope with entire spec file
-test.beforeEach('Navigating to sauce demo page', async () => {
-  await LoginPage.navigateToSauceDemoLoginPage();
-});
+test.describe('Saucedemo tests for successful, unsuccessful logins and add products to cart @smoke', () => {
+  // beforEach hook to navigate to home page in each test
+  test.beforeEach('Navigating to sauce demo page', async () => {
+    await LoginPage.navigateToSauceDemoLoginPage();
+  });
 
-test.describe('Saucedemo tests for successful, unsuccessful logins @smoke', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.loginWithValidCredentials();
     // verifying products page is displayed on successful login
@@ -288,9 +288,7 @@ test.describe('Saucedemo tests for successful, unsuccessful logins @smoke', () =
     // verifying Products Page is not displayed
     await ProductsPage.verifyProductsPageIsNotDisplayed();
   });
-});
 
-test.describe('add products to cart', () => {
   test('Saucedemo test - Add product to cart', async () => {
     await LoginPage.loginWithValidCredentials();
     await ProductsPage.verifyProductsPageIsDisplayed();
@@ -309,9 +307,9 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 In the first test.describe block of this example, We first navigate to the home page, then perform the login action, and finally verify if the login was successful. Here `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and assertions for successful and failed logins.
 
-Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages. Here, `ProductsPage` page functions are used to assert whether products page is displayed on successful login and also adding products to cart. `MiniCart` page function is used to verify the cart count after adding products to cart.
+Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages. Here,`ProductsPage` page functions are used to assert whether products page is displayed on successful login and also adding products to cart. `MiniCart` page function is used to verify the cart count after adding products to cart.
 
-The `beforeEach` hook, placed at the spec file level, is utilized to navigate to the home page before the execution of each test within the test.describe blocks in this file.
+The `beforeEach` hook, is utilized to navigate to the home page before the execution of each test within the test.describe block in this file.
 
 #### Parameterising Tests
 
