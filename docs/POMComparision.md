@@ -12,12 +12,12 @@ The following image illustrates the differences between Traditional and Preferre
 
 The comparison between Traditional and Preferred POM in Page Objects is shown below:
 
-![Traditional vs. Preferred POM Page Objects](https://github.com/vasu31dev/playwright-ts-template/blob/main/docs/images/PageObject-Comparision.png?raw=true)
+![Traditional vs. Preferred POM Page Objects](https://raw.githubusercontent.com/vasu31dev/playwright-ts-template/main/docs/images/PageObject-Comparision.png)
 
 ### Performance Comparison (Traditional vs. Customized Framework)
 
 The performance comparison between Traditional POM and Customized Framework is depicted in the following image:
 
-![Traditional vs. Customized Framework Performance Comparison](https://github.com/vasu31dev/playwright-ts-template/blob/main/docs/images/Performance-TraditionalPOMVsCustomised%20POM.png?raw=true)
+![Traditional vs. Customized Framework Performance Comparison](https://raw.githubusercontent.com/vasu31dev/playwright-ts-template/main/docs/images/Performance-TraditionalPOMVsCustomised%20POM.png)
 
 For more details on Traditional POM, please refer the documentation [here](https://playwright.dev/docs/pom).
