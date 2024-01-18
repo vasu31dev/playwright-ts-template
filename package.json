@@ -26,12 +26,13 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "vasu-playwright-utils": "^0.10.0"
+    "vasu-playwright-utils": "^0.10.1"
   },
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "build": "tsc",
+    "validate": "tsc --noEmit",
     "ready": "rimraf dist node_modules package-lock.json && npm i",
     "test": "playwright test",
     "test:chromium": "playwright test --retries 0 --project=chromiumheadless",
