@@ -208,9 +208,12 @@ Here's an example of a page object under the `pages` package:
 **sauce-demo-login-page.ts**
 
 ```typescript
-//importing utility functions
+// importing test data
+// @testdata is the alias path set to testdata directory in tsconfig.json file
+import { failureLoginCredentials, sauceDemoCredentials } from '@testdata/sauce-demo-test-data';
+
+// importing utility functions
 import { click, clickAndNavigate, fill, gotoURL } from 'vasu-playwright-utils';
-import { failureLoginCredentials, sauceDemoCredentials } from '../../testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from 'vasu-playwright-utils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from 'vasu-playwright-utils';
 
@@ -246,7 +249,7 @@ export async function verifyLoginPageisDisplayed() {
 
 In this example, the `sauce-demo-login-page` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
 
-Refer to the [Utilities](docs/Utilities.md) section on how to use the utility functions.
+Refer to the [Utilities](docs/Utilities.md) section on how to import and use utility functions.
 
 Refer to the [Running Tests](#executing-tests) section below on how to run tests.
 
@@ -256,16 +259,18 @@ Tests are written in the `specs` directory. Each test file should correspond to 
 
 Here's an example of a test file under the `specs` directory:
 
-**sauce-demo-preferred-pom.spec.ts**
+**sauce-demo-all-pass.spec.ts**
 
 ```typescript
-//import test from PageSetup.ts which sets up the page before each test
+// import test from PageSetup.ts which sets up the page before each test
+// @pagesetup is the alias path set up to page-setup.ts in tsconfig.json file
 import { test } from '@pagesetup';
 
-//importing page objects to use all functions within that page to construct the tests
-import * as LoginPage from 'tests/pages/preferredPOM/sauce-demo-login-page';
-import * as MiniCart from 'tests/pages/preferredPOM/sauce-demo-mini-cart';
-import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page';
+// importing page objects to use all functions within that page to construct the tests
+// @pages is the alias path set up to pages directory in tsconfig.json file
+import * as LoginPage from '@pages/sauce-demo/sauce-demo-login-page';
+import * as MiniCart from '@pages/sauce-demo/sauce-demo-mini-cart';
+import * as ProductsPage from '@pages/sauce-demo/sauce-demo-products-page';
 
 test.describe.configure({ mode: 'parallel' });
 

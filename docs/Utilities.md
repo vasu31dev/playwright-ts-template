@@ -12,7 +12,7 @@ The framework offers a collection of utility functions that streamline the ident
 
 - [assert-utils.ts](#assert-utilities): This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
 
-These utilities are designed to make your tests more readable and maintainable while minimizing the need for repetitive boilerplate code.
+These utilities are designed to make your tests more readable and maintainable while minimizing the need for repetitive boilerplate code. And these utilities can be imported into Page objects using two different methods, as explained in the following [section](#importing-utility-functions).
 
 Here are a few examples of how to use the utility functions:
 
@@ -177,7 +177,16 @@ The `action-utils` module provides a set of utility functions that simplify comm
 Here's an example of how to use the `action-utils` functions:
 
 ```typescript
-import { gotoURL, wait, click, fill, type, check, uploadFiles, selectByValue } from 'vasu-playwright-utils';
+import {
+  gotoURL,
+  wait,
+  click,
+  fill,
+  pressSequentially,
+  check,
+  uploadFiles,
+  selectByValue,
+} from 'vasu-playwright-utils';
 import { SMALL_TIMEOUT, MAX_TIMEOUT } from 'vasu-playwright-utils';
 
 // Navigate to a URL
@@ -398,7 +407,7 @@ The `types/optional-parameter-types` module provides a set of options for utilit
 
 ```typescript
 import { getLocator, getLocatorByTestId } from 'vasu-playwright-utils';
-import { clickAndNavigate, type } from 'vasu-playwright-utils';
+import { clickAndNavigate, PressSequentially } from 'vasu-playwright-utils';
 import { expectElementToHaveText } from 'vasu-playwright-utils';
 import { STANDARD_TIMEOUT } from 'vasu-playwright-utils';
 
@@ -430,7 +439,47 @@ In this example, we're using some optional parameters with utility functions as 
 
 4. `ExpectOptions(ExpectTextOptions)`: `ignoreCase` option is utilized to perform case-insensitive assertions (by default, it is set to `false`, which implies case-sensitive assertions). The `timeout` option specifies the duration to wait before failing the test, thereby overriding the default `expect` timeout defined in the `playwright.config.ts` file. This allows for either a longer or shorter timeout period as required.
 
-### Test annotations
+### Importing Utility Functions
+
+#### Importing Direct Function
+
+This method is useful when you know the specific function you need from the utility library that you need for your task. Instead of importing the whole library, you can just import the one function that you need.
+
+The import statements from the above utility examples follow this approach.
+
+```typescript
+import { getLocator, click, expectElementToHaveText, switchPage, isElementAttached } from 'vasu-playwright-utils';
+
+const loginpage = () => getLocator(`#loginpage`, { hasText: 'login', exact: true });
+
+await click(loginpage());
+
+await expectElementToHaveText(successfulMessage(), 'Login is Successful');
+
+await switchPage(1);
+
+await isElementAttached(`#locator`);
+```
+
+#### Importing Utility Directory
+
+This method is good when you don't know all the functions in the utility library that you need for your task. In these cases, it's easier to import the whole library instead of just certain functions. Typing `<directoryname>.` will list all the functions in that library, so you can choose the one that fits your need.
+
+```typescript
+import { ActionUtils, AssertUtils, ElementUtils, PageUtils, LocatorUtils } from 'vasu-playwright-utils';
+
+const loginpage = () => LocatorUtils.getLocator(`#loginpage`, { hasText: 'login', exact: true });
+
+await ActionUtils.click(loginpage());
+
+await AssertUtils.expectElementToHaveText(successfulMessage(), 'Login is Successful');
+
+await PageUtils.switchPage(1);
+
+await ElementUtils.isElementAttached(`#locator`);
+```
+
+### Test Annotations
 
 Test annotations are a powerful feature of the Playwright Test that allows you to modify the behavior of individual tests. You can use them to mark a test as slow, skip it, indicate that it needs to be fixed, group tests, and much more. They provide a flexible way to manage your tests and handle different scenarios.
 
