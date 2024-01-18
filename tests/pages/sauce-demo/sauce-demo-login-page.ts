@@ -1,5 +1,5 @@
 import { click, clickAndNavigate, expectElementToBeAttached, fill, gotoURL } from 'vasu-playwright-utils';
-import { failureLoginCredentials, sauceDemoCredentials } from '../../testdata/sauce-demo-test-data';
+import { failureLoginCredentials, sauceDemoCredentials } from '@testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from 'vasu-playwright-utils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from 'vasu-playwright-utils';
 
