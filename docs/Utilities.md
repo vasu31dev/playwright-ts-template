@@ -177,7 +177,16 @@ The `action-utils` module provides a set of utility functions that simplify comm
 Here's an example of how to use the `action-utils` functions:
 
 ```typescript
-import { gotoURL, wait, click, fill, type, check, uploadFiles, selectByValue } from 'vasu-playwright-utils';
+import {
+  gotoURL,
+  wait,
+  click,
+  fill,
+  pressSequentially,
+  check,
+  uploadFiles,
+  selectByValue,
+} from 'vasu-playwright-utils';
 import { SMALL_TIMEOUT, MAX_TIMEOUT } from 'vasu-playwright-utils';
 
 // Navigate to a URL
@@ -398,7 +407,7 @@ The `types/optional-parameter-types` module provides a set of options for utilit
 
 ```typescript
 import { getLocator, getLocatorByTestId } from 'vasu-playwright-utils';
-import { clickAndNavigate, type } from 'vasu-playwright-utils';
+import { clickAndNavigate, PressSequentially } from 'vasu-playwright-utils';
 import { expectElementToHaveText } from 'vasu-playwright-utils';
 import { STANDARD_TIMEOUT } from 'vasu-playwright-utils';
 
