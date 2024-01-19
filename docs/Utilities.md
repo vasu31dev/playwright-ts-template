@@ -18,7 +18,7 @@
 
 The framework offers a collection of utility functions that streamline the identification of elements, common actions, and assertions in Playwright. These functions are located in the `node_modules/vasu-playwright-utils/src/vasu-playwright-lib/utils` directory and include:
 
-- [page-utils.ts](#page-utilities): This file contains functions for setting a page, getting a page, switching between the pages, and closing a page.
+- [page-utils.ts](#page-utilities): This file contains page functions like setting a page, getting a page, switching between the pages, closing and reloding a page, loading and getting the page url, getting windows size, page navigations etc.
 
 - [locator-utils.ts](#locator-utilities): This file has functions that helps in finding web elements on pages and frames in various ways, such as by test ID, label, text, CSS, or XPath.
 
@@ -34,20 +34,47 @@ Here are a few examples of how to use the utility functions:
 
 ### Page Utilities
 
-The `page-utils` module contains the functions of the Page. These functions are used for managing Page objects, getting Page objects, switching between the pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
+The `page-utils` module contains the functions of the Page. These functions are used for managing Page objects and centralizes the management of Page objects, making it easier to control the state of your tests.
 
 ```typescript
-import { switchPage, switchToDefaultPage, closePage } from 'vasu-playwright-utils';
+import { gotoURL, switchPage, switchToDefaultPage, closePage, reloadPage, wait } from 'vasu-playwright-utils';
 
-// Switch to the second tab/window. Useful when a test involves interacting with multiple pages.
+// Navigate to a URL
+await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
+
+// Switch to the second tab/window
 await switchPage(2);
 
-// Switch to the initial page that was launched or the first tab/window. Useful when you want to return to the starting context after interacting with other pages.
-switchToDefaultPage();
+// Switch to the initial page that was launched or the first tab/window.
+await switchToDefaultPage();
 
-// Close the current page and then switch to the default page if it exists. Useful for cleaning up after a test that opens additional pages.
+// reloads the current page
+await reloadPage();
+
+// Close the current page and then switch to the default page if it exists.
 await closePage();
+
+// Static wait, to use as a temporary workaround for intermittent issues related to elements loading or transitioning states in test automation
+await wait(SMALL_TIMEOUT);
 ```
+
+1. `gotoURL(path: string, options: GotoOptions)`: This function navigates to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
+
+2. `switchPage(winNum: number, options?: SwitchPageOptions)`: This function switches page to the given window index. The winNum parameter is the index of the window that you want to switch to, and the options parameter is an optional parameter that specifies additional switch page options.
+
+   Useful when a test involves interacting with multiple pages.
+
+3. `switchToDefaultPage()`: This function switches to the initial page that was launched or the first tab/window.
+
+   Useful when you want to return to the starting context after interacting with other pages.
+
+4. `reloadPage(options?: NavigationOptions)`: This function loads the current page. The options parameter is an optional parameter that specifies additional navigation options.
+
+5. `closePage(winNum?: number)`: This function is used to close a page or window and switches to the default page if it exists. If you provide the optional 'winNum' parameter, which is an index number for the window, it will close the window of that index. If you don't specify any index, it will just close the current page or window you are on.
+
+   Useful for cleaning up after a test that opens additional pages.
+
+6. `wait(ms: number)`: This function defines the period of time in milliseconds during which a script pauses or sleeps before proceeding to the next step or action. `SMALL_TIMEOUT` is a constant defined for 5000 milliseconds, under `constants` directory in `vasu-playwright-utils` package.
 
 ### Locator Utilities
 
@@ -193,20 +220,8 @@ The `action-utils` module provides a set of utility functions that simplify comm
 Here's an example of how to use the `action-utils` functions:
 
 ```typescript
-import {
-  gotoURL,
-  wait,
-  click,
-  fill,
-  pressSequentially,
-  check,
-  uploadFiles,
-  selectByValue,
-} from 'vasu-playwright-utils';
+import { click, fill, pressSequentially, check, uploadFiles, selectByValue } from 'vasu-playwright-utils';
 import { SMALL_TIMEOUT, MAX_TIMEOUT } from 'vasu-playwright-utils';
-
-// Navigate to a URL
-await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
 
 // Click an element
 await click(`text='Log in'`);
@@ -225,20 +240,15 @@ await uploadFiles(`input#file`, '/path/to/myfile.jpg');
 
 // Select a value from a dropdown
 await selectByValue(`#dropdown`, 'selectValue');
-
-// Static wait, to use as a temporary workaround for intermittent issues related to elements loading or transitioning states in test automation
-await wait(SMALL_TIMEOUT);
 ```
 
 In this example, we're using various functions from `action-utils`:
 
-1. `gotoURL(path: string, options: GotoOptions)`: This function navigates to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
+1. `click(input: string | Locator, options?: ClickOptions)`: This function clicks an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
 
-2. `click(input: string | Locator, options?: ClickOptions)`: This function clicks an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
+2. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
 
-3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
-
-4. `pressSequentially(input: string | Locator, value: string, options?: PressSequentiallyOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
+3. `pressSequentially(input: string | Locator, value: string, options?: PressSequentiallyOptions)`: This function enters text into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to enter the text, the value parameter is the value you want to enter the form field with, and the options parameter is an optional parameter that specifies additional PressSequentially options.
 
    Typically, `fill` is a more versatile and efficient choice that works effectively in most scenarios. It not only clears the input field but also simulates a single input event, similar to paste.
 
@@ -246,15 +256,13 @@ In this example, we're using various functions from `action-utils`:
 
    To find more information on `fill` vs `pressSequentially`, please refer to [Playwright Type characters documentation](https://playwright.dev/docs/input#type-characters).
 
-5. `check(input: string | Locator, options?: CheckOptions)`: This function checks a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
+4. `check(input: string | Locator, options?: CheckOptions)`: This function checks a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
 
-6. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
+5. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
 
-7. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function selects a value from a dropdown. The `input` parameter is a string or Locator representing the select element, the value parameter is the `value` to select for the dropdown option, and the `options` parameter specifies additional select options.
+6. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function selects a value from a dropdown. The `input` parameter is a string or Locator representing the select element, the value parameter is the `value` to select for the dropdown option, and the `options` parameter specifies additional select options.
 
-8. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
-
-9. `wait(ms: number)`: This function defines the period of time in milliseconds during which a script pauses or sleeps before proceeding to the next step or action. `SMALL_TIMEOUT` is a constant defined for 5000 milliseconds, under `constants` directory in `vasu-playwright-utils` package.
+7. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
 
 For more information on actions, please refer to the [Playwright Actions documentation](https://playwright.dev/docs/input). For more information on auto-waits, refer to [Playwright Auto waiting documentation](https://playwright.dev/docs/actionability).
 

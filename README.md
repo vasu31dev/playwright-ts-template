@@ -338,7 +338,7 @@ For a data-driven approach, Playwright supports creating tests from CSV files. F
 
 Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
 
-1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting page objects, switching between the pages in between the tests, and close a page.
+1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting page objects, switching between the pages, closing and reloding a page, loading and getting the page url, getting windows size, page navigations etc.
 2. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
 3. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate standard actions such as clicking, form filling, keyboard events, and dragging; providing a more concise way to execute these operations within your tests.
 4. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
