@@ -525,7 +525,7 @@ In addition to these, Playwright also recommends following certain best practice
 
 ## FAQs
 
-Please refer to the [FAQ documentation](#docs/Utilities.md#elementutils) for questions about dependencies, libraries, utilities and errors.
+Please refer to the [FAQ documentation](docs/FAQs.md) for questions about dependencies, libraries, utilities and errors.
 
 ## Contribution guide
 
