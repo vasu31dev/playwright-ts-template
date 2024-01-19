@@ -1,3 +1,19 @@
+## Table of Contents
+
+- [**Utilities**](#utilities)
+  - [Page Utilities](#page-utilities)
+  - [Locator Utilities](#locator-utilities)
+  - [Handling Frames](#handling-frames)
+  - [Action Utilities](#action-utilities)
+  - [Locator Visibility Setting](#locator-visibility-setting)
+  - [Overriding Default Visibility Setting](#overriding-default-visibility-setting)
+  - [Managing Alerts](#managing-alerts)
+  - [Element Utilities](#element-utilities)
+  - [Assert Utilities](#assert-utilities)
+  - [Optional Parameter Type Objects](#optional-parameter-type-objects)
+  - [Importing Utility Functions](#importing-utility-functions)
+- [**Test Annotations**](#test-annotations)
+
 ## Utilities
 
 The framework offers a collection of utility functions that streamline the identification of elements, common actions, and assertions in Playwright. These functions are located in the `node_modules/vasu-playwright-utils/src/vasu-playwright-lib/utils` directory and include:

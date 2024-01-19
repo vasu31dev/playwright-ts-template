@@ -58,10 +58,13 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Locator Utilities](docs/Utilities.md#locator-utilities)
   - [Handling Frames](docs/Utilities.md#handling-frames)
   - [Action Utilities](docs/Utilities.md#action-utilities)
+  - [Locator Visibility Setting](docs/Utilities.md#locator-visibility-setting)
+  - [Overriding Default Visibility Setting](docs/Utilities.md#overriding-default-visibility-setting)
   - [Managing Alerts](docs/Utilities.md#managing-alerts)
   - [Element Utilities](docs/Utilities.md#element-utilities)
-  - [Assertion Utilities](docs/Utilities.md#assert-utilities)
+  - [Assert Utilities](docs/Utilities.md#assert-utilities)
   - [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects)
+  - [Importing Utility Functions](docs/Utilities.md#importing-utility-functions)
   - [Test annotations](docs/Utilities.md#test-annotations)
 - [**Executing Tests**](#executing-tests)
   - [Run tests using Playwright Test for VSCode Extension](#run-tests-using-playwright-test-for-vscode-extension)
@@ -69,6 +72,7 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Report Generation and Viewing](#report-generation-and-viewing)
 - [**Additional Playwright Features**](#additional-playwright-features)
 - [**Best Practices**](#best-practices)
+- [**FAQs**](#faqs)
 - [**Contribution guide**](#contribution-guide)
 
 ## Getting Started
@@ -341,7 +345,7 @@ Explore various utility functions and helpers that can make your testing more ef
 5. [Assertion Utilities](docs/Utilities.md#assert-utilities): Helpers that simplify the process of making assertions about the state of the application, enhancing the readability and maintainability of your tests.
 6. [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects): Provides a set of options for utility modules.
 
-Please refer to the [Utilities section](docs/Utilities.md) for a comprehensive guide to the available utilities in this project, including detailed descriptions and examples of how to use them.
+Please refer to the [Utilities documentation](docs/Utilities.md) for a comprehensive guide to the available utilities in this project, including detailed descriptions and examples of how to import and use them.
 
 ## Executing Tests
 
@@ -518,6 +522,10 @@ Here are some recommended best practices when using this framework:
   - [Debugging](https://playwright.dev/docs/debug)
 
 In addition to these, Playwright also recommends following certain best practices. You can find more details in the [Playwright Best Practices documentation](https://playwright.dev/docs/best-practices)
+
+## FAQs
+
+Please refer to the [FAQ documentation](#docs/Utilities.md#elementutils) for questions about dependencies, libraries, utilities and errors.
 
 ## Contribution guide
 
