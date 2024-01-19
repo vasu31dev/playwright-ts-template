@@ -36,7 +36,7 @@ This project is meticulously organized into distinct packages and files, each ta
 
 - **.eslintrc**: This file is the heart of the ESLint configuration. ESLint is a static code analysis tool that identifies problematic patterns found in Typescript code. The configurations in `.eslintrc` dictate the rules and standards the code should adhere to, ensuring consistency and best practices across the codebase.
 
-- **.gitattributes**: The .gitattributes file helps manage how line endings are handled in files when you're working on code with different operating systems. It allows you to define how Git should process line endings in files during the stages of code checkout and commit. `* text=auto eol=lf` in this file, makes sure that all text files use the LF (Line Feed) style for line endings, keeping things consistent regardless of the operating system.
+- **.gitattributes**: This file helps to manage how line endings are handled in files when you're working on code with different operating systems. It allows you to define how Git should process line endings in files during the stages of code checkout and commit. `* text=auto eol=lf` in this file, makes sure that all text files use the LF (Line Feed) style for line endings, keeping things consistent regardless of the operating system.
 
 - **.gitignore**: This file ensures the repository's cleanliness by listing files and directories that Git should not track. It typically excludes node modules, build folders, and temporary files, ensuring only essential code and files are versioned.
 
