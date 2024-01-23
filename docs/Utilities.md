@@ -10,6 +10,8 @@
   - [Managing Alerts](#managing-alerts)
   - [Element Utilities](#element-utilities)
   - [Assert Utilities](#assert-utilities)
+  - [Hard Assertions](#hard-assertions)
+  - [Soft Assertions](#soft-assertions)
   - [Optional Parameter Type Objects](#optional-parameter-type-objects)
   - [Importing Utility Functions](#importing-utility-functions)
 - [**Test Annotations**](#test-annotations)
@@ -375,7 +377,11 @@ In this example, we're using various functions from `element-utils` to extract v
 
 ### Assert Utilities
 
-The `assert-utils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable.
+The `assert-utils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable. This module also support both `hard` and `soft` assertions, allowing you to choose the appropriate level of strictness for your tests.
+
+### Hard Assertions
+
+Hard assertions terminates the test execution right away if the assertion fails, preventing further code execution. They're crucial for conditions where it's not logical to continue the test if a certain check fails.
 
 ```typescript
 import {
@@ -401,12 +407,6 @@ await expectElementToHaveText(successfulMessage(), 'You have logged in successfu
 
 // asserting check box is not checked
 await expectElementNotToBeChecked(agreeCheckbox(), { timeout: INSTANT_TIMEOUT });
-
-// with 'soft' optional parameter 'true' we are making this assertion as soft assertion
-await expectElementNotToContainText(successfulMessage(), '404 error', { soft: true });
-
-// use this in the spec file to stop the test if there are failures for any soft assertions
-assertAllSoftAssertions(test.info());
 ```
 
 In this example, we're using various functions from `assert-utils`:
@@ -417,11 +417,32 @@ In this example, we're using various functions from `assert-utils`:
 
 3. `expectElementToHaveText(input: string | Locator, text: string | RegExp | Array<string | RegExp>, options?: ExpectOptions & ExpectTextOption)`: This function asserts that the text of a specific element matches the expected text. The input parameter is a string or Locator representing the element from where we assert text, the text parameter is the value you want to assert with, and the ExpectOptions and ExpectTextOption parameters are optional parameters that specify additional assert options like soft assertion, ignore case, etc.
 
-4. `expectElementNotToContainText(element: Locator, unexpectedText: string, options?: ExpectOptions)`: This function checks if a specific element does not contain a certain text. The unexpectedText parameter is the text you expect the element not to contain. The soft assertion is an Expectoptions parameter.
+4. `expectElementNotToContainText(element: Locator, unexpectedText: string, options?: ExpectOptions)`: This function checks if a specific element does not contain a certain text. The unexpectedText parameter is the text you expect the element not to contain.
 
-5. `assertAllSoftAssertions(testInfo: TestInfo)`: This function checks if there were any failures in the soft assertions and stops the test if there were. The testInfo parameter is the test information object from Playwright.
+These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail.
 
-These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail. They also support both hard and soft assertions, allowing you to choose the appropriate level of strictness for your tests.
+### Soft Assertions
+
+Unlike hard assertions, soft assertions do not stop the test execution when they fail. The test continues to run, allowing multiple assertions to be checked and their failures to be collected. At the end of the test, all the failures are reported together. Although the test continues, the failure of a soft assertion will still mark the test as failed at its conclusion.
+
+```typescript
+import { expectElementToBeVisible, expectElementNotToContainText } from 'vasu-playwright-utils';
+import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from 'vasu-playwright-utils';
+
+// with 'soft' optional parameter 'true' we are making these assertions as soft assertion
+await expectElementToBeVisible(logoutButton(), 'Login should be successful', { timeout: STANDARD_TIMEOUT, soft: true });
+
+await expectElementNotToBeChecked(agreeCheckbox(), { timeout: INSTANT_TIMEOUT, soft: true });
+
+await expectElementNotToContainText(successfulMessage(), '404 error', { soft: true });
+
+// use this in the spec file to stop the test if there are failures for any soft assertions
+assertAllSoftAssertions(test.info());
+```
+
+1. `soft: boolean` soft parameter is a SoftOption parameter. with `soft` optional parameter `true` we are making this assertion as soft assertion.
+
+2. `assertAllSoftAssertions(testInfo: TestInfo)`: This function checks if there were any failures in the soft assertions and stops the test if there were. The testInfo parameter is the test information object from Playwright.
 
 `assert-utils` functions can be used with various `Expect options` parameter type objects. Please refer to the [Optional Parameter Type Objects](#optional-parameter-type-objects) section below for more information.
 
