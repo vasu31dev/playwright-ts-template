@@ -63,6 +63,8 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Managing Alerts](docs/Utilities.md#managing-alerts)
   - [Element Utilities](docs/Utilities.md#element-utilities)
   - [Assert Utilities](docs/Utilities.md#assert-utilities)
+  - [Hard Assertions](docs/Utilities.md#hard-assertions)
+  - [Soft Assertions](docs/Utilities.md#soft-assertions)
   - [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects)
   - [Importing Utility Functions](docs/Utilities.md#importing-utility-functions)
   - [Test annotations](docs/Utilities.md#test-annotations)
@@ -504,9 +506,11 @@ Here are some recommended best practices when using this framework:
 
       `await click('#submit-button', { noWaitAfter: true })`
 
-- **Web-First Assertions**: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions)
+- **Web-First Assertions**: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions).
 
-- **Soft Assertions for Non-Critical Checks**: Use a soft assertion when a test assertion isn't critical, allowing the test to continue and fail at the end. For critical assertions, use a hard assertion i.e. the default assertion. [Playwright Soft Assertions documentation](https://playwright.dev/docs/test-assertions#soft-assertions)
+- **Soft Assertions for Non-Critical Checks**: Use a soft assertion when a test assertion isn't critical, allowing the test to continue and fail at the end. For critical assertions, use a hard assertion i.e. the default assertion. For more info, please refer [Soft Assertions documentation](docs/Utilities.md#soft-assertions).
+
+  For Playwright's reference to soft assertions, please visist [Playwright Soft Assertions](https://playwright.dev/docs/test-assertions#soft-assertions) documentation.
 
 - **Backticks for Xpath & CSS**: Always use backticks for Xpath & CSS selectors so that you can use single & double quotes together if needed without any escape characters.
 
