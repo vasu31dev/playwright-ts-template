@@ -436,13 +436,15 @@ await expectElementNotToBeChecked(agreeCheckbox(), { timeout: INSTANT_TIMEOUT, s
 
 await expectElementNotToContainText(successfulMessage(), '404 error', { soft: true });
 
-// use this in the spec file to stop the test if there are failures for any soft assertions
+//Use this step in spec file to immediately stop and fail the test at that point itself when any soft assertion fails, instead of failing at the end of the test
 assertAllSoftAssertions(test.info());
 ```
 
 1. `soft: boolean` soft parameter is a SoftOption parameter. with `soft` optional parameter `true` we are making this assertion as soft assertion.
 
 2. `assertAllSoftAssertions(testInfo: TestInfo)`: This function checks if there were any failures in the soft assertions and stops the test if there were. The testInfo parameter is the test information object from Playwright.
+
+For Playwright's reference to soft assertions, please visist [Playwright Soft Assertions](https://playwright.dev/docs/test-assertions#soft-assertions) documentation.
 
 `assert-utils` functions can be used with various `Expect options` parameter type objects. Please refer to the [Optional Parameter Type Objects](#optional-parameter-type-objects) section below for more information.
 
