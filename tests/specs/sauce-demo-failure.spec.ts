@@ -16,7 +16,7 @@ test.describe('Saucedemo tests failure and skip cases', () => {
   });
 
   // This test is expected to fail due to incorrect login credentials. Review the report to analyze the failure details.
-  test('Saucedemo tests - Failure test', async () => {
+  test('Saucedemo tests - Failure test @fail', async () => {
     await LoginPage.loginWithInvalidCredentials();
     // verifying products page is displayed only on successful login
     await ProductsPage.verifyProductsPageIsDisplayed();

@@ -26,7 +26,7 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "vasu-playwright-utils": "^0.10.1"
+    "vasu-playwright-utils": "^0.11.2"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -38,7 +38,7 @@
     "test:chromium": "playwright test --retries 0 --project=chromiumheadless",
     "test:chromium-headed": "playwright test -j 1 --retries 0 --headed --project=chromium",
     "local": "playwright test -j 1 --retries 0 --headed --project=chromium",
-    "test:reg": "playwright test --project=chromiumheadless -g '@reg'",
+    "test:reg": "playwright test --project=chromiumheadless --grep-invert '@fail'",
     "test:smoke": "playwright test --project=chromiumheadless -g '@smoke'",
     "report": "playwright show-report playwright-report",
     "ui": "playwright test --project=chromiumheadless --ui-port 0",
