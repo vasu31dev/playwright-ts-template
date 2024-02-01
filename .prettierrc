@@ -1,6 +1,14 @@
 {
   "semi": true,
   "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["*.json", ".eslintrc"],
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ],
   "singleQuote": true,
   "quoteProps": "as-needed",
   "printWidth": 120,
