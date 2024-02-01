@@ -26,7 +26,7 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "vasu-playwright-utils": "^0.11.2"
+    "vasu-playwright-utils": "^0.11.3"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -47,6 +47,7 @@
     "lint": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts'",
     "lint:fix": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' --fix",
     "format": "cross-env prettier --write 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
+    "prepare": "husky",
     "postinstall": "playwright install"
   },
   "husky": {
