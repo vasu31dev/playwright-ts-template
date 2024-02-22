@@ -9,9 +9,13 @@
     "moduleResolution": "node", // Uses Node.js logic for traversing the directory tree to find the modules
     "resolveJsonModule": true, // Allows importing JSON files and accessing the data through 'import'
     "paths": {
-      "@pages/*": ["./tests/pages/*"],
+      "@pages/*": [
+        "./tests/sauce-demo-project-with-classes/pages/*",
+        "./tests/sauce-demo-project-with-functions/pages/*"
+      ],
       "@testdata/*": ["./tests/testdata/*"],
       "@pagesetup": ["./test-setup/page-setup"],
+      "@testsetup": ["tests/sauce-demo-project-with-classes/fixtures/testFixtures"]
     }, // Sets up custom path mappings, enabling to import modules with convenient shorter paths
 
     // Emit
@@ -40,8 +44,8 @@
     "strictFunctionTypes": true, // Enforces checking of function types, particularly related to contravariant parameter types
 
     // Completeness
-    "skipLibCheck": true, // Skips the type checking of '.d.ts' files for faster compilation times
+    "skipLibCheck": true // Skips the type checking of '.d.ts' files for faster compilation times
   },
   "include": ["test-setup/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
-  "exclude": ["node_modules"], // Node_modules are excluded by default, but explicitly specified here for further exclusions as needed in your project
+  "exclude": ["node_modules"] // Node_modules are excluded by default, but explicitly specified here for further exclusions as needed in your project
 }

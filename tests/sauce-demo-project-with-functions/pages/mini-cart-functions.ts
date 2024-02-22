@@ -3,6 +3,6 @@ import { getLocator } from 'vasu-playwright-utils';
 
 const miniCartCount = () => getLocator(`//*[@id='shopping_cart_container']//span`);
 
-export async function verifyMiniCartCount(expMiniCartCount: string) {
-  await expectElementToHaveText(miniCartCount(), expMiniCartCount);
+export async function verifyMiniCartCount(expectedMiniCartCount: string) {
+  await expectElementToHaveText(miniCartCount(), expectedMiniCartCount);
 }

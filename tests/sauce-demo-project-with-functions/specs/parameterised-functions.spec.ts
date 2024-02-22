@@ -1,5 +1,5 @@
 import { test } from '@pagesetup';
-import * as LoginPage from '@pages/sauce-demo/sauce-demo-login-page';
+import * as LoginPage from '@pages/login-page-functions';
 
 const InvalidCredentialsData: { username: string; password: string }[] = [
   {
@@ -11,6 +11,8 @@ const InvalidCredentialsData: { username: string; password: string }[] = [
     password: '1234',
   },
 ];
+
+test.describe.configure({ mode: 'parallel' });
 
 test.describe('Parameterising tests', () => {
   InvalidCredentialsData.forEach(data => {

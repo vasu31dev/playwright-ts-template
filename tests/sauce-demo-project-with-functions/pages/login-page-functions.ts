@@ -27,6 +27,6 @@ export async function loginWithInvalidCredentials(invalidCredentials = failureLo
   await expectElementToBeVisible(errorMessage, 'Error message should be displayed as credentials are invalid');
 }
 
-export async function verifyLoginPageisDisplayed() {
+export async function verifyLoginPageIsDisplayed() {
   await expectElementToBeVisible(userName, 'Login page should be displayed');
 }
