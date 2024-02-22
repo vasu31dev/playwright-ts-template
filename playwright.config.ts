@@ -193,7 +193,7 @@ export default defineConfig({
       command: 'npm start ui-server', // Start the UI server
       url: LOCAL_HOST_URL,
       ignoreHTTPSErrors: true,
-      timeout: 60 * 1000,
+      timeout: 2 * 60 * 1000,
       reuseExistingServer: true,
       stdout: 'pipe',
       stderr: 'pipe',
