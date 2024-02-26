@@ -531,6 +531,10 @@ In addition to these, Playwright also recommends following certain best practice
 
 Please refer to the [FAQ documentation](docs/FAQs.md) for questions about dependencies, libraries, utilities and errors.
 
-## Contribution guide
+## Issues and Feedback
 
-Contributions are welcome! Please read the contributing guidelines first. (In progress)
+If you encounter any issues or have feedback, please [Raise an Issue](https://github.com/vasu31dev/playwright-ts-template/issues) on GitHub.
+
+## Contributions
+
+We welcome contributions! Feel free to submit a [Pull Request](https://github.com/vasu31dev/playwright-ts-template/pulls) on GitHub.
