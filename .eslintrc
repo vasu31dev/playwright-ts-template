@@ -72,7 +72,7 @@
     "playwright/prefer-to-have-length": "error",
     "playwright/no-wait-for-timeout": "warn",
     "playwright/no-useless-not": "warn",
-    "playwright/require-top-level-describe": "warn",
+    "playwright/require-top-level-describe": "off",
     "playwright/expect-expect": "off",
     "playwright/no-conditional-in-test": "off",
     "playwright/no-skipped-test": "off"
