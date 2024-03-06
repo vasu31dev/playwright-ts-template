@@ -1,4 +1,4 @@
-import { test } from 'tests/sauce-demo-project-with-classes/fixtures/testFixtures';
+import { test } from '@fixturesetup';
 
 test.describe.configure({ mode: 'parallel' });
 

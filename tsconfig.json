@@ -15,7 +15,7 @@
       ],
       "@testdata/*": ["./tests/testdata/*"],
       "@pagesetup": ["./test-setup/page-setup"],
-      "@testsetup": ["tests/sauce-demo-project-with-classes/fixtures/testFixtures"]
+      "@fixturesetup": ["tests/sauce-demo-project-with-classes/fixtures/testFixtures"]
     }, // Sets up custom path mappings, enabling to import modules with convenient shorter paths
 
     // Emit
