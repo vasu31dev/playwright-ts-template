@@ -1,7 +1,8 @@
+// @fixturesetup is the alias path set up for importing fixtures from testFixtures file.
+// Don't have to import individual page objects because they are initialized in fixtures and passed as test parameters.
 import { test } from '@fixturesetup';
 
 test.describe.configure({ mode: 'parallel' });
-
 test.describe('Saucedemo tests for successful, unsuccessful logins and add products to cart @smoke', () => {
   // beforEach hook to navigate to home page in each test
   test.beforeEach('Navigating to sauce demo page', async ({ loginPage }) => {
