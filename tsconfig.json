@@ -9,12 +9,9 @@
     "moduleResolution": "node", // Uses Node.js logic for traversing the directory tree to find the modules
     "resolveJsonModule": true, // Allows importing JSON files and accessing the data through 'import'
     "paths": {
-      "@pages/*": [
-        "tests/sauce-demo-project-with-classes/pages/*",
-        "examples/sauce-demo-tests-using-functions/pages/*"
-      ],
+      "@pages/*": ["tests/pages/*", "examples/sauce-demo-tests-using-functions/pages/*"],
       "@testdata/*": ["tests/testdata/*"],
-      "@fixturesetup": ["tests/sauce-demo-project-with-classes/fixtures/testFixtures"],
+      "@fixturesetup": ["tests/fixtures/testFixtures"],
       "@pagesetup": ["test-setup/page-setup"],
       "@playwright-config": ["playwright.config"]
     }, // Sets up custom path mappings, enabling to import modules with convenient shorter paths

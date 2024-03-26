@@ -8,14 +8,16 @@ import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
+import path from 'path';
 import os from 'os';
-// import path from 'path';
 
-const BASE_URL = process.env.URL || 'https://www.saucedemo.com/';
-const startLocalHost = process.env.URL && process.env.URL.includes('localhost');
+/**
+ * To run against the local environment, set the URL to your local server like 'https://localhost:9002'
+ * You can override the BASE_URL by setting the URL environment variable in .env file or passing it as a command line argument.
+ */
+export const BASE_URL = process.env.URL || 'https://www.saucedemo.com';
+export const STORAGE_STATE_PATH = path.join(__dirname, 'playwright/.auth');
 const customLoggerPath = require.resolve('vasu-playwright-utils/custom-logger');
-export const LOCAL_HOST_URL = 'https://localhost:9002'; // Update the URL to match your local dev server URL
-// export const STORAGE_STATE_LOGIN = path.join(__dirname, 'playwright/.auth/user-login.json');
 // export const EMPTY_STORAGE_STATE = path.join(__dirname, './tests/testdata/empty-storage-state.json');
 
 export default defineConfig({
@@ -69,7 +71,8 @@ export default defineConfig({
     },
     ignoreHTTPSErrors: true,
     acceptDownloads: true,
-    testIdAttribute: 'qa-target',
+    // Set the testIdAttribute for locating elements in the tests with getLocatorByTestId. Default is 'data-testid'.
+    // testIdAttribute: 'qa-target',
     /**
      * The base URL to be used in navigation actions such as `await page.goto('/')`.
      * This allows for shorter and more readable navigation commands in the tests.
@@ -90,30 +93,31 @@ export default defineConfig({
    * See https://playwright.dev/docs/test-configuration#projects
    */
   projects: [
-    // {
-    //   name: 'setup',
-    //   testMatch: '**/*.setup.ts',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     viewport: { width: 1600, height: 1000 },
-    //     launchOptions: {
-    //       args: ['--disable-web-security'],
-    //       slowMo: 0,
-    //     },
-    //   },
-    // },
+    {
+      name: 'setup',
+      testMatch: '**/login-storage-setup.ts',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1600, height: 1000 },
+        launchOptions: {
+          args: ['--disable-web-security'],
+          slowMo: 0,
+        },
+      },
+    },
 
     /** Due to different view ports in Head and Headless, created 2 projects one for head mode and the same browser for headless. */
     {
       name: 'chromium',
-      // dependencies: ['setup'],
+      dependencies: ['setup'],
       use: {
         viewport: null,
+        // Set the storage state here if you have only one user to login.
         // storageState: STORAGE_STATE_LOGIN,
         launchOptions: {
           args: ['--disable-web-security', '--start-maximized'],
           /* --auto-open-devtools-for-tabs option is used to open a test with Network tab for debugging. It can help in analyzing network requests and responses.*/
-          // args: ["--disable-web-security","--auto-open-devtools-for-tabs"],
+          // args: ["--auto-open-devtools-for-tabs"],
           // channel: 'chrome',
           slowMo: 0,
           headless: false,
@@ -123,10 +127,10 @@ export default defineConfig({
 
     {
       name: 'chromiumheadless',
-      // dependencies: ['setup'],
+      dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
-        viewport: { width: 1920, height: 1080 },
+        viewport: { width: 1600, height: 1000 },
         // storageState: STORAGE_STATE_LOGIN,
         launchOptions: {
           args: ['--disable-web-security'],
@@ -187,16 +191,14 @@ export default defineConfig({
    * If the tests are being run on localhost, this configuration starts a web server.
    * See https://playwright.dev/docs/test-webserver#configuring-a-web-server
    */
-  ...(startLocalHost && {
-    webServer: {
-      cwd: `${os.homedir()}/repos/ui`, // You can also use the realtive path to the UI repo
-      command: 'npm start ui-server', // Start the UI server
-      url: LOCAL_HOST_URL,
-      ignoreHTTPSErrors: true,
-      timeout: 2 * 60 * 1000,
-      reuseExistingServer: true,
-      stdout: 'pipe',
-      stderr: 'pipe',
-    },
-  }),
+  webServer: {
+    cwd: `${os.homedir()}/repos/ui`, // You can also use the relative path to the UI repo
+    command: 'npm start ui-server', // Start the UI server
+    url: BASE_URL,
+    ignoreHTTPSErrors: true,
+    timeout: 2 * 60 * 1000,
+    reuseExistingServer: true,
+    stdout: 'pipe',
+    stderr: 'pipe',
+  },
 });

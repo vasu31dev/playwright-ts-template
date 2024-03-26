@@ -1,6 +1,6 @@
-import { click, clickAndNavigate, expectElementToBeAttached, fill, gotoURL } from 'vasu-playwright-utils';
-import { failureLoginCredentials, sauceDemoCredentials } from '@testdata/sauce-demo-test-data';
-import { expectElementToBeVisible } from 'vasu-playwright-utils';
+import { click, clickAndNavigate, fill, gotoURL } from 'vasu-playwright-utils';
+import { invalidUserCredentials, standardUserCredentials } from '@testdata/sauce-demo-test-data';
+import { expectElementToBeAttached, expectElementToBeVisible } from 'vasu-playwright-utils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from 'vasu-playwright-utils';
 
 export class LoginPage {
@@ -14,14 +14,22 @@ export class LoginPage {
     await gotoURL('https://www.saucedemo.com/');
   }
 
-  public async loginWithValidCredentials(validCredentials = sauceDemoCredentials): Promise<void> {
+  public async navigateToSauceDemoInventoryPage(): Promise<void> {
+    await gotoURL('https://www.saucedemo.com/inventory.html');
+  }
+
+  public async loginWithValidCredentials(validCredentials = standardUserCredentials): Promise<void> {
     await fill(this.userName, validCredentials.username);
     await fill(this.password(), validCredentials.password);
     await clickAndNavigate(this.loginButton());
+    await this.verifyUserIsLoggedin();
+  }
+
+  public async verifyUserIsLoggedin(): Promise<void> {
     await expectElementToBeAttached(this.logoutLink, 'User should be Logged in successfully');
   }
 
-  public async loginWithInvalidCredentials(invalidCredentials = failureLoginCredentials): Promise<void> {
+  public async loginWithInvalidCredentials(invalidCredentials = invalidUserCredentials): Promise<void> {
     await fill(this.userName, invalidCredentials.username);
     await fill(this.password(), invalidCredentials.password);
     await click(this.loginButton());

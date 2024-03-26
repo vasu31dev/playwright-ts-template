@@ -1,4 +1,4 @@
-import { test } from 'tests/sauce-demo-project-with-classes/fixtures/testFixtures';
+import { test } from '@fixturesetup';
 
 const InvalidCredentialsData: { username: string; password: string }[] = [
   {
@@ -15,8 +15,9 @@ test.describe.configure({ mode: 'parallel' });
 
 test.describe('Parameterising tests', () => {
   InvalidCredentialsData.forEach(data => {
+    // test.use({ storageState: { cookies: [], origins: [] } });
     test(`Invalid Login - Running same test with different invalid data ${data.username}`, async ({ loginPage }) => {
-      await loginPage.navigateToSauceDemoLoginPage();
+      await loginPage.navigateToSauceDemoInventoryPage(); // Since we are not loading any storageState, we should see Login page
       await loginPage.loginWithInvalidCredentials(data);
     });
   });

@@ -44,6 +44,7 @@
     "ui": "playwright test --project=chromiumheadless --ui-port 0",
     "trace": "playwright show-trace --port 0",
     "record": "playwright codegen",
+    "clear:storage": "rimraf playwright/.auth",
     "allure": "allure generate ./allure-results --clean && allure open ./allure-report",
     "lint": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js'",
     "lint:fix": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js' --fix",

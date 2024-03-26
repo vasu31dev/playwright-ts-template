@@ -14,7 +14,7 @@ export default defineConfig({
    * The directory where tests are located.
    * See https://playwright.dev/docs/api/class-testconfig#testconfig-testdir
    */
-  testDir: '../sauce-demo-tests-with-functions',
+  testDir: '../sauce-demo-tests-using-functions',
   /**
    * Determines whether to run tests within each spec file in parallel, in addition to running the spec files themselves in parallel.
    * See https://playwright.dev/docs/api/class-testconfig#testconfig-fullyparallel
