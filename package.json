@@ -50,7 +50,7 @@
     "lint:fix": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js' --fix",
     "format": "cross-env prettier --write 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
     "prepare": "husky",
-    "postinstall": "playwright install"
+    "postinstall": "playwright install chromium"
   },
   "husky": {
     "hooks": {

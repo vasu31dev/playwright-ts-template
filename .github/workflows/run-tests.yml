@@ -1,0 +1,40 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: PR Check
+    runs-on:
+      labels: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          # renovate: node-version
+          node-version: '18.19.1'
+
+      - name: Install Playwright Deps
+        run: npx playwright install-deps chromium
+
+      - name: Install Libraries
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: playwright-report
+        #   retention-days: 1
