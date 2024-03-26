@@ -1,5 +1,5 @@
 import { click, clickAndNavigate, expectElementToBeAttached, fill, gotoURL } from 'vasu-playwright-utils';
-import { failureLoginCredentials, sauceDemoCredentials } from '@testdata/sauce-demo-test-data';
+import { invalidUserCredentials, standardUserCredentials } from '@testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from 'vasu-playwright-utils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from 'vasu-playwright-utils';
 
@@ -13,14 +13,14 @@ export async function navigateToSauceDemoLoginPage() {
   await gotoURL('https://www.saucedemo.com/');
 }
 
-export async function loginWithValidCredentials(validCredentials = sauceDemoCredentials) {
+export async function loginWithValidCredentials(validCredentials = standardUserCredentials) {
   await fill(userName, validCredentials.username);
   await fill(password(), validCredentials.password);
   await clickAndNavigate(loginButton());
   await expectElementToBeAttached(logoutLink, 'User should be Logged in sucessfully');
 }
 
-export async function loginWithInvalidCredentials(invalidCredentials = failureLoginCredentials) {
+export async function loginWithInvalidCredentials(invalidCredentials = invalidUserCredentials) {
   await fill(userName, invalidCredentials.username);
   await fill(password(), invalidCredentials.password);
   await click(loginButton());
