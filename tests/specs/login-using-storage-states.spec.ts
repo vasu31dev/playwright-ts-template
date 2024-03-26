@@ -18,6 +18,18 @@ test.describe('Saucedemo tests for successful, unsuccessful logins and add produ
     await productsPage.verifyProductsPageIsDisplayed();
   });
 
+  // To run tests with different user storageState in the same spec file then isolate them in to test.describe blocks
+  test.describe(() => {
+    test.use({ storageState: getUserAuthPath(visualTestUserCredentials) });
+    test('Saucedemo test - Add product to cart', async ({ loginPage, productsPage, miniCartPage }) => {
+      await loginPage.navigateToSauceDemoInventoryPage();
+      await productsPage.verifyProductsPageIsDisplayed();
+      await productsPage.addToCartByProductNumber(1);
+      // verifying mini cart count is updated to 1
+      await miniCartPage.verifyMiniCartCount('1');
+    });
+  });
+
   // To run tests with out storageState in the same spec file then isolate them in to test.describe blocks
   test.describe(() => {
     test.use({ storageState: { cookies: [], origins: [] } });
@@ -28,18 +40,6 @@ test.describe('Saucedemo tests for successful, unsuccessful logins and add produ
       await loginPage.verifyLoginPageIsDisplayed();
       // verifying Products Page is not displayed
       await productsPage.verifyProductsPageIsNotDisplayed();
-    });
-  });
-
-  // To run tests with different user storageState in the same spec file then isolate them in to test.describe blocks
-  test.describe(() => {
-    test.use({ storageState: getUserAuthPath(visualTestUserCredentials) });
-    test('Saucedemo test - Add product to cart', async ({ loginPage, productsPage, miniCartPage }) => {
-      await loginPage.navigateToSauceDemoInventoryPage();
-      await productsPage.verifyProductsPageIsDisplayed();
-      await productsPage.addToCartByProductNumber(1);
-      // verifying mini cart count is updated to 1
-      await miniCartPage.verifyMiniCartCount('1');
     });
   });
 });
