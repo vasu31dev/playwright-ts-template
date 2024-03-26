@@ -1,9 +1,21 @@
-export const sauceDemoCredentials = {
+export interface User {
+  username: string;
+  password: string;
+}
+
+export const standardUserCredentials: User = {
   username: 'standard_user',
   password: 'secret_sauce',
 };
 
-export const failureLoginCredentials = {
-  username: 'standard_user',
+export const visualTestUserCredentials: User = {
+  username: 'visual_user',
+  password: 'secret_sauce',
+};
+
+export const invalidUserCredentials: User = {
+  username: 'invalid_user',
   password: 'invalid_password',
 };
+
+export const validUsers: User[] = [standardUserCredentials, visualTestUserCredentials];
