@@ -46,8 +46,8 @@
     "record": "playwright codegen",
     "clear:storage": "rimraf playwright/.auth",
     "allure": "allure generate ./allure-results --clean && allure open ./allure-report",
-    "lint": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js'",
-    "lint:fix": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js' --fix",
+    "lint": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts'",
+    "lint:fix": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' --fix",
     "format": "cross-env prettier --write 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
     "prepare": "husky",
     "postinstall": "playwright install chromium"
