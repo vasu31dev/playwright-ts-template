@@ -7,14 +7,15 @@
 import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from 'vasu-playwright-utils';
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
 import path from 'path';
 import os from 'os';
+dotenv.config({ path: '.env' });
 
 /**
  * To run against the local environment, set the URL to your local server like 'https://localhost:9002'
  * You can override the BASE_URL by setting the URL environment variable in .env file or passing it as a command line argument.
  */
+// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 export const BASE_URL = process.env.URL || 'https://www.saucedemo.com';
 export const STORAGE_STATE_PATH = path.join(__dirname, 'playwright/.auth');
 const customLoggerPath = require.resolve('vasu-playwright-utils/custom-logger');
@@ -66,8 +67,8 @@ export default defineConfig({
     headless: true,
     /* Sets extra headers for CloudFlare. */
     extraHTTPHeaders: {
-      'CF-Access-Client-Id': process.env.CF_CLIENT_ID || '',
-      'CF-Access-Client-Secret': process.env.CF_CLIENT_SECRET || '',
+      'CF-Access-Client-Id': process.env.CF_CLIENT_ID ?? '',
+      'CF-Access-Client-Secret': process.env.CF_CLIENT_SECRET ?? '',
     },
     ignoreHTTPSErrors: true,
     acceptDownloads: true,

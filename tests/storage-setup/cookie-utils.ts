@@ -29,7 +29,7 @@ export function isSessionCookieValid(
     expirationThreshold?: number;
   },
 ): boolean {
-  const { expirationThreshold = DEFAULT_EXPIRATION_THRESHOLD } = options || {};
+  const { expirationThreshold = DEFAULT_EXPIRATION_THRESHOLD } = options ?? {};
   const cookieExpirationTime = cookie.expires;
   // If cookie.expires is undefined or explicitly set to -1, treat as non-expiring cookie
   if (cookie.expires === undefined || cookie.expires === -1) {
@@ -73,7 +73,7 @@ export function isUserStorageStateValid(
   }
 
   try {
-    const storageState: SessionData = JSON.parse(fs.readFileSync(userPath, 'utf-8'));
+    const storageState = JSON.parse(fs.readFileSync(userPath, 'utf-8')) as SessionData;
     const validCookies = storageState.cookies.filter(
       cookie =>
         (cookie.name === effectiveOptions.cookieName ||
@@ -101,8 +101,8 @@ export function getUserAuthPath(user: User): string {
 }
 
 export async function addUserCookiesAndStorage(user: User, options?: { originUrl?: string }) {
-  const originUrl = options?.originUrl || ORIGIN_URL;
-  const userData: SessionData = JSON.parse(fs.readFileSync(getUserAuthPath(user), 'utf-8'));
+  const originUrl = options?.originUrl ?? ORIGIN_URL;
+  const userData = JSON.parse(fs.readFileSync(getUserAuthPath(user), 'utf-8')) as SessionData;
   const cookies: Cookie[] = userData.cookies;
   const page = getPage();
   logger.info(`Adding cookies for user ${user.username}`);
@@ -160,12 +160,11 @@ export function getURLDomain(url: string): string {
   }
   // If there are more than 2 parts, it means we have a subdomain.
   // In this case, join the last two parts and prepend a dot to denote domain-level.
-  else if (parts.length > 2) {
-    return '.' + parts.slice(-2).join('.');
+  if (parts.length > 2) {
+    return `.${parts.slice(-2).join('.')}`;
   }
   // If none of the above, it's either a root domain or a www domain without subdomains.
-  else {
-    // Check specifically for 'www' subdomain if needed, or just return the domain.
-    return parts.join('.');
-  }
+
+  // Check specifically for 'www' subdomain if needed, or just return the domain.
+  return parts.join('.');
 }

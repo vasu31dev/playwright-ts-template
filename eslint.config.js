@@ -83,28 +83,32 @@ module.exports = [
       'prettier/prettier': 'error',
       'no-trailing-spaces': 'error',
       'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
+      'eol-last': ['error', 'always'],
 
-      // ESLint recommended overrides for TypeScript
-      ...typescript.configs['eslint-recommended'].overrides[0].rules,
-
-      // TypeScript recommended rules
+      // TypeScript Rules - Base
       ...typescript.configs.recommended.rules,
-
+      ...typescript.configs['eslint-recommended'].overrides[0].rules,
       // TypeScript recommended-requiring-type-checking rules (type-aware rules)
       ...typescript.configs['recommended-requiring-type-checking'].rules,
-
-      // Custom TypeScript Rules (matching your original config)
-      '@typescript-eslint/no-unsafe-assignment': 'off', // Consider revisiting this setting later to change it to either 'warn' or 'error'.
-      '@typescript-eslint/no-unsafe-member-access': 'off', // Consider revisiting this setting later to change it to either 'warn' or 'error'.
-      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'warn',
+      '@typescript-eslint/no-unsafe-member-access': 'warn',
+      '@typescript-eslint/no-unsafe-return': 'warn',
+      '@typescript-eslint/no-unsafe-call': 'warn',
       '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
-      ],
+
+      // TypeScript Rules - Additional Strict Rules
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-expressions': 'error',
+      '@typescript-eslint/no-empty-function': 'warn',
+      '@typescript-eslint/prefer-nullish-coalescing': 'error',
+      '@typescript-eslint/prefer-optional-chain': 'error',
+      '@typescript-eslint/prefer-as-const': 'error',
+      '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-duplicate-enum-values': 'error',
+      '@typescript-eslint/no-inferrable-types': ['error', { ignoreParameters: false, ignoreProperties: false }],
 
       // Import Rules
       'import/no-unresolved': 'error',
@@ -112,15 +116,33 @@ module.exports = [
       'import/default': 'error',
       'import/no-absolute-path': 'error',
       'import/no-self-import': 'error',
+      // 'import/no-duplicates': 'error',
+      'import/first': 'error',
+      'import/no-mutable-exports': 'error',
       'sort-imports': ['error', { ignoreDeclarationSort: true }],
 
       // General Rules
-      'require-await': 'error',
+      'require-await': 'off',
+      '@typescript-eslint/require-await': 'error',
+      '@typescript-eslint/await-thenable': 'error',
+      '@typescript-eslint/no-misused-promises': 'error',
       complexity: ['warn', { max: 11 }],
+      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+      'no-debugger': 'error',
+      'no-var': 'error',
+      'prefer-const': 'error',
+      'prefer-template': 'error',
+      'object-shorthand': 'error',
+      // 'no-else-return': ['error', { allowElseIf: false }],
+      'no-lonely-if': 'error',
+      'no-useless-return': 'error',
+      'no-nested-ternary': 'warn',
+      eqeqeq: ['error', 'always', { null: 'ignore' }],
+      'no-throw-literal': 'error',
 
       // JSDoc Rules
-      'jsdoc/check-alignment': 'warn',
-      'jsdoc/check-indentation': 'warn',
+      // 'jsdoc/check-alignment': 'warn',
+      // 'jsdoc/check-indentation': 'warn',
 
       // Playwright recommended rules (from plugin:playwright/playwright-test)
       ...playwright.configs['playwright-test'].rules,
@@ -142,6 +164,7 @@ module.exports = [
       'playwright/expect-expect': 'off',
       'playwright/no-conditional-in-test': 'off',
       'playwright/no-skipped-test': 'off',
+      'playwright/consistent-spacing-between-blocks': 'off',
     },
   },
 ];
