@@ -1,6 +1,6 @@
 {
   "name": "playwright-ts-template",
-  "version": "1.22.2",
+  "version": "1.23.0",
   "description": "Playwright Type script framework is designed for Web (Desktop & Mobile), API, and Electron apps. Stable and Robust layer on top of Playwright with inbuilt Utilities, Linting, Logging, Web hooks, Github actions, Reports and much more",
   "keywords": [
     "playwright",
@@ -26,10 +26,10 @@
     "node": ">=20.0.0"
   },
   "devDependencies": {
-    "allure-commandline": "^2.36.0",
-    "allure-playwright": "^3.4.5",
+    "allure-commandline": "^2.37.0",
+    "allure-playwright": "^3.5.0",
     "axios": "^1.13.5",
-    "vasu-playwright-utils": "^1.22.2"
+    "vasu-playwright-utils": "^1.23.0"
   },
   "scripts": {
     "clean": "rimraf dist",
