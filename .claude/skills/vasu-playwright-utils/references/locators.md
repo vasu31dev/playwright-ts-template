@@ -4,7 +4,7 @@ Source: `src/vasu-playwright-lib/utils/locator-utils.ts`
 
 ## Locator Strategy Priority
 
-When choosing locators for test code, follow this priority order (best to worst). Always prefer the highest-priority strategy that uniquely identifies the element.
+When choosing locators for test code, follow this priority order (best to worst). **Prefer unique CSS or XPath with stable attributes over text-based locators** so that when a check fails you can tell quickly whether the element is missing (bug) or the copy changed (new functionality / locale).
 
 ### 1. `data-testid` attributes (Best)
 
@@ -23,8 +23,11 @@ Custom data attributes that carry stable, semantic meaning.
 // HTML: <div data-product-id="shoes-001">...</div>
 await click('[data-product-id="shoes-001"]');
 
-// HTML: <tr data-row-type="header">...</tr>
-await expectElementToBeVisible('[data-row-type="header"]');
+// HTML: <h2 data-test="complete-header">Thank you for your order</h2>
+const orderCompleteMessage = () => getLocator('[data-test="complete-header"]');
+await expectElementToContainText(orderCompleteMessage(), /thank you for your order/i, {
+  message: 'Checkout complete message should be displayed',
+});
 ```
 
 ### 3. `id` attributes
@@ -51,34 +54,9 @@ await fill('[name="email"]', 'user@example.com');
 await selectByText('[name="country"]', 'United States');
 ```
 
-### 5. Playwright built-in locators
+### 5. XPath with unique attributes
 
-Semantic locators that match how users perceive the page. Resilient to DOM changes.
-
-```typescript
-// By ARIA role + accessible name (preferred for interactive elements)
-await click(getLocatorByRole('button', { name: 'Submit' }));
-await fill(getLocatorByRole('textbox', { name: 'Email' }), 'user@example.com');
-await click(getLocatorByRole('link', { name: 'Sign up' }));
-await check(getLocatorByRole('checkbox', { name: 'Remember me' }));
-
-// By label text (preferred for form fields)
-await fill(getLocatorByLabel('Email address'), 'user@example.com');
-
-// By placeholder text
-await fill(getLocatorByPlaceholder('Search...'), 'playwright');
-
-// By visible text content
-await click(getLocatorByText('Add to cart'));
-
-// Use regex for partial or case-insensitive matching
-await click(getLocatorByRole('button', { name: /submit/i }));
-await click(getLocatorByText(/view details/i));
-```
-
-### 6. XPath with unique attributes
-
-Use only when higher-priority strategies are unavailable. Target stable attributes.
+Use when no data-_ or id is available. Target **stable attributes** (e.g. `data-test`, `aria-_`, `type`), not text.
 
 ```typescript
 // Good: XPath with stable attributes
@@ -89,9 +67,9 @@ await click('//input[@type="email"]');
 await click('//div[@data-section="billing"]//button[@type="submit"]');
 ```
 
-### 7. CSS with unique attributes
+### 6. CSS with unique attributes
 
-Similar to XPath — use stable attributes, not structural position.
+Use stable attribute selectors so the locator does not depend on copy or locale.
 
 ```typescript
 // Good: attribute-based CSS
@@ -100,6 +78,42 @@ await fill('input[type="email"]', 'user@example.com');
 
 // Good: scoped by stable parent
 await click('.billing-section button[type="submit"]');
+
+// Good: data-test (e.g. Sauce Demo checkout complete)
+const orderCompleteMessage = () => getLocator('[data-test="complete-header"]');
+await expectElementToContainText(orderCompleteMessage(), /thank you for your order/i);
+```
+
+### 7. Playwright built-in locators (role / text) — use only when no stable selector exists
+
+Text- and role-based locators are **flaky**: they change with copy, locale, and country. If the only way to find an element is by its text, a failure does not tell you whether the element is missing (bug) or the wording changed (new feature / i18n). Prefer **data-testid**, **data-\***, **id**, or **unique CSS/XPath** first.
+
+When you must use role or text:
+
+```typescript
+// By ARIA role + accessible name
+await click(getLocatorByRole('button', { name: 'Submit' }));
+await fill(getLocatorByRole('textbox', { name: 'Email' }), 'user@example.com');
+
+// By label text (form fields)
+await fill(getLocatorByLabel('Email address'), 'user@example.com');
+
+// By placeholder text
+await fill(getLocatorByPlaceholder('Search...'), 'playwright');
+
+// By visible text — avoid for assertions; use stable selector + assert text separately
+await click(getLocatorByText('Add to cart'));
+```
+
+**Assertions:** Prefer a **stable locator** for the element and assert the **text in the assertion**. That way a failure shows "expected text X, got Y" (copy change) vs element not found (bug).
+
+```typescript
+// Prefer: stable selector + text in assertion
+const orderCompleteMessage = () => getLocator('[data-test="complete-header"]');
+await expectElementToContainText(orderCompleteMessage(), /thank you for your order/i);
+
+// Avoid: locating by text — fails ambiguously if copy or locale changes
+// const orderCompleteMessage = () => getLocatorByRole('heading', { name: /thank you for your order/i });
 ```
 
 ### 8. XPath (structural)

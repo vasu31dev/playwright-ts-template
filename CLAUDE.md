@@ -1,4 +1,4 @@
-# Playwright TypeScript Template
+# Playwright TypeScript Project
 
 ## Project Overview
 

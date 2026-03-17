@@ -1,6 +1,6 @@
 ---
-description: Project-wide instructions and conventions for vasu-ts-template
-globs: ['**/*']
+description: Project-wide instructions and conventions
+globs: ["**/*"]
 ---
 
 @file CLAUDE.md
