@@ -44,41 +44,46 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 ## Table of Contents
 
-- [**Getting Started**](#getting-started)
-  - [Tools & Frameworks](#tools--frameworks)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Project Update Guide](#project-update-guide)
-- [**Project Structure**](#project-structure)
-- [**Customize Framework Setup**](#customize-framework-setup)
-  - [Page set up](docs/FrameworkSetup.md#page-set-up)
-- [**Usage**](#usage)
-  - [Working with Page Objects](#page-objects)
-  - [Creating a Spec File](#writing-tests-in-a-spec-file)
-- [**Utilities**](#utilities)
-  - [Page Utilities](docs/Utilities.md#page-utilities)
-  - [Locator Utilities](docs/Utilities.md#locator-utilities)
-  - [Handling Frames](docs/Utilities.md#handling-frames)
-  - [Action Utilities](docs/Utilities.md#action-utilities)
-  - [Locator Visibility Setting](docs/Utilities.md#locator-visibility-setting)
-  - [Overriding Default Visibility Setting](docs/Utilities.md#overriding-default-visibility-setting)
-  - [Managing Alerts](docs/Utilities.md#managing-alerts)
-  - [Element Utilities](docs/Utilities.md#element-utilities)
-  - [Assert Utilities](docs/Utilities.md#assert-utilities)
-  - [Hard Assertions](docs/Utilities.md#hard-assertions)
-  - [Soft Assertions](docs/Utilities.md#soft-assertions)
-  - [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects)
-  - [Importing Utility Functions](docs/Utilities.md#importing-utility-functions)
-  - [Test annotations](docs/Utilities.md#test-annotations)
-- [**Executing Tests**](#executing-tests)
-  - [Run tests using Playwright Test for VSCode Extension](#run-tests-using-playwright-test-for-vscode-extension)
-  - [Command-Line Execution](#running-tests-via-the-command-line-interface)
+- [🚀 Elevate Your Automation: Redefining the Future of Testing, Where Precision Meets Efficiency.](#-elevate-your-automation-redefining-the-future-of-testing-where-precision-meets-efficiency)
+  - [Playwright TypeScript Framework: "Your One-Stop Solution for Web (Desktop \& Mobile), API, and Electron Automation Testing"](#playwright-typescript-framework-your-one-stop-solution-for-web-desktop--mobile-api-and-electron-automation-testing)
+  - [Key Features:](#key-features)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Tools \& Frameworks](#tools--frameworks)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+      - [CLI Installation](#cli-installation)
+      - [Manual Installation](#manual-installation)
+    - [Project Update Guide](#project-update-guide)
+      - [Update Playwright library](#update-playwright-library)
+  - [AI Agent Skills](#ai-agent-skills)
+    - [What gets installed](#what-gets-installed)
+    - [For consumers](#for-consumers)
+    - [How skills and agents are invoked](#how-skills-and-agents-are-invoked)
+  - [Project Structure](#project-structure)
+  - [Customize Framework Setup](#customize-framework-setup)
+    - [Page Context set up](#page-context-set-up)
+  - [Usage](#usage)
+    - [Page Objects](#page-objects)
+    - [Writing Tests in a spec file](#writing-tests-in-a-spec-file)
+      - [Parameterising Tests](#parameterising-tests)
+      - [Test and Project parameterization](#test-and-project-parameterization)
+      - [Passing environment variables](#passing-environment-variables)
+      - [Test data from CSV file](#test-data-from-csv-file)
+  - [Utilities](#utilities)
+  - [Executing Tests](#executing-tests)
+    - [Run tests using Playwright Test for VSCode Extension](#run-tests-using-playwright-test-for-vscode-extension)
+    - [Parallel Execution](#parallel-execution)
+    - [Running Tests via the Command-Line Interface](#running-tests-via-the-command-line-interface)
+      - [npm run commands](#npm-run-commands)
+      - [npx playwright test commands](#npx-playwright-test-commands)
   - [Report Generation and Viewing](#report-generation-and-viewing)
-- [**Additional Playwright Features**](#additional-playwright-features)
-- [**Best Practices**](#best-practices)
-- [**FAQs**](#faqs)
-- [**Issues and Feedback**](#issues-and-feedback)
-- [**Contributions**](#contributions)
+    - [Accessing Reports via Command-Line Interface (CLI)](#accessing-reports-via-command-line-interface-cli)
+  - [Additional Playwright Features](#additional-playwright-features)
+  - [Best Practices](#best-practices)
+  - [FAQs](#faqs)
+  - [Issues and Feedback](#issues-and-feedback)
+  - [Contributions](#contributions)
 
 ## Getting Started
 
@@ -111,7 +116,6 @@ Before you begin, there are some essential requirements you must meet. Ensure yo
   - Download Visual Studio Code suitable for your operating system from the title link provided.
   - For Visual Studio Code shortcuts, please visit [Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) and [macOS](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf) documents.
 - **Visual Studio Code Extensions**:
-
   - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A VSCode extension for consistent code formatting. Install it directly from the title link provided.
   - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A VSCode extension for identifying and fixing linting issues. Install it directly from the title link provided.
   - **[Playwright Test for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright)**: A VSCode extension that integrates Playwright testing framework, enabling writing, running, and debugging end-to-end tests directly within VSCode. Install it directly from the title link provided.
@@ -148,14 +152,12 @@ The installation steps are below:
    ```
 
    This command will set up a new project with a ready-to-use Playwright TypeScript framework, which includes:
-
    - Setting up the Playwright TypeScript framework template with sample tests.
    - Creating a new `package.json` file with all the necessary dependencies.
    - Initializing a new Git repository if neither the current nor parent directory is a Git repository.
    - Installing all the npm packages, including the playwright utils library, which contains playwright helper methods.
 
 4. If you encounter errors during the installation process, follow these steps to resolve them:
-
    - Change ownership of the npm directories to the current user:
      ```bash
      sudo chown -R $(whoami) ~/.npm
@@ -193,6 +195,53 @@ Keeping your project up to date is crucial.
   This command keeps your Playwright library up to date with the latest playwright utilities which contain the helper methods that are updated regularly.
 
 - For further more steps and how to fix dependency errors while installing packages after the project update, please visit [Project Update Guide section](docs/ProjectInstallationAndUpdateGuide.md#project-update-guide).
+
+## AI Agent Skills
+
+This template ships with AI skills and agent workflows for [Claude Code](https://claude.com/claude-code) and [Cursor](https://cursor.com) that help AI agents understand the `vasu-playwright-utils` API and use `playwright-cli` for browser automation.
+
+### What gets installed
+
+| Component                                                    | Installed to                            | Used by             |
+| ------------------------------------------------------------ | --------------------------------------- | ------------------- |
+| **Skills** — API docs, locator strategy, function references | `.claude/skills/vasu-playwright-utils/` | Claude Code, Cursor |
+| **Playwright CLI skills** — browser automation commands      | `.claude/skills/playwright-cli/`        | Claude Code, Cursor |
+| **Agents** — test planner, generator, healer workflows       | `.claude/agents/`                       | Claude Code         |
+| **Cursor rules** — agent workflow rules with `@file` refs    | `.cursor/rules/`                        | Cursor              |
+| **CLAUDE.md loader** — links your `CLAUDE.md` into Cursor    | `.cursor/rules/project.mdc`             | Cursor              |
+
+Files are **copied** (not symlinked) into your project. Both Claude Code and Cursor auto-discover `.claude/skills/`. Claude Code also auto-discovers `.claude/agents/`. Cursor uses `.cursor/rules/` to reference agent files. If your project has a `CLAUDE.md`, the setup also creates a Cursor rule that loads it via `@file CLAUDE.md`, so both tools share the same project instructions.
+
+### For consumers
+
+Install everything (skills + agents) with a single command:
+
+```bash
+npx vasu-pw-setup
+```
+
+Or install only what you need:
+
+```bash
+# Skills only (API docs, locator strategy, playwright-cli)
+npx vasu-pw-setup --skills
+
+# Agents only (test planner, generator, healer)
+npx vasu-pw-setup --agents
+```
+
+To update after upgrading the library, run the command again with `--force`:
+
+```bash
+npx vasu-pw-setup --force
+```
+
+### How skills and agents are invoked
+
+- **Claude Code** auto-discovers `.claude/skills/` and `.claude/agents/`. `CLAUDE.md` instructs the agent to use `playwright-cli` and `vasu-playwright-utils` skills when writing tests, and to follow agent workflows (Planner / Generator / Healer) when asked to plan, generate, or fix tests.
+- **Cursor** auto-discovers `.claude/skills/` for API reference. Rules in `.cursor/rules/` activate on `*.spec.ts`, `specs/**`, and `tests/**` files and include the agent workflows via `@file` directives pointing to `.claude/agents/`.
+
+To test: ask the agent to "write a test case to login for https://example.com" (or any URL). The agent should use `playwright-cli` to verify the flow and the `vasu-playwright-utils` skill (with locator strategy) when writing selectors.
 
 ## Project Structure
 
@@ -498,9 +547,7 @@ Here are some recommended best practices when using this framework:
 - **check vs click**: Use the `check` or `uncheck` utility functions for checkboxes or radio inputs to toggle the state of a checkbox or to choose/deselect a radio option. If you find these functions unreliable or inconsistent during tests, we highly encourage you to provide us with detailed feedback so we can enhance the functionality of these utilities. Meanwhile, please opt for the `click` function as a substitute for `check`/`uncheck`.
 
 - **Fill vs pressSequentially**: Use the fill utility function as default to fill the form fields. Use presssequentially utility function when you want to simulate entering character by character likely to be the keyboard press events, such as when testing auto-search suggestions or autofill features. [Playwright type documentation](https://playwright.dev/docs/input#type-characters)
-
   - **_Optional Parameters - Force & noWaitAfter_**:
-
     - **force**: In Playwright, the force boolean option in action methods like `click`, `check`, `uncheck`, `dragAndDrop`, `dblclick` etc, allows bypassing the [actionability](https://playwright.dev/docs/actionability) checks on elements by setting it to `true`. It's useful for simulating actions that require overriding these default checks.
 
       `await click('#element-id', { force: true })`

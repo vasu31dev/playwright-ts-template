@@ -1,0 +1,6 @@
+---
+description: Project-wide instructions and conventions for vasu-ts-template
+globs: ['**/*']
+---
+
+@file CLAUDE.md

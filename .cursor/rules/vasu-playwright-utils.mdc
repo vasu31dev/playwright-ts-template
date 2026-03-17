@@ -1,0 +1,26 @@
+---
+description: Use vasu-playwright-utils for Playwright tests. Follow locator strategy (data-testid, role, label). Use with playwright-cli to verify flows.
+globs: ["**/*.spec.ts", "**/*.test.ts", "tests/**"]
+---
+
+# vasu-playwright-utils
+
+Playwright TypeScript utility library with simplified helper functions for browser automation.
+
+## Quick Reference
+
+- **Must call `setPage(page)` before using any utility**
+- Functions accept `string | Locator` as input
+- Import from main package or subpaths:
+  ```typescript
+  import { click, fill } from 'vasu-playwright-utils';
+  import { click } from 'vasu-playwright-utils/action-utils';
+  import { expectElementToBeVisible } from 'vasu-playwright-utils/assert-utils';
+  ```
+
+## Full API Documentation
+
+@file .claude/skills/vasu-playwright-utils/SKILL.md
+@file .claude/skills/vasu-playwright-utils/references/actions.md
+@file .claude/skills/vasu-playwright-utils/references/assertions.md
+@file .claude/skills/vasu-playwright-utils/references/locators.md

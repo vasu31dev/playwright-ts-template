@@ -1,6 +1,6 @@
 {
   "name": "playwright-ts-template",
-  "version": "1.23.0",
+  "version": "1.24.0",
   "description": "Playwright Type script framework is designed for Web (Desktop & Mobile), API, and Electron apps. Stable and Robust layer on top of Playwright with inbuilt Utilities, Linting, Logging, Web hooks, Github actions, Reports and much more",
   "keywords": [
     "playwright",
@@ -26,10 +26,10 @@
     "node": ">=20.0.0"
   },
   "devDependencies": {
-    "allure-commandline": "^2.37.0",
-    "allure-playwright": "^3.5.0",
-    "axios": "^1.13.5",
-    "vasu-playwright-utils": "^1.23.0"
+    "allure-commandline": "^2.38.0",
+    "allure-playwright": "^3.6.0",
+    "axios": "^1.13.6",
+    "vasu-playwright-utils": "^1.24.0"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -56,7 +56,9 @@
     "lint:fix": "cross-env eslint 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' --fix",
     "format": "cross-env prettier --write 'tests/**/*.ts' 'test-setup/**/*.ts' 'playwright.config.ts' '.eslintrc.js' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
     "prepare": "husky",
-    "postinstall": "playwright install chromium"
+    "postinstall": "playwright install chromium",
+    "ncu:check": "npx npm-check-updates",
+    "ncu:update": "npx npm-check-updates -u"
   },
   "husky": {
     "hooks": {
